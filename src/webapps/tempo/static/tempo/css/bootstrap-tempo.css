@@ -4,6 +4,7 @@ body {
   height: 100%;
   width: 95%;
   min-width: 800px;
+  background: #e5e3e8;
 }
 .navbar-default .navbar-brand {
   color : white;
