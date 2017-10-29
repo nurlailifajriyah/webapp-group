@@ -20,4 +20,5 @@ from tempo import urls
 urlpatterns = [
     url(r'^', include(urls)),
     url(r'^admin', admin.site.urls),
+
 ]

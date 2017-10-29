@@ -1,0 +1,53 @@
+{%extends "login_register_base.html"%}
+
+{% block title %}Home{% endblock%}
+{%block content%}
+<div>
+    <h2 class="logo-message">TEMPO</h2>
+    <h3 class="pitch">Sync your music</h3>
+
+</div>
+<div class="container">
+
+    <div class="main-login main-center">
+        <!-- django's authentication module-->
+        <form class="form-horizontal" method="post" action="{% url 'login' %}">
+            {%if form.errors%}
+            <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password option.</p>
+            {%endif%}
+            <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="username" id="username"  placeholder="Enter Username"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" name="password" id="password"  placeholder="Enter Password"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <!--<a href="Global%20Stream.html"><button type="button" class="btn btn-primary btn-lg btn-block login">Log in</button></a>-->
+                <input type="submit" class="log_but" value="Log in">
+            </div>
+            <div class="login-password">
+                <a href="/password_reset">Forgot Password?</a>
+            </div>
+
+            <div class="login-register">
+                New User? <a href="{%url 'login' %}">Sign Up</a>
+            </div>
+
+            {%csrf_token%}
+        </form>
+    </div>
+</div>
+
+{% endblock%}

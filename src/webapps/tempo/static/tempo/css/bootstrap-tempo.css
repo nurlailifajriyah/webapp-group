@@ -64,3 +64,25 @@ ul.navbar-toggle:focus{
 ul.navbar-toggle{
     list-style: none;
 }
+
+.container{
+    padding-right:15px;
+    padding-left:10px;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.home-logo{
+    margin-top: 2%;
+    margin-left: 18%;
+}
+
+.logo-message{
+    margin-left: 45%;
+    color: lightcoral;
+}
+
+.pitch{
+    margin-left: 42%;
+    color: lightcoral;
+}

@@ -5,11 +5,14 @@
     {% load static %}
     <!-- Bootstrap CSS -->
     <link href="{% static 'tempo/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
     <!-- Customized CSS -->
     <link href="{% static 'tempo/css/bootstrap-tempo.css' %}" rel="stylesheet">
     <link href="{% static 'tempo/css/sidebar-tempo.css' %}" rel="stylesheet">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'tempo/images/favicon.ico' %}">
+
     <!-- Bootstrap Javascript -->
     <script src="{% static 'tempo/js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'tempo/js/bootstrap.min.js' %}"></script>
@@ -29,14 +32,9 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">
-                                    Menu
+                                    Login
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">My Profile</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Find Users</a></li>
-                                    <li><a href="#">Logout</a></li>
-                                </ul>
+
                             </li>
                         </ul>
                         <a class="navbar-brand" href="#">Tempo</a>
@@ -64,56 +62,21 @@
     <!-- End of Header -->
     <!-- Main Row -->
     <!-- Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar-->
+    <!-- End of Main Row -->
+
     <div class="row profile">
         <!-- Sidebar -->
-        <div class="col-md-3">
-            <div class="profile-sidebar">
-                <div class="profile-userpic">
-                    <img src="{% static 'tempo/images/profpict2.png' %}" class="img-responsive" alt="">
-                </div>
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">
-                        User Name
-                    </div>
-                </div>
-                <!-- Sidebar Menu -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="#">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                                Calendar </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-globe"></i>
-                                Live Session </a>
-                        </li>
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="glyphicon glyphicon-music"></i>
-                                Song List </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Team Member </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End of Sidebar Menu -->
-            </div>
-        </div>
-        <!-- End of Sidebar -->
         <!-- Main Content -->
-        <div class="col-md-9">
+        <div class="col-lg-16 col-md-12">
             <div class="profile-content">
                 <div>{% block content %}{% endblock %}</div>
             </div>
         </div>
         <!-- End of  Main Content -->
     </div>
-    <!-- End of Main Row -->
+
+
+
 </div>
 </body>
 </html>
