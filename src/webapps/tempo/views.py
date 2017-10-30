@@ -109,3 +109,6 @@ def profile(request, username):
         #if the user doesn't exist in the database, it redirects to the global stream page
         return redirect(reverse('global'))
 
+
+def audio_recorder(request):
+    return render(request, 'audio_record.html', {})

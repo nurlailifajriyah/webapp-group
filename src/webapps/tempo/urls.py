@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^register', tempo.views.register, name='register'),
     url(r'^login$', login, {'template_name': 'login.html', 'redirect_authenticated_user': True}, name='login'),
     url(r'^personal_home', tempo.views.home, name='register'),
+    url(r'^audio_recorder', tempo.views.audio_recorder, name='audio_recorder'),
+
 
 ]
