@@ -14,25 +14,26 @@ from django.db import models
 
 
 class Artist(models.Model):
-    artist_id = models.OneToOneField(User, on_delete=models.CASCADE, related_name='artist')
+    artist = models.OneToOneField(User, on_delete=models.CASCADE, related_name='artist')
     bio = models.TextField(max_length=140, blank=True)
-    address1 = models.CharField(max_length=30, blank=True)
-    address2 = models.CharField(max_length=30, blank=True)
+    city = models.CharField(max_length=30, blank=True)
+    country = models.CharField(max_length=30, blank=True)
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
-    birth_date = models.DateField(null=True, blank=True)
+    age = models.IntegerField(default=1, blank=True, null=True)
+    # birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/media', blank=True)
 
 
-    # creates an artist profile after registration
-    @receiver(post_save, sender=User)
-    def create_artist_profile(sender, instance, created, **kwargs):
-        if created:
-            Artist.objects.create(artist_id=instance)
-
-    # saves the profile of the artist
-    @receiver(post_save, sender=User)
-    def save_artist_profile(sender, instance, **kwargs):
-        instance.artist.save()
+    # # creates an artist profile after registration
+    # @receiver(post_save, sender=User)
+    # def create_artist_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         Artist.objects.create(artist_id=instance)
+    #
+    # # saves the profile of the artist
+    # @receiver(post_save, sender=User)
+    # def save_artist_profile(sender, instance, **kwargs):
+    #     instance.artist.save()
 
 
 class Band(models.Model):

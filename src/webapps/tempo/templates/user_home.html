@@ -1,0 +1,17 @@
+{%extends "header_base.html"%}
+{% block title %}Home{% endblock%}
+{%block content%}
+{% load static %}
+
+<div>
+    <a href="/login"><h2 class="logo-message">Tempo</h2>
+    <div class = "home-logo">
+        <img src="{% static 'tempo/images/mainpage.png' %}" alt="">
+    </div>
+    </a>
+    <h3 class="pitch">Sync your music</h3>
+</div>
+<div>
+    <a href="/logout">Sign out</a>
+</div>
+{% endblock%}

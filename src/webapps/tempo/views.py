@@ -130,7 +130,10 @@ def profile(request, username):
     except ObjectDoesNotExist as e:
         #if the user doesn't exist in the database, it redirects to the global stream page
         return redirect(reverse('global'))
-
-
+#######################################################################################################
+@login_required
+def user_home(request):
+    return render(request, 'user_home.html',{})
+#######################################################################################################
 def audio_recorder(request):
     return render(request, 'audio_record.html', {})
