@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.core.validators import MaxValueValidator
+from django.db.models import Max
+from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+
+# signals allow the profile automatically create
+# and update user instances
+from django.dispatch import receiver
 
 from django.db import models
 
@@ -42,7 +52,7 @@ class Band(models.Model):
     created_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/media', blank=True)
     # this field allows this artist to be a member of certain groups
-    member = models.ManyToManyField('self', related_name='member', symmetrical=False)
+    artist = models.ManyToManyField(Artist, related_name='member', symmetrical=False)
 
     def __unicode__(self):
         return self.text
