@@ -12,10 +12,7 @@ from django.dispatch import receiver
 
 from django.db import models
 
-# Create your models here.
 
-# this class contains information about individual artists
-# this class is a profile which extends User model
 class Artist(models.Model):
     artist_id = models.OneToOneField(User, on_delete=models.CASCADE, related_name='artist')
     bio = models.TextField(max_length=140, blank=True)
@@ -25,9 +22,6 @@ class Artist(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/media', blank=True)
 
-
-    def __unicode__(self):
-        return self.text
 
     # creates an artist profile after registration
     @receiver(post_save, sender=User)
@@ -41,8 +35,6 @@ class Artist(models.Model):
         instance.artist.save()
 
 
-# this class contains information about the bands
-# it has a many2many fiels for Artist (members)
 class Band(models.Model):
     band_name = models.OneToOneField(User, on_delete=models.CASCADE, related_name='band')
     band_info = models.TextField(max_length=140, blank=True) #like a bio
@@ -53,6 +45,4 @@ class Band(models.Model):
     # this field allows this artist to be a member of certain groups
     artist = models.ManyToManyField(Artist, related_name='member', symmetrical=False)
 
-    def __unicode__(self):
-        return self.text
 
