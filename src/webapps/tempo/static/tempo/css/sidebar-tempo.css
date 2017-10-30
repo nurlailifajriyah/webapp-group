@@ -106,10 +106,10 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 /* Profile Content */
 .profile-content {
-  height: 700px;
+  max-height: 900px;
   padding: 18px;
   background: #fff;
-  min-height: 460px;
+  min-height: 700px;
 
 }
 
@@ -138,7 +138,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
     margin-top: 30px;
  	max-width: 430px;
     padding: 40px 40px;
-  background-color: seashell;
+    background-color: seashell;
 
 }
 
@@ -186,3 +186,23 @@ span.input-group-addon i {
 	text-align: center;
 }
 /*login css end*/
+
+/*register css*/
+.form-group-button{
+    margin-bottom: 15px;
+    margin-left: 36%;
+    font-size: 8px;
+	font-family: 'Passion One';
+}
+
+.para_styling1{
+    color: lightcoral;
+    font-weight: bold;
+}
+
+.login-register{
+	font-size: 18px;
+	text-align: center;
+    color: olive;
+}
+/**register css ends*/
