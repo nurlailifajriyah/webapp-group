@@ -125,3 +125,7 @@ MEDIA_ROOT = BASE_DIR + '/tempo/static/'
 MEDIA_URL = '/tempo/static/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = '/login'
+
+LOGIN_REDIRECT_URL = '/personal_home'

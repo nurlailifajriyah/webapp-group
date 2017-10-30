@@ -6,13 +6,58 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
+from . models import *
+from .  forms import *
 
 
 # Create your views here.
 def home(request):
     return render(request, 'welcome.html')
 
+#############################################################################
+def register(request):
+    if request.method == 'GET':
+        context = {'form':RegistrationForm()}
+        return render(request, 'register.html', context)
+
+    form = RegistrationForm(request.POST)
+    context = {'form': form}
+    if not form.is_valid():
+        return render(request, 'register.html', context)
+    new_user = User.objects.create_user(username = form.cleaned_data['username'],
+                                          first_name = form.cleaned_data['first_name'],
+                                          last_name = form.cleaned_data['last_name'],
+                                          email=form.cleaned_data['email'],
+                                          password= form.cleaned_data['password1'],
+                                          is_active = False
+                                          )
+    new_user.save()
+
+    #profile part
+    artist = Artist(age=form.cleaned_data['age'], artist=new_user, city=form.cleaned_data['city'],
+                    country=form.cleaned_data['country'], bio=form.cleaned_data['bio'],zipcode=form.cleaned_data['zipcode'])
+    # artist.image = 'tempo/media/12522937_1257065594310510_6977590312724746127_n.jpg'
+    artist.save()
+
+    return render(request, 'register.html', context)
+
+    # ### email part
+    token = account_activation_token.make_token(new_user)
+    email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
+    http://%s%s""" %(request.get_host(),
+                     reverse('activate', args=(new_user.username, token)))
+    #
+    send_mail(subject="Verify your account/email address",
+              message=email_body,
+              from_email="grumbltech@grumblr.com",
+              recipient_list=[new_user.email])
+    context['email'] = form.cleaned_data['email']
+    context['fname'] = form.cleaned_data['first_name']
+    return render(request, "acc_active_email.html", context)
+
+
 ####################################LOGIN######################################################
+
 @login_required
 def profile(request, username):
     context = {}
@@ -38,7 +83,6 @@ def profile(request, username):
 
 
             ######################################################
-            #post_comm = {}
             post_comm = []
             for k in all_posts:
                 comm = Comment.objects.filter(post=k).order_by('-ctime')
@@ -46,8 +90,6 @@ def profile(request, username):
                 #here part cut
             context['post_comm'] = post_comm
             #######################################################
-            # return render(request, 'post_comm.json',context, content_type='application/json')
-            # return render(request, 'user_posts.json', context, content_type='application/json')
             return render(request, 'Profile.html', context)
 
         else:
