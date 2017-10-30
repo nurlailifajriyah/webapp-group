@@ -8,6 +8,11 @@ from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
 from . models import *
 from .  forms import *
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, Http404, JsonResponse
+from django.core.mail import send_mail
+from mimetypes import guess_type
+from .token import account_activation_token
 
 
 # Create your views here.
@@ -39,7 +44,7 @@ def register(request):
     # artist.image = 'tempo/media/12522937_1257065594310510_6977590312724746127_n.jpg'
     artist.save()
 
-    return render(request, 'register.html', context)
+    # return render(request, 'register.html', context)
 
     # ### email part
     token = account_activation_token.make_token(new_user)
@@ -58,6 +63,23 @@ def register(request):
 
 ####################################LOGIN######################################################
 
+
+def activate(request, uidb64, token):
+    try:
+        user = User.objects.get(username=uidb64)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    #check if user exists in database (inactive) and verify their token by calling token.py and set user to active
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        #return render(request,'Post_Verification.html')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
+
+#################################################################################################
 @login_required
 def profile(request, username):
     context = {}

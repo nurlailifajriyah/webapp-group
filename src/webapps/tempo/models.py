@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from django.db import models
 from django.contrib.auth.models import User
 from django.utils.datetime_safe import datetime
-from django.db import models
 from django.core.validators import MaxValueValidator
 from django.db.models import Max
 
@@ -10,6 +9,7 @@ from django.db.models import Max
 
 # this class contains information about individual artists
 # this class is a profile which extends User model
+
 class Artist(models.Model):
     artist = models.OneToOneField(User, on_delete=models.CASCADE, related_name='artist')
     bio = models.TextField(max_length=140, blank=True)
@@ -22,7 +22,7 @@ class Artist(models.Model):
 
 
     def __str__(self):
-        return self.bio
+        return self.artist
 
     # # creates an artist profile after registration
     # @receiver(post_save, sender=User)

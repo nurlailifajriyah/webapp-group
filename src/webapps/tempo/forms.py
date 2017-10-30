@@ -12,7 +12,6 @@ class RegistrationForm(forms.Form):
     country = forms.CharField(max_length=100, required=False)
     zipcode = forms.IntegerField(required=False)
     bio = forms.CharField(max_length=200, required=False)
-    bands = forms.CharField(max_length=200, required=False)
     age = forms.IntegerField(required=False)
 
 
