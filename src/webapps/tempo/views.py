@@ -135,5 +135,4 @@ def profile(request, username):
 def user_home(request):
     return render(request, 'user_home.html',{})
 #######################################################################################################
-def audio_recorder(request):
-    return render(request, 'audio_record.html', {})
+
