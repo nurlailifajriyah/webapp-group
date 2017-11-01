@@ -1,17 +1,63 @@
-{%extends "header_base.html"%}
+{%extends "login_register_base.html"%}
 {% block title %}Home{% endblock%}
 {%block content%}
 {% load static %}
+<div>
 
-<div>
-    <a href="/login"><h2 class="logo-message">Tempo</h2>
-    <div class = "home-logo">
-        <img src="{% static 'tempo/images/mainpage.png' %}" alt="">
+    <div class="col-lg-4 col-md-3 hidden-sm hidden-xs">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="media">
+
+
+                    <div align="center">
+                        <p>{{details}} {{user.get_full_name}}</p>
+                    </div>
+
+
+                    <div class="media-body">
+                        <hr id="hr_id1">
+                        <h1 class="header_edit"><span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span><i><b class="bold_styling1"> {{user.get_full_name}}</b></i></h1>
+
+                        <h1 class="header_edit"><i><b class="bold_styling1"><h2>@{{details}}</h2></i></h1>
+
+                        {% if not profile.bio %}
+                            <pre class="pre_styling"><p class="para_styling"><strong>No bio</strong></p></pre>
+
+                        {% endif %}
+
+                        {% if profile.bio %}
+                            <pre class="pre_styling"><p class="para_styling"><strong>{{profile.bio}}</strong></p></pre>
+
+                        {% endif %}
+
+                        <hr>
+                        <!--dynamically counting the number of posts-->
+                        <!--<h4 class="heading41_styling">Posts<b class="bold_styling1"> : {{user_posts|length}}</b></h4>-->
+
+                        <!--<hr>-->
+                        {% if profile.age %}
+                            <h4 class="heading42_styling">Age<b class="bold_styling1"> : {{profile.age}}</b></h4>
+                        {% endif %}
+                        {% if not profile.age %}
+                            <h4 class="heading42_styling">Age<b class="bold_styling1"> : complete profile</b></h4>
+                        {% endif %}
+
+                        <hr>
+                        {% if not profile.country%}
+                            <h4 class="heading43_styling">Location<b class="bold_styling1"> : complete profile</b></h4>
+                        {%endif%}
+                        {% if profile.country%}
+                            <h4 class="heading43_styling">Location<b class="bold_styling1"> : {{profile.country}}</b></h4>
+                        {%endif%}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </a>
-    <h3 class="pitch">Sync your music</h3>
-</div>
-<div>
-    <a href="/logout">Sign out</a>
+
+
 </div>
 {% endblock%}

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -129,4 +132,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_URL = '/login'
 
-LOGIN_REDIRECT_URL = '/user_home'
+LOGIN_REDIRECT_URL = '/user_pre_profile'
+# LOGIN_REDIRECT_URL = reverse('user_home', args=request.user.username )

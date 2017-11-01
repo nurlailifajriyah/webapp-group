@@ -19,7 +19,11 @@ from .token import account_activation_token
 def home(request):
     return render(request, 'welcome.html')
 
-#############################################################################
+###############################################################################
+def user_pre_profile(request):
+    context = {'user': request.user, 'username': request.user.username}
+    return render(request, 'user_pre_profile_.html', context)
+#################################################################################
 def register(request):
     if request.method == 'GET':
         context = {'form':RegistrationForm()}
@@ -132,8 +136,17 @@ def profile(request, username):
         return redirect(reverse('global'))
 #######################################################################################################
 @login_required
-def user_home(request):
-    return render(request, 'user_home.html',{})
+def user_home(request, username):
+    context = {}
+    try:
+        login_user = request.user
+        artistobj = User.objects.get(username=username)
+        profile = artistobj.artist
+        context = {'details':useranme, 'profile': profile, 'user': artistobj}
+        return render(request, 'user_home.html',context)
+    except ObjectDoesNotExist as e:
+        return render(request, 'welcome.html', {})
+
 #######################################################################################################
 def audio_recorder(request):
     return render(request, 'audio_record.html', {})
