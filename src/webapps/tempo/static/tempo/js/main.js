@@ -208,6 +208,7 @@ function upload() {
     });
 }
 
+//Source: https://stackoverflow.com/a/33723330/8717427
 function play_audio(task) {
       if(task === 'play'){
            $(".my_audio").trigger('play');

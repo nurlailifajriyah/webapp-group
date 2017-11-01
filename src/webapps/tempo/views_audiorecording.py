@@ -7,7 +7,7 @@ def audio_recorder(request):
     return render(request, 'audio_record.html', {})
 
 def add_track(request):
+    # TODO validation if file is not an audio file
     new_track = Track(name="track.wav", type="wave", audio_file=request.FILES['data'], version_number=1)
-    # new_track = Track(name="track.wav", type="wave", version_number=1)
     new_track.save()
     return HttpResponse("")

@@ -52,7 +52,7 @@ class Band(models.Model):
 class Track(models.Model):
     name = models.TextField(max_length=140, blank=True)
     type = models.TextField(max_length=140, blank=True)
-    audio_file = models.FileField(upload_to='tempo/audio', blank=True) #TODO audiofield
+    audio_file = models.FileField(upload_to='tempo/audio', blank=True)
     version_number = models.IntegerField(default=1, blank=True, null=True)
 
 
