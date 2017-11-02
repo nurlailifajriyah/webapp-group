@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="697c7351-0e2b-47d8-b520-af422ad87da9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/bandpage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/sidebar-tempo.css" afterPath="$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/sidebar-tempo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/user_pre_profile.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/user_pre_profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/urls.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/views.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/webapps/settings.py" afterPath="$PROJECT_DIR$/src/webapps/webapps/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="header_base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="header_base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
@@ -51,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_home.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user_home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5">
-              <caret line="72" column="33" lean-forward="false" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+            <state relative-caret-position="215">
+              <caret line="82" column="20" lean-forward="true" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -345,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509507200207</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="UI: Welcome, Post-login and Home page is ready.">
+      <created>1509647174512</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1509647174531</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -394,7 +393,8 @@
     <MESSAGE value="Login, registration and authentication page (final) - Ready" />
     <MESSAGE value="Final Login, Register, Logout and Email Vefification Ready&#10;The logout option is available on the user_home page where a user is redirected when he/she logs in." />
     <MESSAGE value="commiting in order to pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commiting in order to pull" />
+    <MESSAGE value="UI: Welcome, Post-login and Home page is ready." />
+    <option name="LAST_COMMIT_MESSAGE" value="UI: Welcome, Post-login and Home page is ready." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -765,18 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="72" column="33" lean-forward="false" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/bandpage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -790,6 +778,18 @@
         <state relative-caret-position="315">
           <caret line="34" column="76" lean-forward="true" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="82" column="20" lean-forward="true" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
