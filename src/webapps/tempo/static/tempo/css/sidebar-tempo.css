@@ -256,7 +256,7 @@ span.input-group-addon i {
 /*user profile page*/
 .panel-body{
     padding:15px;
-    background-color:#122b40;
+    background-color:#280e4f;
 }
 
 .panel-default{
@@ -264,7 +264,7 @@ span.input-group-addon i {
 }
 
 .bold_styling1{
-    color: coral;
+    color: #5a7391;
 }
 
 .media-body{
@@ -292,12 +292,12 @@ span.input-group-addon i {
 }
 .heading1_styling{
     margin-left: 34%;
-    color: coral;
+    color: #5a7391;
 }
 
 .heading2_styling{
     margin-left: 30%;
-    color: coral;
+    color: #5a7391;
 }
 
 .position1{
@@ -308,7 +308,7 @@ span.input-group-addon i {
     float: right;
     height: 650px;
     width: 700px;
-    background-color: black;
+    background-color: #280e4f;
 }
 
 .band_list{
