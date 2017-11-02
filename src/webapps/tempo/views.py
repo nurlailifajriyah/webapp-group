@@ -149,5 +149,4 @@ def user_home(request, username):
 def band_page(request):
     return render(request, 'bandpage.html', {})
 #######################################################################################################
-def audio_recorder(request):
-    return render(request, 'audio_record.html', {})
+

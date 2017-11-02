@@ -14,6 +14,7 @@
 */
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
+window.BlobData = null;
 
 var audioContext = new AudioContext();
 var audioInput = null,
@@ -184,3 +185,58 @@ function initAudio() {
 }
 
 window.addEventListener('load', initAudio );
+
+function upload() {
+    if(window.BlobData == null){
+        return;
+    }
+
+    //Source: https://stackoverflow.com/a/13333478/8717427
+    var fd = new FormData();
+    fd.append('fname', 'test.wav');
+    fd.append('data', window.BlobData, "output.wav");
+    fd.append('csrfmiddlewaretoken', getCookie("csrftoken"))
+    $.ajax({
+        type: 'POST',
+        url: '/add_track',
+        data: fd,
+        processData: false,
+        contentType: false
+    }).done(function (data) {
+        alert("hai");
+        console.log(data);
+    });
+}
+
+//Source: https://stackoverflow.com/a/33723330/8717427
+function play_audio(task) {
+      if(task === 'play'){
+           $(".my_audio").trigger('play');
+      }
+      if(task === 'stop'){
+           $(".my_audio").trigger('pause');
+           $(".my_audio").prop("currentTime",0);
+      }
+ }
+
+ $(document).ready(function () {
+
+     $("#save").click(upload);
+ });
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+

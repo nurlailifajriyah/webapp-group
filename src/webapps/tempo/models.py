@@ -46,4 +46,14 @@ class Band(models.Model):
     # this field allows this artist to be a member of certain groups
     artist = models.ManyToManyField(Artist, related_name='member', symmetrical=False)
 
+    #TODO Songlist and Song
+
+
+class Track(models.Model):
+    name = models.TextField(max_length=140, blank=True)
+    type = models.TextField(max_length=140, blank=True)
+    audio_file = models.FileField(upload_to='tempo/audio', blank=True)
+    version_number = models.IntegerField(default=1, blank=True, null=True)
+
+
 
