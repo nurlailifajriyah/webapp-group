@@ -21,8 +21,8 @@ def home(request):
 
 ###############################################################################
 def user_pre_profile(request):
-    context = {'user': request.user, 'username': request.user.username}
-    return render(request, 'user_pre_profile_.html', context)
+    context = {'user': request.user, 'details': request.user.username}
+    return render(request, 'user_pre_profile.html', context)
 #################################################################################
 def register(request):
     if request.method == 'GET':
@@ -66,8 +66,6 @@ def register(request):
 
 
 ####################################LOGIN######################################################
-
-
 def activate(request, uidb64, token):
     try:
         user = User.objects.get(username=uidb64)
@@ -142,11 +140,14 @@ def user_home(request, username):
         login_user = request.user
         artistobj = User.objects.get(username=username)
         profile = artistobj.artist
-        context = {'details':useranme, 'profile': profile, 'user': artistobj}
+        context = {'details':username, 'profile': profile, 'user': artistobj}
         return render(request, 'user_home.html',context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
 
+######################################################################################################
+def band_page(request):
+    return render(request, 'bandpage.html', {})
 #######################################################################################################
 def audio_recorder(request):
     return render(request, 'audio_record.html', {})

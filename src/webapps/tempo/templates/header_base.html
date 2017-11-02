@@ -32,10 +32,10 @@
                                     Menu
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">My Profile</a></li>
+                                    <li><a href="{% url 'user_home' username=request.user.username %}">My Profile</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#">Find Users</a></li>
-                                    <li><a href="#">Logout</a></li>
+                                    <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -206,3 +206,128 @@ span.input-group-addon i {
     color: olive;
 }
 /**register css ends*/
+
+/*pre profile page*/
+.go_profile{
+    height: 500px;
+    width: 350px;
+    margin-top: 60px;
+    background-color: black;
+    margin-left: 25px;
+    float: left;
+    border-radius: 10%;
+}
+
+.welcome{
+    padding-left: 28%;
+    color: coral;
+    font-size: 30px;
+}
+
+.redirect_profile{
+    color: white;
+    font-weight: bold;
+    font-size: 26px;
+    margin-left: 30%;
+    margin-top: 25%;
+}
+
+.create_band{
+    height: 500px;
+    width: 350px;
+    margin-top: 60px;
+    background-color: black;
+    margin-right: 30px;
+    float: right;
+    border-radius: 10%;
+
+}
+
+.create_band_image{
+    height : 300px;
+    width : 250px;
+    border-radius: 5%;
+    margin-top : 67px;
+    margin-left : 51px;
+
+}
+/*end of preprofile*/
+
+/*user profile page*/
+.panel-body{
+    padding:15px;
+    background-color:#122b40;
+}
+
+.panel-default{
+    border-color:black;
+}
+
+.bold_styling1{
+    color: coral;
+}
+
+.media-body{
+    overflow: auto;
+    zoom:1;  /*to render the elements inside the div portion*/
+    color: blanchedalmond;
+}
+
+#hr_id1{
+    width: 50%;
+    border-color: darkolivegreen
+}
+
+.header_edit{
+    margin-left: 25%;
+}
+
+.pre_styling{
+    margin-top: 30px;
+}
+
+.pre_styling_bio {
+    margin-top: 30px;
+    color: darkolivegreen;
+}
+.heading1_styling{
+    margin-left: 34%;
+    color: coral;
+}
+
+.heading2_styling{
+    margin-left: 30%;
+    color: coral;
+}
+
+.position1{
+    float: left;
+}
+
+.position2{
+    float: right;
+    height: 650px;
+    width: 700px;
+    background-color: black;
+}
+
+.band_list{
+    background-color: white;
+    margin-top: 35px;
+    margin-left:7.5%;
+    height: 150px;
+    width: 600px;
+}
+
+.band_name{
+    font-weight: bold;
+    margin-left: 30px;
+    padding-top: 13px;
+}
+
+.band_event{
+    font-weight: bold;
+    margin-left: 30px;
+
+}
+/*end of user profile page*/

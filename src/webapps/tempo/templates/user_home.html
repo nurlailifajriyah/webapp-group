@@ -3,61 +3,89 @@
 {%block content%}
 {% load static %}
 <div>
-
-    <div class="col-lg-4 col-md-3 hidden-sm hidden-xs">
+    <div class="col-lg-4 col-md-3 hidden-sm hidden-xs position1">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="media">
-
-
                     <div align="center">
-                        <p>{{details}} {{user.get_full_name}}</p>
+                        <p>{{user.get_first_name}}</p>
                     </div>
-
-
                     <div class="media-body">
                         <hr id="hr_id1">
-                        <h1 class="header_edit"><span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span><i><b class="bold_styling1"> {{user.get_full_name}}</b></i></h1>
-
+                        <h1 class="header_edit"><span><i class="fa fa-user fa-lg " aria-hidden="true"></i></span><i><b class="bold_styling1"> {{user.get_full_name}}</b></i></h1>
                         <h1 class="header_edit"><i><b class="bold_styling1"><h2>@{{details}}</h2></i></h1>
-
                         {% if not profile.bio %}
-                            <pre class="pre_styling"><p class="para_styling"><strong>No bio</strong></p></pre>
-
+                            <pre class="pre_styling_bio"><p class="para_styling"><strong>No bio yet</strong></p></pre>
                         {% endif %}
-
                         {% if profile.bio %}
                             <pre class="pre_styling"><p class="para_styling"><strong>{{profile.bio}}</strong></p></pre>
-
                         {% endif %}
-
                         <hr>
-                        <!--dynamically counting the number of posts-->
-                        <!--<h4 class="heading41_styling">Posts<b class="bold_styling1"> : {{user_posts|length}}</b></h4>-->
-
-                        <!--<hr>-->
                         {% if profile.age %}
-                            <h4 class="heading42_styling">Age<b class="bold_styling1"> : {{profile.age}}</b></h4>
+                            <h4 class="heading1_styling">Age<b class="bold_styling1"> : {{profile.age}}</b></h4>
                         {% endif %}
                         {% if not profile.age %}
-                            <h4 class="heading42_styling">Age<b class="bold_styling1"> : complete profile</b></h4>
+                            <h4 class="heading1_styling">Age<b class="bold_styling1"> : -- </b></h4>
                         {% endif %}
-
                         <hr>
                         {% if not profile.country%}
-                            <h4 class="heading43_styling">Location<b class="bold_styling1"> : complete profile</b></h4>
+                            <h4 class="heading2_styling">Location<b class="bold_styling1"> : -- </b></h4>
                         {%endif%}
                         {% if profile.country%}
-                            <h4 class="heading43_styling">Location<b class="bold_styling1"> : {{profile.country}}</b></h4>
+                            <h4 class="heading2_styling">Location<b class="bold_styling1"> : {{profile.country}}</b></h4>
                         {%endif%}
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="position2">
+        <div class="band_list">
+            <a href="{% url 'band' %}">
+                <p class="band_name">BAND A</p>
+            </a>
+            <p class="band_event"><b>Upcoming Event: </b> Music concert in Amsterdam</p>
+            <div style="width: 2000px; height: 90px;">
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+            </div>
+        </div>
 
+        <div class="band_list">
+            <a href="{% url 'band' %}">
+                <p class="band_name">BAND B</p>
+            </a>
+            <p class="band_event"><b>Upcoming Event: </b> Europe trip - Berlin, London, Moscow</p>
+            <div style="width: 2000px; height: 90px;">
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+            </div>
+        </div>
+
+        <div class="band_list">
+            <a href="{% url 'band' %}">
+                <p class="band_name">BAND C</p>
+            </a>
+            <p class="band_event"><b>Upcoming Event: </b> Concert with Beyonce and JayZ in Pittsburgh</p>
+            <!--<div style="width:830px; background-color:white; height:120px; overflow:auto;">-->
+		        <div style="width: 2000px; height: 90px;">
+                    <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                    <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                    <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                    <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                    <img src="{% static 'tempo/images/profpict2.png' %}" width="110" height="70" alt="no image" />
+                </div>
+	        <!--</div>-->
+        </div>
+    </div>
 </div>
+
+
 {% endblock%}
