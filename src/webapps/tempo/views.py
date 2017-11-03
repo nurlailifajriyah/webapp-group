@@ -150,6 +150,10 @@ def band_page(request):
     return render(request, 'bandpage.html', {})
 #######################################################################################################
 def song_list(request):
-    return render(request, 'songlist.html',{})
+    context = {}
+    if request.method == 'GET':
+        context['form'] = SongListForm()
+        return render(request, 'songlist.html', context)
+
 
 #######################################################################################################

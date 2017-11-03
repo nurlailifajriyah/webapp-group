@@ -39,3 +39,5 @@ class RegistrationForm(forms.Form):
         return email
 
 
+class SongListForm(forms.Form):
+    name = forms.CharField(max_length=140)
