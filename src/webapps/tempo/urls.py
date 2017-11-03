@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',tempo.views.activate, name='activate'),
+    url(r'^song_list$', tempo.views.song_list, name="song_list"),
     url(r'^audio_recorder$', tempo.views_audiorecording.audio_recorder, name="audio_recorder"),
     url(r'^add_track$', tempo.views_audiorecording.add_track, name="add_track"),
 
