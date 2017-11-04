@@ -36,7 +36,7 @@ canvas {
 }
 
 #save {
-    opacity: 0.25;
+    opacity: 1;
 }
 
 #save[download] {
@@ -76,6 +76,11 @@ canvas {
     font-size: 75px;
     padding-right: 10px;
 }
+.glyphicon.glyphicon-stop {
+    font-size: 75px;
+    padding-right: 10px;
+}
+
 
 .glyphicon.glyphicon-save {
     font-size: 75px;

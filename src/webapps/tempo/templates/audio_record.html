@@ -21,25 +21,32 @@
     <table>
         <tr>
             <td><a id="record" onclick="toggleRecording(this);"><span
-                    class="glyphicon glyphicon-record"></span></a>
+                    class="glyphicon glyphicon-record" id="record_glyphicon"></span></a>
             </td>
             <td>
                 <canvas id="analyser" width="1024" height="500"></canvas>
             </td>
         </tr>
         <tr>
+            <td></td>
+            <td> <p id="finish-record"> </p></td>
+        </tr>
+        <tr id = "save_row">
             <td>
-                <form>
+               <form>
                     <a id="save"><span
                     class="glyphicon glyphicon-save"></span></a>
                     {% csrf_token %}
                 </form>
             </td>
             <td>
-                <canvas id="wavedisplay" width="1024" height="500"></canvas>
+                <canvas id="wavedisplay" width="1024" height="100"></canvas>
             </td>
         </tr>
     </table>
+
+    <hr>
+
     <ol id="track-list">
 
 </ol>

@@ -39,12 +39,18 @@ function saveAudio() {
 }
 
 function gotBuffers( buffers ) {
-    var canvas = document.getElementById( "wavedisplay" );
 
+
+    var canvas = document.getElementById( "wavedisplay" );
     drawBuffer( canvas.width, canvas.height, canvas.getContext('2d'), buffers[0] );
 
     // the ONLY time gotBuffers is called is right after a new recording is completed -
     // so here's where we should set up the download.
+    var text = document.getElementById( "finish-record" );
+    text.innerHTML = "This is your recorded track. Click on the save icon to save it to database.";
+     document.getElementById("save_row").style.visibility = "visible";
+
+
     audioRecorder.exportWAV( doneEncoding );
 }
 
@@ -56,6 +62,7 @@ function doneEncoding( blob ) {
 function toggleRecording( e ) {
     if (e.classList.contains("recording")) {
         // stop recording
+        $(record_glyphicon).toggleClass('glyphicon-stop glyphicon-record');
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffers( gotBuffers );
@@ -64,6 +71,7 @@ function toggleRecording( e ) {
         if (!audioRecorder)
             return;
         e.classList.add("recording");
+         $(record_glyphicon).toggleClass('glyphicon-record glyphicon-stop');
         audioRecorder.clear();
         audioRecorder.record();
     }
@@ -209,6 +217,8 @@ function upload() {
 }
 
  $(document).ready(function () {
+     document.getElementById("save_row").style.visibility = "collapse";
+
     $("#save").click(upload);
  });
 
