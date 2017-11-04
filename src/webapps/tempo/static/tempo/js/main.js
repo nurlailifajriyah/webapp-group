@@ -204,11 +204,12 @@ function upload() {
         contentType: false
     }).done(function (data) {
         console.log(data);
+        window.BlobData = null;
     });
 }
 
  $(document).ready(function () {
-     $("#save").click(upload);
+    $("#save").click(upload);
  });
 
 function getCookie(name) {

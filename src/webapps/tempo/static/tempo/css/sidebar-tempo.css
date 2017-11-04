@@ -106,7 +106,6 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 /* Profile Content */
 .profile-content {
-  max-height: 900px;
   padding: 18px;
   background: #fff;
   min-height: 700px;

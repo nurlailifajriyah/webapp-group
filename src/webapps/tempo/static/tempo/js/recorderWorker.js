@@ -61,7 +61,6 @@ function exportWAV(type){
   var interleaved = interleave(bufferL, bufferR);
   var dataview = encodeWAV(interleaved);
   var audioBlob = new Blob([dataview], { type: type });
-  // storeTrack(audioBlob);
   this.postMessage(audioBlob);
 }
 
@@ -158,8 +157,4 @@ function encodeWAV(samples, mono){
   floatTo16BitPCM(view, 44, samples);
 
   return view;
-}
-
-function storeTrack(record){
-    $.post("/add_track/", {"audio-file": record});
 }
