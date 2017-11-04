@@ -13,7 +13,20 @@ function populateList() {
       });
 }
 
-function
+function getUpdates(){
+    var list = $('#track-list');
+    var max_time = list.data("max-time")
+    $.get('/get_track/' + max_time)
+      .done(function(data) {
+          list.data('max-time', data['max-time']);
+          for (var i = 0; i < data.tracks.length; i++) {
+              var track = data.tracks[i];
+              var new_track = $(track.html);
+              new_track.data("id", track.id);
+              list.prepend(new_track);
+          }
+      });
+}
 
 $(document).ready(function () {
 
