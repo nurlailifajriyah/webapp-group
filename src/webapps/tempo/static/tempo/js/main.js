@@ -207,19 +207,7 @@ function upload() {
     });
 }
 
-//Source: https://stackoverflow.com/a/33723330/8717427
-function play_audio(task) {
-      if(task === 'play'){
-           $(".my_audio").trigger('play');
-      }
-      if(task === 'stop'){
-           $(".my_audio").trigger('pause');
-           $(".my_audio").prop("currentTime",0);
-      }
- }
-
  $(document).ready(function () {
-
      $("#save").click(upload);
  });
 

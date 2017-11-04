@@ -28,11 +28,28 @@ function getUpdates(){
       });
 }
 
+
+//Source: https://stackoverflow.com/a/33723330/8717427
+function play_audio() {
+    var trackid = $(this).attr("id");
+    $(".my_audio-" + trackid ).trigger('play');
+
+ }
+
+ function stop_audio(){
+    var trackid = $(this).attr("id");
+    $(".my_audio-" + trackid ).trigger('pause');
+    $(".my_audio-" + trackid ).prop("currentTime",0);
+ }
+
 $(document).ready(function () {
 
   populateList();
 
-  window.setInterval(getUpdates, 5000);
+ window.setInterval(getUpdates, 5000);
+
+ $("#track-list").on('click', ".play-btn", play_audio);
+ $("#track-list").on('click', ".stop-btn", stop_audio);
 
   // CSRF set-up copied from Django docs
   function getCookie(name) {
