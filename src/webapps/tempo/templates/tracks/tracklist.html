@@ -1,0 +1,15 @@
+{% load static %}
+<li id='{{trackid}}'>
+
+                <audio class="my_audio">
+
+                    <!--//TODO play audio from database, not hardcode-->
+
+                    <source src="{% static track.audio_file %}" type="audio/wav">
+                </audio>
+                {{trackid}} ({{track.id}})
+                <button class='play-btn' id="btn-{{trackid}}" onclick="play_audio('play')">PLAY</button>
+                <button onclick="play_audio('stop')">STOP</button>
+                </a>
+
+    </li>

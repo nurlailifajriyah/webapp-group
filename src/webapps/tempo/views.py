@@ -13,6 +13,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.core.mail import send_mail
 from mimetypes import guess_type
 from .token import account_activation_token
+from tempo.models import *
 
 
 # Create your views here.
@@ -149,11 +150,25 @@ def user_home(request, username):
 def band_page(request):
     return render(request, 'bandpage.html', {})
 #######################################################################################################
+@login_required
 def song_list(request):
     context = {}
     if request.method == 'GET':
         context['form'] = SongListForm()
         return render(request, 'songlist.html', context)
 
-
 #######################################################################################################
+@login_required
+def add_songlist(request, band):
+    context = {}
+    form = SongListForm(request.POST)
+    context['form'] = form
+
+    if not form.is_valid():
+        return render(request, 'songlist.html', context)
+
+    else:
+        band = Band.objects.get(id=band)
+        new_item = SongList(name=form.cleaned_data['name'], band=band)
+        new_item.save()
+    return HttpResponse("")

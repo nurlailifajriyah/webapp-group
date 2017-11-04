@@ -203,7 +203,6 @@ function upload() {
         processData: false,
         contentType: false
     }).done(function (data) {
-        alert("hai");
         console.log(data);
     });
 }

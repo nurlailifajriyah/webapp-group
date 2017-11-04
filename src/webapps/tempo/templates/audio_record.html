@@ -9,6 +9,7 @@
 <script src="static/tempo/js/recorder.js" type="text/javascript"></script>
 <script src="static/tempo/js/main.js" type="text/javascript"></script>
 <script src="static/tempo/js/recorderWorker.js" type="text/javascript"></script>
+<script src="static/tempo/js/audiorecord.js" type="text/javascript"></script>
 <!-- Customized CSS -->
 <link href="{% static 'tempo/css/audio_record.css' %}" rel="stylesheet">
 
@@ -38,21 +39,12 @@
                 <canvas id="wavedisplay" width="1024" height="500"></canvas>
             </td>
         </tr>
-        <tr>
-            <td>
-                <audio class="my_audio">
-
-                    <!--//TODO play audio from database, not hardcode-->
-
-                    <source src="{% static 'tempo/audio/Always.wav' %}" type="audio/wav">
-                </audio>
-                <button onclick="play_audio('play')">PLAY</button>
-                <button onclick="play_audio('stop')">STOP</button>
-                </a>
-            </td>
-        </tr>
     </table>
 </div>
+<ol id="track-list">
+
+</ol>
+
 
 
 {% endblock%}
