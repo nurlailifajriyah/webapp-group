@@ -49,8 +49,7 @@ function gotBuffers( buffers ) {
     var text = document.getElementById( "finish-record" );
     text.innerHTML = "This is your recorded track. Click on the save icon to save it to database.";
      document.getElementById("save_row").style.visibility = "visible";
-
-
+    $('#recorded-model').modal('toggle');
     audioRecorder.exportWAV( doneEncoding );
 }
 
@@ -196,9 +195,10 @@ window.addEventListener('load', initAudio );
 
 function upload() {
     if(window.BlobData == null){
+                alert("Error Uploading File. Please try again.");
+
         return;
     }
-
     //Source: https://stackoverflow.com/a/13333478/8717427
     var fd = new FormData();
     fd.append('fname', 'test.wav');
@@ -213,12 +213,15 @@ function upload() {
     }).done(function (data) {
         console.log(data);
         window.BlobData = null;
+         $('#recorded-model').modal('hide');
+         $.getscript("audiorecord.js",function(){
+             getUpdates();
+         });
     });
 }
 
  $(document).ready(function () {
      document.getElementById("save_row").style.visibility = "collapse";
-
     $("#save").click(upload);
  });
 
