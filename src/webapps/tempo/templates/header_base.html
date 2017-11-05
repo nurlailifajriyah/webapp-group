@@ -52,6 +52,8 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#">My Profile</a></li>
                                     <li role="separator" class="divider"></li>
+                                    <li><a href="{% url 'edit_profile' username=request.user.username %}">Edit</a> </li>
+                                    <li role="separator" class="divider"></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </li>
@@ -64,7 +66,7 @@
     <!-- End of Header -->
     <!-- Main Row -->
     <!-- Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar-->
-    <div class="row profile">
+    <div class="row profile profile-content">
         <!-- Sidebar -->
         <div class="col-md-3">
             <div class="profile-sidebar">
@@ -107,7 +109,7 @@
         <!-- End of Sidebar -->
         <!-- Main Content -->
         <div class="col-md-9">
-            <div class="profile-content">
+            <div class="position3">
                 <div>{% block content %}{% endblock %}</div>
             </div>
         </div>
@@ -117,4 +119,3 @@
 </div>
 </body>
 </html>
-

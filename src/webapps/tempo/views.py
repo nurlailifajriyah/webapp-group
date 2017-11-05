@@ -180,3 +180,286 @@ def add_song_list(request):
         context['song_list'] = SongList.objects.all()
 
     return render(request, 'songlist.html', context)
+
+
+###############################################################################
+
+#################################################################################################
+@login_required
+# @transaction.commit_on_success
+def edit_profile(request, username):
+    try:
+        user_to_edit = get_object_or_404(User, username=request.user.username)
+        id = user_to_edit.id
+        user_profile = user_to_edit.artist
+        if request.method == 'GET':
+            if username == request.user.username:
+                # populate entries with the existing data in database and used related_name in model for onetoonefield
+                form = ProfileEditForm(
+                    initial={'first_name': user_to_edit.first_name, 'last_name': user_to_edit.last_name,
+                             'email': user_to_edit.email, 'password_new1': user_to_edit.password,
+                             'password_new2': user_to_edit.password, 'city': user_to_edit.artist.city,
+                             'bio': user_to_edit.artist.bio,
+                             'country': user_to_edit.artist.country, 'age': user_to_edit.artist.age})
+                context = {'form': form, 'id': id}
+                return render(request, 'edit.html', context)
+            else:
+                return redirect(reverse('edit_profile', args={request.user.username}))
+
+        # if it is POST method, get FORM data to update the model
+        form = ProfileEditForm(request.POST, request.FILES,
+                               initial={'first_name': user_to_edit.first_name, 'last_name': user_to_edit.last_name,
+                                        'email': user_to_edit.email, 'password_new1': user_to_edit.password,
+                                        'password_new2': user_to_edit.password,
+                                        'city': user_to_edit.artist.city, 'bio': user_to_edit.artist.bio,
+                                        'country': user_to_edit.artist.country, 'age': user_to_edit.artist.age})
+        context = {'form': form, 'id': id}
+
+        if not form.is_valid():
+            return render(request, 'edit.html', context)
+
+        print(type(form.cleaned_data['password_new1']))
+        user_to_edit.first_name = form.cleaned_data['first_name']
+        user_to_edit.last_name_name = form.cleaned_data['last_name']
+        user_to_edit.email = form.cleaned_data['email']
+        if form.cleaned_data['password_new1']:
+            user_to_edit.set_password(form.cleaned_data['password_new1'])
+        user_to_edit.save()
+        user_profile.country = form.cleaned_data['country']
+        user_profile.city = form.cleaned_data['city']
+        user_profile.age = form.cleaned_data['age']
+        user_profile.bio = form.cleaned_data['bio']
+        if 'image' in request.FILES:
+            user_profile.image = request.FILES['image']
+        user_profile.save()
+        return redirect(reverse('user_home', args={user_to_edit.username}))
+    except ObjectDoesNotExist as e:
+        print("iihinkb ocmle comes here")
+        # if the user doesn't exist in the database, it redirects to the global stream page
+        return redirect(reverse('user_home', args={user_to_edit.username}))
+
+#################################################################################################
+@login_required
+def profile(request, username):
+    context = {}
+    login_user = request.user
+    try:
+        userobj = User.objects.get(username=username)
+        user_profile = userobj.profile
+        #get the list of all followers for users
+        follower_list = login_user.profile.follow.all()
+        only_id_list = []
+        for z in follower_list:
+            only_id_list.append(z.user.id)
+        id = userobj.id
+        ##########################################################
+        form = CommentForm(request.POST or None)
+        if 'post' in request.POST and request.method != 'GET':
+            context = add_posts(request,userobj,username)
+            all_posts = context['user_posts']
+            context['id'] = userobj.id
+            context['profile'] = user_profile
+            context['follow_list'] = only_id_list
+            context['form'] = form
+
+
+            ######################################################
+            post_comm = []
+            for k in all_posts:
+                comm = Comment.objects.filter(post=k).order_by('-ctime')
+                post_comm.append(comm)
+                #here part cut
+            context['post_comm'] = post_comm
+            #######################################################
+            return render(request, 'Profile.html', context)
+
+        else:
+            all_posts = User_Post.objects.filter(user=userobj).order_by('-time')
+            ############################################################################
+            # post_comm = {}
+            post_comm = []
+            for k in all_posts:
+                comm = Comment.objects.filter(post=k).order_by('-ctime')
+                post_comm.append(comm)
+                #here part 2 cut
+            context = {'post_comm': post_comm,'user_posts': all_posts, 'details': username, 'id':id, 'profile':user_profile, 'follow_list':only_id_list,'log_user_page':userobj, 'form':form}
+            ###############################################################################
+
+            return render(request, 'Profile.html',context)
+    except ObjectDoesNotExist as e:
+        #if the user doesn't exist in the database, it redirects to the global stream page
+        return redirect(reverse('global'))
+#######################################################################################################
+@login_required
+def user_home(request, username):
+    context = {}
+    try:
+        artist_info = User.objects.get(username = username)
+        current_artist = Artist.objects.get(artist=artist_info)
+        # get list of bands he belongs to
+        bands = Band.objects.filter(creator=current_artist.id)
+
+        login_user = request.user
+        # artistobj = User.objects.get(username=username)
+        profile = artist_info.artist
+        context['details'] = username
+        context['profile'] = profile
+        context['user'] = artist_info
+        context['bands'] = bands
+        return render(request, 'user_home.html',context)
+    except ObjectDoesNotExist as e:
+        return render(request, 'welcome.html', {})
+
+######################################################################################################
+@login_required
+def get_photo(request, id):
+    user_prof = get_object_or_404(Artist, artist_id=id)
+    # if user hasn't uploaded image, manually return 404 error
+    if not user_prof.image:
+        raise Http404
+    # manually set the content type of photo
+    content_type = guess_type(user_prof.image.name)
+    # manually set content type of photo
+    return HttpResponse(user_prof.image, content_type=content_type)
+
+
+######################################################################################################
+
+@login_required
+def get_band_photo(request, band_id):
+    band_prof = get_object_or_404(Band, id=band_id)
+    # if user hasn't uploaded image, manually return 404 error
+    if not band_prof.image:
+        raise Http404
+    # manually set the content type of photo
+    content_type = guess_type(band_prof.image.name)
+    # manually set content type of photo
+    return HttpResponse(band_prof.image, content_type=content_type)
+
+######################################################################################################
+
+def band_page(request):
+    context = {}
+    context['user'] = request.user.username
+    return render(request, 'bandpage.html', context)
+
+##########################################fuctions to join and create#############################################
+
+def join(request):
+    context = {}
+    errors = []
+
+    form = BandForm(request.POST or None)
+
+    context['errors'] = errors
+    context['form'] = form
+    return render (request, 'band_join.html', context)
+
+def create(request):
+    context = {}
+    errors = []
+
+    form = BandForm(request.POST or None)
+    context['errors'] = errors
+    context['form'] = form
+    return render (request, 'band_create.html', context)
+
+def join_band(request, band_id):
+    context = {}
+
+    if 'join_band' in request.POST:
+        band_to_join = Band.objects.get(id=band_id)
+        print("band name is: "+ str(band_to_join))
+        current_artist = request.user
+        print("band creator is: " + str(band_to_join.creator))
+        # join the actual band
+        # current_artist.artist.member.add(band_to_join)
+        creator = User.objects.get(username = band_to_join.creator)
+
+        # email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
+        # http://%s%s""" % (request.get_host(),
+        #                   reverse('activate', args=(creator.username, token)))
+        # #
+        # send_mail(subject="Verify your account/email address",
+        #           message=email_body,
+        #           from_email="hello@tempo.com",
+        #           recipient_list=[creator.email])
+        # context['email'] = creator.email
+        # context['fname'] = creator.first_name
+        # return render(request, "acc_active_email.html", context)
+
+        # context['current_artist'] = current_artist
+        # context['band'] = band_to_join
+        # context['message'] = 'joined'
+        # return render(request, 'band_success.html', context)
+    else:
+        return redirect(reverse('user_pre_profile'))
+
+
+
+def create_band(request):
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    # form = BandForm(request.POST or None)
+    form = BandForm(request.POST, request.FILES)
+
+    if not form.is_valid():
+        errors = 'Something went wrong, try again.'
+        context['errors'] = errors
+        return render(request, 'band_create.html', context)
+
+    band_name = form.cleaned_data['bandname']
+    # new_band = Band(band_name = band_name)
+    # new_band.save()
+
+    band_info = form.cleaned_data['band_info']
+    city = form.cleaned_data['city']
+    creator = request.user
+
+    new_band = Band(band_name=band_name, band_info=band_info, city=city, creator=creator)
+    if 'image' in request.FILES:
+        new_band.image = request.FILES['image']
+
+    new_band.save()
+
+    creator.artist.member.add(new_band)
+    print("successfully joined band")
+
+    context['current_artist'] = creator
+    context['band'] = new_band
+    context['message'] = 'created'
+
+
+    return redirect(reverse('user_band_list'))
+
+# fundtion to get list of available bands
+def user_band_list(request):
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    current_artist = Artist.objects.get(artist = request.user.id)
+    print("Current Artist" + str(current_artist.artist.username))
+    # get list of bands he belongs to
+    bands = Band.objects.filter(creator = current_artist.id)
+    print("successfully "+str(bands))
+    context['bands'] = bands
+    return render (request, 'user_band_page.html', context)
+
+# fundtion to get list of available bands
+def band_list(request):
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    # get list of bands he belongs to
+    bands = Band.objects.all()
+    print("successfully " + str(bands))
+    context['bands'] = bands
+    context['errors'] = errors
+    return render(request, 'band_list.html', context)
+
+
+##################################################################################################

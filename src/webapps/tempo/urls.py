@@ -29,4 +29,14 @@ urlpatterns = [
     url(r'^get_track/$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
     url(r'^get_track/(?P<time>.+)$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
 
+    url(r'^join$', tempo.views.join, name='join'),
+    url(r'^create$', tempo.views.create, name='create'),
+    url(r'^join_band/(?P<band_id>\d+)$', tempo.views.join_band, name='join_band'),
+    url(r'^create_band$', tempo.views.create_band, name='create_band'),
+    url(r'^user_band_list$', tempo.views.user_band_list, name='user_band_list'),
+    url(r'^band_list$', tempo.views.band_list, name='band_list'),
+    url(r'^confirm/', include('generic_confirmation.urls')),
+
+
+
 ]
