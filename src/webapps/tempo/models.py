@@ -23,7 +23,7 @@ class Artist(models.Model):
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     age = models.IntegerField(default=1, blank=True, null=True)
     # birth_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='tempo/media', blank=True)
+    image = models.ImageField(upload_to='tempo/image', blank=True)
 
 
     # # creates an artist profile after registration
@@ -39,14 +39,14 @@ class Artist(models.Model):
 
 
 class Band(models.Model):
-    band_name = models.OneToOneField(User, on_delete=models.CASCADE, related_name='band')
+    band_name = models.CharField(max_length=30, blank=True)
     band_info = models.TextField(max_length=140, blank=True) #like a bio
     city = models.CharField(max_length=30, blank=True)
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     created_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='tempo/media', blank=True)
+    image = models.ImageField(upload_to='tempo/image', blank=True)
     # this field allows this artist to be a member of certain groups
-    artist = models.ManyToManyField(Artist, related_name='member', symmetrical=False)
+    member = models.ManyToManyField(User, related_name='member_of', symmetrical=False)
 
 
 class SongList(models.Model):

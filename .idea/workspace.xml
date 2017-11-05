@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="697c7351-0e2b-47d8-b520-af422ad87da9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/urls.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/views.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/models.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,11 +68,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-4503">
               <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+              <folding>
+                <element signature="e#24#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="41" column="59" lean-forward="false" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -140,7 +149,6 @@
         <option value="$PROJECT_DIR$/src/webapps/tempo/token.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/migrations/__init__.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/forms.py" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/models.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/registration/user_pre_profile.html" />
         <option value="$PROJECT_DIR$/src/webapps/webapps/settings.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/user_pre_profile.html" />
@@ -151,6 +159,7 @@
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/views.py" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/models.py" />
       </list>
     </option>
   </component>
@@ -359,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509647202097</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="I have added new actions to create bands, I have also added urls for the action. Next I will add the models to support this functionalty">
+      <created>1509900096698</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1509900096698</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -409,7 +425,8 @@
     <MESSAGE value="Final Login, Register, Logout and Email Vefification Ready&#10;The logout option is available on the user_home page where a user is redirected when he/she logs in." />
     <MESSAGE value="commiting in order to pull" />
     <MESSAGE value="UI: Welcome, Post-login and Home page is ready." />
-    <option name="LAST_COMMIT_MESSAGE" value="UI: Welcome, Post-login and Home page is ready." />
+    <MESSAGE value="I have added new actions to create bands, I have also added urls for the action. Next I will add the models to support this functionalty" />
+    <option name="LAST_COMMIT_MESSAGE" value="I have added new actions to create bands, I have also added urls for the action. Next I will add the models to support this functionalty" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -704,16 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -794,6 +801,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4503">
           <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="41" column="59" lean-forward="false" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
