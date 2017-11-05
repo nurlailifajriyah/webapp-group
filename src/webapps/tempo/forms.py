@@ -41,3 +41,17 @@ class RegistrationForm(forms.Form):
 
 class SongListForm(forms.Form):
     name = forms.CharField(max_length=140)
+
+
+class BandForm(forms.Form):
+    bandname = forms.CharField(max_length=20)
+    band_info = forms.CharField(max_length=20, label='Band Info')
+    city = forms.CharField(max_length=20, label='City')
+    image = forms.ImageField(required=False, widget=forms.FileInput())
+
+    # valdiation for username
+    def clean_username(self):
+        band_name = self.cleaned_data.get('bandname')
+        if len(Band.objects.filter(username__exact = band_name)) >= 1:
+            raise forms.ValidationError("Band name already taken")
+        return band_name

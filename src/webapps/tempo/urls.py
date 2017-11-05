@@ -35,8 +35,10 @@ urlpatterns = [
     url(r'^create_band$', tempo.views.create_band, name='create_band'),
     url(r'^user_band_list$', tempo.views.user_band_list, name='user_band_list'),
     url(r'^band_list$', tempo.views.band_list, name='band_list'),
-    url(r'^confirm/', include('generic_confirmation.urls')),
+    # url(r'^confirm/', include('generic_confirmation.urls')),
 
-
+    url(r'^photo/(?P<id>\d+)$', tempo.views.get_photo, name='photo'),
+    url(r'^band_photo/(?P<band_id>\d+)$', tempo.views.get_band_photo, name='band_photo'),
+    url(r'^edit_profile/(?P<username>\w+)$', tempo.views.edit_profile, name='edit_profile'),
 
 ]

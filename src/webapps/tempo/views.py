@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login
@@ -169,13 +170,11 @@ def add_song_list(request):
 
     if not form.is_valid():
         errors.append('Please provide list name')
-        print 'form not valid'
         return render(request, 'songlist.html', context)
 
     else:
         new_item = SongList(name=form.cleaned_data['name'])
         new_item.save()
-        print 'save'
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.all()
 

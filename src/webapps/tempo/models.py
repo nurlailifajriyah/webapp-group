@@ -15,6 +15,17 @@ from django.dispatch import receiver
 from django.db import models
 
 
+class Band(models.Model):
+    band_name = models.CharField(max_length=30, blank=True)
+    creator = models.ForeignKey(User, default='', blank=False, related_name='artist_creator')
+    band_info = models.TextField(max_length=140, blank=True) #like a bio
+    city = models.CharField(max_length=30, blank=True)
+    zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
+    created_date = models.DateField(null=True, blank=True)
+    image = models.ImageField(upload_to='tempo/image', blank=True)
+    # this field allows this artist to be a member of certain groups
+
+
 class Artist(models.Model):
     artist = models.OneToOneField(User, on_delete=models.CASCADE, related_name='artist')
     bio = models.TextField(max_length=140, blank=True)
@@ -24,7 +35,7 @@ class Artist(models.Model):
     age = models.IntegerField(default=1, blank=True, null=True)
     # birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/image', blank=True)
-
+    member = models.ManyToManyField(Band, related_name='member_of', symmetrical=False)
 
     # # creates an artist profile after registration
     # @receiver(post_save, sender=User)
@@ -37,16 +48,6 @@ class Artist(models.Model):
     # def save_artist_profile(sender, instance, **kwargs):
     #     instance.artist.save()
 
-
-class Band(models.Model):
-    band_name = models.CharField(max_length=30, blank=True)
-    band_info = models.TextField(max_length=140, blank=True) #like a bio
-    city = models.CharField(max_length=30, blank=True)
-    zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
-    created_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='tempo/image', blank=True)
-    # this field allows this artist to be a member of certain groups
-    member = models.ManyToManyField(User, related_name='member_of', symmetrical=False)
 
 
 class SongList(models.Model):
