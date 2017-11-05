@@ -51,7 +51,7 @@ class Band(models.Model):
 
 class SongList(models.Model):
     name = models.TextField(max_length=140, blank=True)
-    band = models.ForeignKey(Band)
+    user = models.ForeignKey(User)
     creation_time = models.DateTimeField(auto_now=True)
 
 
@@ -86,7 +86,8 @@ class Track(models.Model):
     def html(self):
         template = get_template('tracks/tracklist.html')
         context = {}
-        context['trackid'] = self.name
+        context['trackid'] = self.id
+        context['trackname'] = self.name
         context['audiofile'] = self.audio_file
         context['track'] = self
         # https://djangobook.com/templates-in-views/

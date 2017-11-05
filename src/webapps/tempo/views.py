@@ -155,11 +155,12 @@ def song_list(request):
     context = {}
     if request.method == 'GET':
         context['form'] = SongListForm()
+        context['song_list'] = SongList.objects.all()
         return render(request, 'songlist.html', context)
 
 #######################################################################################################
 @login_required
-def add_songlist(request, band):
+def add_song_list(request):
     context = {}
     form = SongListForm(request.POST)
     context['form'] = form
@@ -168,7 +169,7 @@ def add_songlist(request, band):
         return render(request, 'songlist.html', context)
 
     else:
-        band = Band.objects.get(id=band)
-        new_item = SongList(name=form.cleaned_data['name'], band=band)
+        login_user = request.user
+        new_item = SongList(name=form.cleaned_data['name'], user = login_user)
         new_item.save()
     return HttpResponse("")

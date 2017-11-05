@@ -28,7 +28,7 @@ canvas {
     border: 0px !important;
     padding:0 !important;
     margin:0 !important;;
-    border-collapse: collapse !important;;
+    border-collapse: collapse;
 }
 
 #record {
@@ -86,7 +86,7 @@ canvas {
 }
 .glyphicon.glyphicon-stop {
     font-size: 75px;
-    padding-right: 10px;
+
 }
 
 
@@ -96,5 +96,5 @@ canvas {
 }
 .glyphicon.glyphicon-play {
     font-size: 75px;
-     padding-right: 10px;
+
 }

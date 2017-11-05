@@ -16,7 +16,7 @@ function populateList() {
 function getUpdates(){
     var list = $('#track-list');
     var max_time = list.data("max-time")
-    $.get('/get_track' + max_time)
+    $.get('/get_track/' + max_time)
       .done(function(data) {
           list.data('max-time', data['max-time']);
           for (var i = 0; i < data.tracks.length; i++) {

@@ -4,8 +4,9 @@
                 <audio class="my_audio-{{track.id}}">
                     <source src="{% static track.audio_file %}" type="audio/wav">
                 </audio>
-                <button class='play-btn' id="{{track.id}}">PLAY</button>
-                <button class='stop-btn' id="{{track.id}}">STOP</button>
+                <button class='play-btn' id="{{track.id}}"><span class="glyphicon glyphicon-play" style="font-size: 20px"></span></button>
+                <button class='stop-btn' id="{{track.id}}"><span class="glyphicon glyphicon-stop" style="font-size: 20px"></span></button>
+    {{trackname}}
                 </a>
 
     </li>
