@@ -17,16 +17,18 @@
             </tr>
             </thead>
             <tbody>
+            {% if song_list %}
             {% for list in song_list %}
             <tr>
                 <td>
-                    {{song_list.name}}
+                    {{list.name}}
                 </td>
                 <td>
-                    {{song_list.creation_time}}
+                    {{list.creation_time}}
                 </td>
             </tr>
             {%endfor%}
+            {%endif%}
 
             </tbody>
         </table>
@@ -59,6 +61,7 @@
                         {% endfor %}
                     </div>
                     <div class="modal-footer">
+                        {% csrf_token %}
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary comment-btn" id="{{item.id}}">Submit
                         </button>

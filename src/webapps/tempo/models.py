@@ -51,7 +51,6 @@ class Band(models.Model):
 
 class SongList(models.Model):
     name = models.TextField(max_length=140, blank=True)
-    user = models.ForeignKey(User)
     creation_time = models.DateTimeField(auto_now=True)
 
 

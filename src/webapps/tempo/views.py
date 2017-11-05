@@ -164,12 +164,19 @@ def add_song_list(request):
     context = {}
     form = SongListForm(request.POST)
     context['form'] = form
+    errors = []
+    context['errors'] = errors
 
     if not form.is_valid():
+        errors.append('Please provide list name')
+        print 'form not valid'
         return render(request, 'songlist.html', context)
 
     else:
-        login_user = request.user
-        new_item = SongList(name=form.cleaned_data['name'], user = login_user)
+        new_item = SongList(name=form.cleaned_data['name'])
         new_item.save()
-    return HttpResponse("")
+        print 'save'
+        context['form'] = SongListForm()
+        context['song_list'] = SongList.objects.all()
+
+    return render(request, 'songlist.html', context)
