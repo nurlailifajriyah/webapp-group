@@ -2,12 +2,8 @@
 <li id='{{trackid}}' class="list-group-item">
 
                 <audio class="my_audio-{{track.id}}">
-
-                    <!--//TODO play audio from database, not hardcode-->
-
                     <source src="{% static track.audio_file %}" type="audio/wav">
                 </audio>
-                {{trackid}} ({{track.id}})
                 <button class='play-btn' id="{{track.id}}">PLAY</button>
                 <button class='stop-btn' id="{{track.id}}">STOP</button>
                 </a>

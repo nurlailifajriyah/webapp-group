@@ -196,12 +196,18 @@ window.addEventListener('load', initAudio );
 function upload() {
     if(window.BlobData == null){
                 alert("Error Uploading File. Please try again.");
+        return;
+    }
 
+    var track_name = $("#track_name").val();
+    if(jQuery.trim(track_name).length <= 0)
+    {
+         alert("Track name is required.");
         return;
     }
     //Source: https://stackoverflow.com/a/13333478/8717427
     var fd = new FormData();
-    fd.append('fname', 'test.wav');
+    fd.append('track_name', track_name);
     fd.append('data', window.BlobData, "output.wav");
     fd.append('csrfmiddlewaretoken', getCookie("csrftoken"))
     $.ajax({

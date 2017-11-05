@@ -13,8 +13,11 @@ def audio_recorder(request):
 @login_required
 def add_track(request):
     # TODO validation if file is not an audio file
-    new_track = Track(name="track.wav", type="wave", audio_file=request.FILES['data'], version_number=1)
-    new_track.save()
+    if not 'track_name' in request.POST or not request.POST['track_name']:
+        errors.append('Trackname is required.')
+    else:
+        new_track = Track(name=request.POST['track_name'], type="wave", audio_file=request.FILES['data'], version_number=1)
+        new_track.save()
     return HttpResponse("")
 
 @login_required
