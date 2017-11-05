@@ -55,3 +55,24 @@ class BandForm(forms.Form):
         if len(Band.objects.filter(username__exact = band_name)) >= 1:
             raise forms.ValidationError("Band name already taken")
         return band_name
+
+class ProfileEditForm(forms.Form):
+    first_name = forms.CharField(max_length=20, label='First Name')
+    last_name = forms.CharField(max_length=20, label='Last Name')
+    email = forms.EmailField(max_length=200, label='Email', help_text='A valid email address please')
+    password_new1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(), required=False)
+    password_new2 = forms.CharField(max_length=200, label='Confirm Password', widget=forms.PasswordInput(),
+                                    required=False)
+    city = forms.CharField(max_length=100, required=False)
+    country = forms.CharField(max_length=100, required=False)
+    age = forms.IntegerField(required=False)
+    bio = forms.CharField(max_length=200, required=False)
+    image = forms.ImageField(required=False, widget=forms.FileInput())
+
+    def clean(self):
+        cleaned_data = super(ProfileEditForm, self).clean()
+        password1 = cleaned_data.get('password_new1')
+        password2 = cleaned_data.get('password_new22')
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return cleaned_data
