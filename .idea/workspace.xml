@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="697c7351-0e2b-47d8-b520-af422ad87da9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/db.sqlite3" afterPath="$PROJECT_DIR$/src/webapps/db.sqlite3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/forms.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,10 +14,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="-4240">
               <caret line="201" column="101" lean-forward="false" selection-start-line="201" selection-start-column="101" selection-end-line="201" selection-end-column="101" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
@@ -63,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user_home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="366">
@@ -105,23 +102,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login_register_base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="254">
+              <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
+      <file leaf-file-name="band_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="41" column="92" lean-forward="false" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
+            <state relative-caret-position="-51">
+              <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,6 +176,7 @@
         <option value="$PROJECT_DIR$/src/webapps/tempo/forms.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/edit.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html" />
       </list>
     </option>
   </component>
@@ -232,14 +232,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="webapps" type="462c0819:PsiDirectoryNode" />
               <item name="tempo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team333" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="webapps" type="462c0819:PsiDirectoryNode" />
-              <item name="tempo" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
@@ -398,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509903709216</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="I have added the edit band page and forms to the html and forms. I now push this and move to joining band">
+      <created>1509904416975</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1509904416975</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -451,7 +450,8 @@
     <MESSAGE value="I have added new actions to create bands, I have also added urls for the action. Next I will add the models to support this functionalty" />
     <MESSAGE value="I have modified the band and artist model to allow users create and join a band" />
     <MESSAGE value="I have allowed the current user create a band and show him a list of all the band he has created. &#10;&#10;Next: I will allow other users join a band" />
-    <option name="LAST_COMMIT_MESSAGE" value="I have allowed the current user create a band and show him a list of all the band he has created. &#10;&#10;Next: I will allow other users join a band" />
+    <MESSAGE value="I have added the edit band page and forms to the html and forms. I now push this and move to joining band" />
+    <option name="LAST_COMMIT_MESSAGE" value="I have added the edit band page and forms to the html and forms. I now push this and move to joining band" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -460,14 +460,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="68" column="30" lean-forward="true" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -801,26 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="41" column="92" lean-forward="false" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="201" column="101" lean-forward="false" selection-start-line="201" selection-start-column="101" selection-end-line="201" selection-end-column="101" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
@@ -843,6 +815,36 @@
           <caret line="63" column="13" lean-forward="false" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4240">
+          <caret line="201" column="101" lean-forward="false" selection-start-line="201" selection-start-column="101" selection-end-line="201" selection-end-column="101" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
