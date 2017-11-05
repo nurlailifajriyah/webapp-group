@@ -1,46 +1,11 @@
-{%extends "login_register_base.html"%}
-{% block title %}Band List{% endblock%}
+{%extends "header_base.html"%}
+{% block title %}Recorder{% endblock%}
 {%block content%}
 {% load static %}
-<div>
-    <div class="col-lg-4 col-md-3 hidden-sm hidden-xs position1">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="media">
-                    <div align="center">
-                        <img src="{% url 'photo' id=user.artist.id %}" alt="{{ user.get_full_name}}" width="200" height="150">
-                    </div>
-                    <div class="media-body">
-                        <hr id="hr_id1">
-                        <h1 class="header_edit"><span><i class="fa fa-user fa-lg " aria-hidden="true"></i></span><i><b class="bold_styling1"> {{user.get_full_name}}</b></i></h1>
-                        <h1 class="header_edit"><i><b class="bold_styling1"><h2>@{{details}}</h2></i></h1>
-                        {% if not profile.bio %}
-                            <pre class="pre_styling_bio"><p class="para_styling"><strong>No bio yet</strong></p></pre>
-                        {% endif %}
-                        {% if profile.bio %}
-                            <pre class="pre_styling"><p class="para_styling"><strong>{{profile.bio}}</strong></p></pre>
-                        {% endif %}
-                        <hr>
-                        {% if profile.age %}
-                            <h4 class="heading1_styling">Age<b class="bold_styling1"> : {{profile.age}}</b></h4>
-                        {% endif %}
-                        {% if not profile.age %}
-                            <h4 class="heading1_styling">Age<b class="bold_styling1"> : -- </b></h4>
-                        {% endif %}
-                        <hr>
-                        {% if not profile.country%}
-                            <h4 class="heading2_styling">Location<b class="bold_styling1"> : -- </b></h4>
-                        {%endif%}
-                        {% if profile.country%}
-                            <h4 class="heading2_styling">Location<b class="bold_styling1"> : {{profile.country}}</b></h4>
-                        {%endif%}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="position2">
+
+{% load static %}
+    <div class="container">
          {% if not bands %}
             <pre class="pre_styling_bio"><p class="para_styling"><strong>No Bands Exist</strong></p></pre>
         {% endif %}
@@ -58,7 +23,6 @@
         {% endfor %}
 
     </div>
-</div>
 
 
 {% endblock%}

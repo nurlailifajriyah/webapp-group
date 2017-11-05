@@ -34,7 +34,7 @@ class Artist(models.Model):
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     age = models.IntegerField(default=1, blank=True, null=True)
     # birth_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='tempo/image', blank=True)
+    image = models.ImageField(upload_to='tempo/images', blank=True)
     member = models.ManyToManyField(Band, related_name='member_of', symmetrical=False)
 
     # # creates an artist profile after registration

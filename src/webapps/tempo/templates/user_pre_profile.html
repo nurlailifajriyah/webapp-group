@@ -3,7 +3,7 @@
 {%block content%}
 {% load static %}
 <div>
-    <h3 class="welcome">{{user.get_full_name}}, welcome to <b><i>Tempo</i></b></h3>
+    <h3 class="welcome">{{user.get_full_name}}, welcome to <b><i>TEMPO</i></b></h3>
 </div>
 <div class="go_profile">
     <img class = "create_band_image" src="{% static 'tempo/images/mainpage.png' %}" alt="">
@@ -14,7 +14,7 @@
 <div class="create_band">
     <img class = "create_band_image" src="{% static 'tempo/images/giphy.gif' %}" alt="">
     <br>
-    <a class = "redirect_profile" href ="#">Create a Band?</a>
+    <a class = "redirect_profile" href ="{% url 'create'%}">Create a Band?</a>
 
 </div>
 

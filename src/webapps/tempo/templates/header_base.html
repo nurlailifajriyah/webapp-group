@@ -39,7 +39,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="navbar-brand" href="#">Tempo</a>
+                        <a class="navbar-brand" href="{% url 'welcome' %}">TEMPO</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,7 +50,7 @@
                                     Menu
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">My Profile</a></li>
+                                    <li><a href="{% url 'user_home' username=user %}">My Profile</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{% url 'edit_profile' username=request.user.username %}">Edit</a> </li>
                                     <li role="separator" class="divider"></li>
@@ -71,17 +71,23 @@
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
-                    <img src="{% static 'tempo/images/profpict2.png' %}" class="img-responsive" alt="">
+                    <img src="{% url 'photo' id=user.artist.id %}" class="img-responsive" alt="{% static 'tempo/images/profpict2.png' %}">
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        @{{request.user.username}}
+                        @{{request.user.username}}<br>
+                        Bio: {{profile.bio}}
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
                 <div class="profile-usermenu">
                     <ul class="nav">
-                        <li class="active">
+                        <li>
+                            <a href="{% url 'user_home' username=user %}">
+                                <i class="glyphicon glyphicon-home"></i>
+                                My Band </a>
+                        </li>
+                        <li>
                             <a href="#">
                                 <i class="glyphicon glyphicon-calendar"></i>
                                 Calendar </a>
@@ -92,7 +98,7 @@
                                 Live Session </a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">
+                            <a href="{% url 'song_list' %}">
                                 <i class="glyphicon glyphicon-music"></i>
                                 Song List </a>
                         </li>
@@ -100,6 +106,11 @@
                             <a href="#">
                                 <i class="glyphicon glyphicon-user"></i>
                                 Team Member </a>
+                        </li>
+                         <li>
+                            <a href="{% url 'audio_recorder' %}">
+                                <i class="glyphicon glyphicon-music"></i>
+                                Audio Recorder </a>
                         </li>
                     </ul>
                 </div>

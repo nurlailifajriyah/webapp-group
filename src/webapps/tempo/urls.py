@@ -14,7 +14,8 @@ urlpatterns = [
     url(r'^personal_home', tempo.views.home, name='personal'),
     url(r'^user_pre_profile', tempo.views.user_pre_profile, name='user_pre_profile'),
     url(r'^user_home/(?P<username>\w+)$', tempo.views.user_home, name='user_home'),
-    url(r'^band_page', tempo.views.band_page, name = 'band'),
+
+
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.password_reset_confirm, name='password_reset_confirm'),
@@ -29,12 +30,18 @@ urlpatterns = [
     url(r'^get_track/$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
     url(r'^get_track/(?P<time>.+)$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
 
-    url(r'^join$', tempo.views.join, name='join'),
-    url(r'^create$', tempo.views.create, name='create'),
+
+
+    url(r'^band_page', tempo.views.band_page, name='band'),
     url(r'^join_band/(?P<band_id>\d+)$', tempo.views.join_band, name='join_band'),
     url(r'^create_band$', tempo.views.create_band, name='create_band'),
     url(r'^user_band_list$', tempo.views.user_band_list, name='user_band_list'),
     url(r'^band_list$', tempo.views.band_list, name='band_list'),
+
+    url(r'^join$', tempo.views.join, name='join'),
+    url(r'^create$', tempo.views.create, name='create'),
+
+
     # url(r'^confirm/', include('generic_confirmation.urls')),
 
     url(r'^photo/(?P<id>\d+)$', tempo.views.get_photo, name='photo'),
