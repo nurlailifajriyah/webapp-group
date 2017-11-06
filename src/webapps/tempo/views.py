@@ -445,7 +445,7 @@ def user_band_list(request):
     bands = Band.objects.filter(creator = current_artist.id)
     print("successfully "+str(bands))
     context['bands'] = bands
-    return render (request, 'user_band_page.html', context)
+    return render (request, 'user_home.html', context)
 
 # fundtion to get list of available bands
 def band_list(request):
