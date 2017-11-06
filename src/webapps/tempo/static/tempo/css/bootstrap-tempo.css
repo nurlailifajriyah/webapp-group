@@ -79,10 +79,13 @@ ul.navbar-toggle{
 
 .logo-message{
     margin-left: 45%;
-    color: lightcoral;
+    color: #280e4f;
 }
 
 .pitch{
     margin-left: 42%;
-    color: lightcoral;
+    color: #280e4f;
+}
+.bandimg{
+    border-style: solid;
 }

@@ -137,7 +137,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
     margin-top: 30px;
  	max-width: 430px;
     padding: 40px 40px;
-    background-color: seashell;
+    background-color: #e5e3e8;
 
 }
 
@@ -170,7 +170,7 @@ span.input-group-addon i {
     text-align: center;
     width: 100%;
     color:#fff;
-    background-color:#337ab7;
+    background-color:#280e4f;
     border-color:#2e6da4;
     padding: 2px
 }
@@ -191,18 +191,18 @@ span.input-group-addon i {
     margin-bottom: 15px;
     margin-left: 36%;
     font-size: 8px;
-	font-family: 'Passion One';
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .para_styling1{
-    color: lightcoral;
+    color: #280e4f;
     font-weight: bold;
 }
 
 .login-register{
 	font-size: 18px;
 	text-align: center;
-    color: olive;
+    color: #280e4f;
 }
 /**register css ends*/
 

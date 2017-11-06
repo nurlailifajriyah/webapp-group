@@ -71,7 +71,7 @@
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
-                    <img src="{% url 'photo' id=user.artist.id %}" class="img-responsive" alt="{% static 'tempo/images/profpict2.png' %}">
+                    <img src="{% url 'photo' id=user.artist.id %}" class="img-responsive" alt="{{user.username}}">
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
@@ -85,32 +85,32 @@
                         <li>
                             <a href="{% url 'user_home' username=user %}">
                                 <i class="glyphicon glyphicon-home"></i>
-                                My Band </a>
+                                <b>My Band</b> </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a>
                                 <i class="glyphicon glyphicon-calendar"></i>
-                                Calendar </a>
+                                <i>Calendar</i> </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a>
                                 <i class="glyphicon glyphicon-globe"></i>
-                                Live Session </a>
+                                <i>Live Session</i></a>
                         </li>
                         <li>
                             <a href="{% url 'song_list' %}">
                                 <i class="glyphicon glyphicon-music"></i>
-                                Song List </a>
+                                <b>Song List </b></a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a>
                                 <i class="glyphicon glyphicon-user"></i>
-                                Team Member </a>
+                                <i>Team Member</i></a>
                         </li>
                          <li>
                             <a href="{% url 'audio_recorder' %}">
                                 <i class="glyphicon glyphicon-music"></i>
-                                Audio Recorder </a>
+                                <b>Audio Recorder </b></a>
                         </li>
                     </ul>
                 </div>

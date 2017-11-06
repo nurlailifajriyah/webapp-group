@@ -6,10 +6,9 @@
     <h2 class="logo-message">TEMPO</h2>
     <h3 class="pitch">Sync your music</h3>
 </div>
-<div class="container">
     <div class="main-login main-center">
         <!-- django's authentication module-->
-        <form class="form-horizontal" method="post" action="{% url 'register' %}">
+        <form method="post" action="{% url 'register' %}">
             {%if form.errors%}
                 <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password option.</p>
             {%endif%}
@@ -21,9 +20,7 @@
 
             <!-- end of form -->
             <br>
-            <div class="form-group-button">
-                <input type="submit" class="btn btn-primary btn-lg btn-lock login" value="Sign Up">
-            </div>
+                <input type="submit" class="btn btn-default btn-lg btn-block" value="Sign Up">
 
             <div>
                 <p class="login para_styling1">By signing up, you agree to our <i>Terms & Privacy Policy</i></p>
@@ -36,5 +33,4 @@
             {%csrf_token%}
         </form>
     </div>
-</div>
 {% endblock%}

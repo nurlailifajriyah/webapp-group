@@ -5,24 +5,22 @@
 
 
 {% load static %}
-
-
-<div class="container">
     <h1 class=""> Your Band!</h1>
     {% if not bands %}
     <pre class="pre_styling_bio"><p class="para_styling"><strong>No Bands Exist</strong></p></pre>
     {% endif %}
     {% for band in bands %}
     <div class="band_list list-group-item">
-        <h2 class="band_name">{{ band.band_name }}</h2>
-        <p class="band_event"><b>Upcoming Event: </b> Music concert in Amsterdam</p>
-        <img src="{% url 'band_photo' band.id %}" width="100" height="70"
-             alt="{% static 'tempo/images/profpict2.png' %}"/>
-        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <img class="img-responsive" src="{% url 'band_photo' band.id %}"
+                alt="{{user.username}}"/>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <h2 class="band_name">{{ band.band_name }}</h2>
+                <p class="band_event"><b>Upcoming Event: </b> Music concert in Amsterdam</p>
+            </div>
+        </div>
     </div>
     {% endfor %}
-
-</div>
-
-
 {% endblock%}
