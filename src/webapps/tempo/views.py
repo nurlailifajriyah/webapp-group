@@ -79,7 +79,7 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         #return render(request,'Post_Verification.html')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.' + '<a href = "/login"><p>Login</p></a>')
     else:
         return HttpResponse('Activation link is invalid!')
 
