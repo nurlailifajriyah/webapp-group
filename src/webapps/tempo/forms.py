@@ -59,7 +59,7 @@ class BandForm(forms.Form):
 class ProfileEditForm(forms.Form):
     first_name = forms.CharField(max_length=20, label='First Name')
     last_name = forms.CharField(max_length=20, label='Last Name')
-    email = forms.EmailField(max_length=200, label='Email', help_text='A valid email address please')
+    email = forms.EmailField(max_length=200, label='Email')
     password_new1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(), required=False)
     password_new2 = forms.CharField(max_length=200, label='Confirm Password', widget=forms.PasswordInput(),
                                     required=False)

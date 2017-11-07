@@ -25,20 +25,20 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <ul class="navbar-toggle collapsed" style="background-color: transparent;">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Menu
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'user_home' username=request.user.username %}">My Profile</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Find Users</a></li>
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <!--<ul class="navbar-toggle collapsed" style="background-color: transparent;">-->
+                            <!--<li class="dropdown">-->
+                                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
+                                   <!--aria-haspopup="true" aria-expanded="false">-->
+                                    <!--Menu-->
+                                <!--</a>-->
+                                <!--<ul class="dropdown-menu">-->
+                                    <!--<li><a href="{% url 'user_home' username=request.user.username %}">My Profile</a></li>-->
+                                    <!--<li role="separator" class="divider"></li>-->
+                                    <!--<li><a href="#">Find Users</a></li>-->
+                                    <!--<li><a href="/logout">Logout</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
                         <a class="navbar-brand" href="{% url 'welcome' %}">TEMPO</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,6 +53,8 @@
                                     <li><a href="{% url 'user_home' username=user %}">My Profile</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{% url 'edit_profile' username=request.user.username %}">Edit</a> </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{% url 'create' %}">Create Band</a> </li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
@@ -88,14 +90,14 @@
                                 My Band </a>
                         </li>
                         <li>
-
+                            <a href="#">
                                 <i class="glyphicon glyphicon-calendar"></i>
-                                <i>Calendar</i>
+                                <i>Calendar</i></a>
                         </li>
                         <li>
-
+                            <a href = "#">
                                 <i class="glyphicon glyphicon-globe"></i>
-                                <i>Live Session</i>
+                                <i>Live Session</i></a>
                         </li>
                         <li>
                             <a href="{% url 'song_list' %}">
@@ -103,9 +105,9 @@
                                 Song List </a>
                         </li>
                         <li>
-
+                            <a href="#">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <i>Team Member</i>
+                                <i>Team Member</i></a>
                         </li>
                          <li>
                             <a href="{% url 'audio_recorder' %}">
