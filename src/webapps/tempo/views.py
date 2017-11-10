@@ -462,3 +462,5 @@ def band_list(request):
 
 
 ##################################################################################################
+def calendar(request):
+    return render(request, 'user_calendar.html', {})
