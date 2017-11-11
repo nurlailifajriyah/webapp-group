@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
-from . models import *
-from .  forms import *
+from .models import *
+from .forms import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404, JsonResponse
 from django.core.mail import send_mail
@@ -21,32 +21,36 @@ from tempo.models import *
 def home(request):
     return render(request, 'welcome.html')
 
+
 ###############################################################################
 def user_pre_profile(request):
     context = {'user': request.user, 'details': request.user.username}
     return render(request, 'user_pre_profile.html', context)
+
+
 #################################################################################
 def register(request):
     if request.method == 'GET':
-        context = {'form':RegistrationForm()}
+        context = {'form': RegistrationForm()}
         return render(request, 'register.html', context)
 
     form = RegistrationForm(request.POST)
     context = {'form': form}
     if not form.is_valid():
         return render(request, 'register.html', context)
-    new_user = User.objects.create_user(username = form.cleaned_data['username'],
-                                          first_name = form.cleaned_data['first_name'],
-                                          last_name = form.cleaned_data['last_name'],
-                                          email=form.cleaned_data['email'],
-                                          password= form.cleaned_data['password1'],
-                                          is_active = False
-                                          )
+    new_user = User.objects.create_user(username=form.cleaned_data['username'],
+                                        first_name=form.cleaned_data['first_name'],
+                                        last_name=form.cleaned_data['last_name'],
+                                        email=form.cleaned_data['email'],
+                                        password=form.cleaned_data['password1'],
+                                        is_active=False
+                                        )
     new_user.save()
 
-    #profile part
+    # profile part
     artist = Artist(age=form.cleaned_data['age'], artist=new_user, city=form.cleaned_data['city'],
-                    country=form.cleaned_data['country'], bio=form.cleaned_data['bio'],zipcode=form.cleaned_data['zipcode'])
+                    country=form.cleaned_data['country'], bio=form.cleaned_data['bio'],
+                    zipcode=form.cleaned_data['zipcode'])
     # artist.image = 'tempo/media/12522937_1257065594310510_6977590312724746127_n.jpg'
     artist.save()
 
@@ -55,8 +59,8 @@ def register(request):
     # ### email part
     token = account_activation_token.make_token(new_user)
     email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
-    http://%s%s""" %(request.get_host(),
-                     reverse('activate', args=(new_user.username, token)))
+    http://%s%s""" % (request.get_host(),
+                      reverse('activate', args=(new_user.username, token)))
     #
     send_mail(subject="Verify your account/email address",
               message=email_body,
@@ -73,15 +77,17 @@ def activate(request, uidb64, token):
         user = User.objects.get(username=uidb64)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-    #check if user exists in database (inactive) and verify their token by calling token.py and set user to active
+    # check if user exists in database (inactive) and verify their token by calling token.py and set user to active
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user)
-        #return render(request,'Post_Verification.html')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.' + '<a href = "/login"><p>Login</p></a>')
+        # return render(request,'Post_Verification.html')
+        return HttpResponse(
+            'Thank you for your email confirmation. Now you can login your account.' + '<a href = "/login"><p>Login</p></a>')
     else:
         return HttpResponse('Activation link is invalid!')
+
 
 #################################################################################################
 @login_required
@@ -91,7 +97,7 @@ def profile(request, username):
     try:
         userobj = User.objects.get(username=username)
         user_profile = userobj.profile
-        #get the list of all followers for users
+        # get the list of all followers for users
         follower_list = login_user.profile.follow.all()
         only_id_list = []
         for z in follower_list:
@@ -100,20 +106,19 @@ def profile(request, username):
         ##########################################################
         form = CommentForm(request.POST or None)
         if 'post' in request.POST and request.method != 'GET':
-            context = add_posts(request,userobj,username)
+            context = add_posts(request, userobj, username)
             all_posts = context['user_posts']
             context['id'] = userobj.id
             context['profile'] = user_profile
             context['follow_list'] = only_id_list
             context['form'] = form
 
-
             ######################################################
             post_comm = []
             for k in all_posts:
                 comm = Comment.objects.filter(post=k).order_by('-ctime')
                 post_comm.append(comm)
-                #here part cut
+                # here part cut
             context['post_comm'] = post_comm
             #######################################################
             return render(request, 'Profile.html', context)
@@ -126,14 +131,17 @@ def profile(request, username):
             for k in all_posts:
                 comm = Comment.objects.filter(post=k).order_by('-ctime')
                 post_comm.append(comm)
-                #here part 2 cut
-            context = {'post_comm': post_comm,'user_posts': all_posts, 'details': username, 'id':id, 'profile':user_profile, 'follow_list':only_id_list,'log_user_page':userobj, 'form':form}
+                # here part 2 cut
+            context = {'post_comm': post_comm, 'user_posts': all_posts, 'details': username, 'id': id,
+                       'profile': user_profile, 'follow_list': only_id_list, 'log_user_page': userobj, 'form': form}
             ###############################################################################
 
-            return render(request, 'Profile.html',context)
+            return render(request, 'Profile.html', context)
     except ObjectDoesNotExist as e:
-        #if the user doesn't exist in the database, it redirects to the global stream page
+        # if the user doesn't exist in the database, it redirects to the global stream page
         return redirect(reverse('global'))
+
+
 #######################################################################################################
 @login_required
 def user_home(request, username):
@@ -142,14 +150,17 @@ def user_home(request, username):
         login_user = request.user
         artistobj = User.objects.get(username=username)
         profile = artistobj.artist
-        context = {'details':username, 'profile': profile, 'user': artistobj}
-        return render(request, 'user_home.html',context)
+        context = {'details': username, 'profile': profile, 'user': artistobj}
+        return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
+
 
 ######################################################################################################
 def band_page(request):
     return render(request, 'bandpage.html', {})
+
+
 #######################################################################################################
 @login_required
 def song_list(request):
@@ -158,6 +169,7 @@ def song_list(request):
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.all()
         return render(request, 'songlist.html', context)
+
 
 #######################################################################################################
 @login_required
@@ -237,6 +249,7 @@ def edit_profile(request, username):
         # if the user doesn't exist in the database, it redirects to the global stream page
         return redirect(reverse('user_home', args={user_to_edit.username}))
 
+
 #################################################################################################
 @login_required
 def profile(request, username):
@@ -245,7 +258,7 @@ def profile(request, username):
     try:
         userobj = User.objects.get(username=username)
         user_profile = userobj.profile
-        #get the list of all followers for users
+        # get the list of all followers for users
         follower_list = login_user.profile.follow.all()
         only_id_list = []
         for z in follower_list:
@@ -254,20 +267,19 @@ def profile(request, username):
         ##########################################################
         form = CommentForm(request.POST or None)
         if 'post' in request.POST and request.method != 'GET':
-            context = add_posts(request,userobj,username)
+            context = add_posts(request, userobj, username)
             all_posts = context['user_posts']
             context['id'] = userobj.id
             context['profile'] = user_profile
             context['follow_list'] = only_id_list
             context['form'] = form
 
-
             ######################################################
             post_comm = []
             for k in all_posts:
                 comm = Comment.objects.filter(post=k).order_by('-ctime')
                 post_comm.append(comm)
-                #here part cut
+                # here part cut
             context['post_comm'] = post_comm
             #######################################################
             return render(request, 'Profile.html', context)
@@ -280,20 +292,23 @@ def profile(request, username):
             for k in all_posts:
                 comm = Comment.objects.filter(post=k).order_by('-ctime')
                 post_comm.append(comm)
-                #here part 2 cut
-            context = {'post_comm': post_comm,'user_posts': all_posts, 'details': username, 'id':id, 'profile':user_profile, 'follow_list':only_id_list,'log_user_page':userobj, 'form':form}
+                # here part 2 cut
+            context = {'post_comm': post_comm, 'user_posts': all_posts, 'details': username, 'id': id,
+                       'profile': user_profile, 'follow_list': only_id_list, 'log_user_page': userobj, 'form': form}
             ###############################################################################
 
-            return render(request, 'Profile.html',context)
+            return render(request, 'Profile.html', context)
     except ObjectDoesNotExist as e:
-        #if the user doesn't exist in the database, it redirects to the global stream page
+        # if the user doesn't exist in the database, it redirects to the global stream page
         return redirect(reverse('global'))
+
+
 #######################################################################################################
 @login_required
 def user_home(request, username):
     context = {}
     try:
-        artist_info = User.objects.get(username = username)
+        artist_info = User.objects.get(username=username)
         current_artist = Artist.objects.get(artist=artist_info)
         # get list of bands he belongs to
         bands = Band.objects.filter(creator=current_artist.id)
@@ -305,9 +320,10 @@ def user_home(request, username):
         context['profile'] = profile
         context['user'] = artist_info
         context['bands'] = bands
-        return render(request, 'user_home.html',context)
+        return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
+
 
 ######################################################################################################
 @login_required
@@ -335,12 +351,14 @@ def get_band_photo(request, band_id):
     # manually set content type of photo
     return HttpResponse(band_prof.image, content_type=content_type)
 
+
 ######################################################################################################
 
 def band_page(request):
     context = {}
     context['user'] = request.user.username
     return render(request, 'bandpage.html', context)
+
 
 ##########################################fuctions to join and create#############################################
 
@@ -352,7 +370,8 @@ def join(request):
 
     context['errors'] = errors
     context['form'] = form
-    return render (request, 'band_join.html', context)
+    return render(request, 'band_join.html', context)
+
 
 def create(request):
     context = {}
@@ -361,19 +380,20 @@ def create(request):
     form = BandForm(request.POST or None)
     context['errors'] = errors
     context['form'] = form
-    return render (request, 'band_create.html', context)
+    return render(request, 'band_create.html', context)
+
 
 def join_band(request, band_id):
     context = {}
 
     if 'join_band' in request.POST:
         band_to_join = Band.objects.get(id=band_id)
-        print("band name is: "+ str(band_to_join))
+        print("band name is: " + str(band_to_join))
         current_artist = request.user
         print("band creator is: " + str(band_to_join.creator))
         # join the actual band
         # current_artist.artist.member.add(band_to_join)
-        creator = User.objects.get(username = band_to_join.creator)
+        creator = User.objects.get(username=band_to_join.creator)
 
         # email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
         # http://%s%s""" % (request.get_host(),
@@ -393,7 +413,6 @@ def join_band(request, band_id):
         # return render(request, 'band_success.html', context)
     else:
         return redirect(reverse('user_pre_profile'))
-
 
 
 def create_band(request):
@@ -430,8 +449,8 @@ def create_band(request):
     context['band'] = new_band
     context['message'] = 'created'
 
-
     return redirect(reverse('user_band_list'))
+
 
 # fundtion to get list of available bands
 def user_band_list(request):
@@ -439,13 +458,14 @@ def user_band_list(request):
     errors = []
     context['errors'] = errors
 
-    current_artist = Artist.objects.get(artist = request.user.id)
+    current_artist = Artist.objects.get(artist=request.user.id)
     print("Current Artist" + str(current_artist.artist.username))
     # get list of bands he belongs to
-    bands = Band.objects.filter(creator = current_artist.id)
-    print("successfully "+str(bands))
+    bands = Band.objects.filter(creator=current_artist.id)
+    print("successfully " + str(bands))
     context['bands'] = bands
-    return render (request, 'user_home.html', context)
+    return render(request, 'user_home.html', context)
+
 
 # fundtion to get list of available bands
 def band_list(request):
@@ -464,3 +484,116 @@ def band_list(request):
 ##################################################################################################
 def calendar(request):
     return render(request, 'user_calendar.html', {})
+
+
+#################################################################################################
+
+def event(request):
+    all_events = Event.objects.all()
+    get_event_types = Event.objects.only('event_type')
+
+    # if filters applied then get parameter and filter based on condition else return object
+    if request.GET:
+        event_arr = []
+        if request.GET.get('event_type') == "all":
+            all_events = Event.objects.all()
+        else:
+            all_events = Event.objects.filter(event_type__icontains=request.GET.get('event_type'))
+
+        for i in all_events:
+            event_sub_arr = {}
+            event_sub_arr['title'] = i.event_name
+            start_date = datetime.datetime.strptime(str(i.start_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
+            end_date = datetime.datetime.strptime(str(i.end_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
+            event_sub_arr['start'] = start_date
+            event_sub_arr['end'] = end_date
+            event_arr.append(event_sub_arr)
+        return HttpResponse(json.dumps(event_arr))
+
+    context = {
+        "events": all_events,
+        "get_event_types": get_event_types,
+
+    }
+    return render(request, 'user_calendar.html', context)
+
+
+###################################################################################################
+
+def create_event(request):
+    print("successfully received get")
+
+    if request.method == 'GET':
+        print("event if")
+        context = {'form': EventForm()}
+        return render(request, 'event_create.html', context)
+
+    form = EventForm(request.POST)
+
+    context = {}
+    errors = []
+    context['errors'] = errors
+    context['form'] = form
+    current_artist = Artist.objects.get(artist=request.user.id)
+    user_bands = Band.objects.filter(creator = current_artist.id)
+    print('the size of list is ', len(user_bands))
+    if not form.is_valid():
+        print("form not valid")
+        errors = 'Something went wrong, try again.'
+        context['errors'] = errors
+        return render(request, 'event_create.html', context)
+
+    band_name = form.cleaned_data['band_name']
+    band_name_instance = Band.objects.get(band_name = band_name)
+    # new_band.save()
+    print('type is ', type(band_name))
+    event_name = form.cleaned_data['event_name']
+    start_date = form.cleaned_data['start_date']
+    end_date = form.cleaned_data['end_date']
+    event_type = form.cleaned_data['event_type']
+    creator = request.user
+
+    new_event = Event(band_name= band_name_instance, event_name=event_name, start_date=start_date,
+                      end_date=end_date, event_type=event_type, creator=creator)
+
+    new_event.save()
+    print("successfully created event")
+
+    context['current_artist'] = creator
+    context['new_event'] = new_event
+    context['message'] = 'created'
+
+    return redirect(reverse('event_lists'))
+
+
+# fundtion to get list of available bands
+def event_lists(request):
+    print("successfully entered event_list")
+
+    events = {}
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    current_artist = Artist.objects.get(artist=request.user.id)
+    print("Current Artist" + str(current_artist.artist.username))
+    # get list of bands he belongs to
+    bands = Band.objects.filter(creator=current_artist.id)
+    for band in bands:
+        events = Event.objects.filter(band_name = band)
+    #context['events'] = events
+    context['bands'] = bands
+    return render(request, 'events_home.html', context)
+
+    # # fundtion to get list of available bands
+    # def band_list(request):
+    #     context = {}
+    #     errors = []
+    #     context['errors'] = errors
+    #
+    #     # get list of bands he belongs to
+    #     bands = Band.objects.all()
+    #     print("successfully " + str(bands))
+    #     context['bands'] = bands
+    #     context['errors'] = errors
+    #     return render(request, 'band_list.html', context)
