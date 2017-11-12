@@ -1,0 +1,33 @@
+{%extends "header_base.html"%}
+{% block title %}Recorder{% endblock%}
+{%block content%}
+{% load static %}
+
+
+{% load static %}
+
+    <div class="main-login main-center">
+        <!-- django's authentication module-->
+        <form method="post" action="{% url 'create_event' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {%if form.errors%}
+                <p class="error_msg bold_styling1">{{errors}}</p>
+            {%endif%}
+
+            <!--create create band form using forms-->
+            <table>
+                {{form.as_table}}
+            </table>
+
+            <!-- end of form -->
+            <br>
+                <input type="submit" class="btn btn-default btn-lg btn-block" value="Create">
+
+
+            <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
+            {%csrf_token%}
+        </form>
+    </div>
+
+
+{% endblock%}

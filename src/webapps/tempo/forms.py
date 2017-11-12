@@ -1,5 +1,7 @@
 from django import forms
 from .models import *
+import datetime
+
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20)
@@ -14,7 +16,6 @@ class RegistrationForm(forms.Form):
     bio = forms.CharField(max_length=200, required=False)
     age = forms.IntegerField(required=False)
 
-
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
         password1 = cleaned_data.get('password1')
@@ -26,7 +27,7 @@ class RegistrationForm(forms.Form):
     # valdiation for username
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        if User.objects.filter(username__exact = username):
+        if User.objects.filter(username__exact=username):
             raise forms.ValidationError("Username is already taken")
         return username
 
@@ -52,9 +53,10 @@ class BandForm(forms.Form):
     # valdiation for username
     def clean_username(self):
         band_name = self.cleaned_data.get('bandname')
-        if len(Band.objects.filter(username__exact = band_name)) >= 1:
+        if len(Band.objects.filter(username__exact=band_name)) >= 1:
             raise forms.ValidationError("Band name already taken")
         return band_name
+
 
 class ProfileEditForm(forms.Form):
     first_name = forms.CharField(max_length=20, label='First Name')
@@ -76,3 +78,43 @@ class ProfileEditForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return cleaned_data
+
+
+class EventForm(forms.Form):
+    band_name = forms.CharField(max_length=20)
+    event_name = forms.CharField(max_length=20, label='Event_name')
+    start_date = forms.DateField(initial=datetime.date.today)
+    end_date = forms.DateField(initial=datetime.date.today)
+    event_type = forms.CharField(max_length=10)
+
+
+    def clean(self):
+        cleaned_data = super(EventForm, self).clean()
+        start_date = self.cleaned_data.get('start_date')
+        end_date = self.cleaned_data.get('end_date')
+        if end_date < start_date:
+            raise forms.ValidationError("Invalid date entered")
+        return cleaned_data
+
+    # valdiation for username
+    def clean_band_name(self):
+        band_name = self.cleaned_data.get('band_name')
+        if len(Band.objects.filter(band_name__exact=band_name)) == 0:
+            raise forms.ValidationError("Band name already taken")
+        return band_name
+
+    def clean_start_date(self):
+        start_date = self.cleaned_data.get('start_date')
+        if start_date < datetime.date.today():
+            raise forms.ValidationError("Enter a date in future")
+        return start_date
+
+    def clean_end_date(self):
+        start_date = self.cleaned_data.get('start_date')
+        end_date = self.cleaned_data.get('end_date')
+        if end_date < datetime.date.today():
+            raise forms.ValidationError("enter date in future please")
+        # if end_date < start_date:
+        #     raise forms.ValidationError("Invalid date entered")
+        return end_date
+

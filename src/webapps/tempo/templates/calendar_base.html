@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% load static %}
-    <!-- Bootstrap CSS -->
 
+    {% load static %}
+    <link href='./static/tempo/css/fullcalendar.min.css' rel='stylesheet' />
+    <link href='./static/tempo/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src='./static/tempo/js/moment.min.js'></script>
+    <script src='./static/tempo/js/jquery.min.js'></script>
+    <script src='./static/tempo/js/fullcalendar.min.js'></script>
+    <script src='./static/tempo/js/gcal.min.js'></script>
+    <link href="{% static 'tempo/css/calendar.css' %}" rel="stylesheet">
+    <script src='./static/tempo/js/calendar.js'></script>
+    <!-- Bootstrap CSS -->
     <link href="{% static 'tempo/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Customized CSS -->
     <link href="{% static 'tempo/css/bootstrap-tempo.css' %}" rel="stylesheet">
@@ -91,7 +99,7 @@
                                 My Band </a>
                         </li>
                         <li>
-                            <a href="{% url 'calendar' %}">
+                            <a href="#">
                                 <i class="glyphicon glyphicon-calendar"></i>
                                 <i>Calendar</i></a>
                         </li>
