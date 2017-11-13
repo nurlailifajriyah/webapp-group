@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+
 from .models import *
 from .forms import *
 from django.core.urlresolvers import reverse
@@ -15,6 +17,7 @@ from django.core.mail import send_mail
 from mimetypes import guess_type
 from .token import account_activation_token
 from tempo.models import *
+import json
 
 
 # Create your views here.
@@ -570,7 +573,7 @@ def create_event(request):
 def event_lists(request):
     print("successfully entered event_list")
 
-    events = {}
+    events = []
     context = {}
     errors = []
     context['errors'] = errors
@@ -580,12 +583,51 @@ def event_lists(request):
     # get list of bands he belongs to
     bands = Band.objects.filter(creator=current_artist.id)
     for band in bands:
-        events = Event.objects.filter(band_name = band)
-    #context['events'] = events
+        event_band = Event.objects.filter(band_name = band)
+        event_band_list = []
+        for each in event_band:
+            event_band_list.append(each)
+        print("length ", len(event_band_list))
+        events.append(event_band_list)
+        # events[band.id] = event_band_list
+
+    context['events'] = events
+    #a = json.dumps(events)
+    print("the the the ", type(events))
     context['bands'] = bands
     return render(request, 'events_home.html', context)
 
-    # # fundtion to get list of available bands
+def event_lists1(request):
+    print("successfully entered event_list")
+
+    events = []
+    context = {}
+    errors = []
+    context['errors'] = errors
+    current_artist = Artist.objects.get(artist=request.user.id)
+    print("Current Artist" + str(current_artist.artist.username))
+    # get list of bands he belongs to
+    bands = Band.objects.filter(creator=current_artist.id)
+    for band in bands:
+        event_band = Event.objects.filter(band_name=band)
+        event_band_list = []
+        for each in event_band:
+            event_band_list.append(each)
+        print("length ", len(event_band_list))
+        events.append(event_band_list)
+        # events[band.id] = event_band_list
+
+    context['events'] = events
+    # a = json.dumps(events)
+    print("the the the ", type(events))
+    context['bands'] = bands
+    j = render_to_string('events.json', context)
+    json.dumps(j)
+    return HttpResponse(j, content_type="application/json")
+
+
+
+        # # fundtion to get list of available bands
     # def band_list(request):
     #     context = {}
     #     errors = []

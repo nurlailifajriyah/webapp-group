@@ -1,0 +1,7 @@
+{% for e in event %}{%spaceless%}
+{"band_name":"{{e.band_name.band_name}}",
+"event_name":"{{e.event_name}}",
+"start_date":"{{e.start_date|date:'c'}}",
+"end_date":"{{e.end_date|date:'c'}}",
+"event_type":"{{e.event_type}}"}{%endspaceless%}{% if not forloop.last %},{% endif %}
+{% endfor %}
