@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from webapps import settings
 
 import tempo.views
+import tempo.views_event
 import tempo.views_audiorecording
 
 urlpatterns = [
@@ -20,19 +21,25 @@ urlpatterns = [
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',tempo.views.activate, name='activate'),
+
+    # Songlist
     url(r'^add_song_list$', tempo.views.add_song_list, name="add_song_list"),
     url(r'^song_list$', tempo.views.song_list, name="song_list"),
+
+    # Tracks
     url(r'^audio_recorder$', tempo.views_audiorecording.audio_recorder, name="audio_recorder"),
     url(r'^add_track$', tempo.views_audiorecording.add_track, name="add_track"),
-    #url(r'^add_track(?P<track>\w+)$', tempo.views_audiorecording.add_track, name="add_track"),
     url(r'^get_track$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
     url(r'^get_track/$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
     url(r'^get_track/(?P<time>.+)$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
 
+    # Events
     url(r'^event$', tempo.views.event, name='event'),
     url(r'^create_event$', tempo.views.create_event, name='create_event'),
     url(r'^event_lists$', tempo.views.event_lists, name='event_lists'),
     url(r'^event_lists1$', tempo.views.event_lists1, name='event_lists1'),
+
+    url(r'^events$', tempo.views_event.event, name='events'),
 
     url(r'^band_page', tempo.views.band_page, name='band'),
     url(r'^join_band/(?P<band_id>\d+)$', tempo.views.join_band, name='join_band'),
