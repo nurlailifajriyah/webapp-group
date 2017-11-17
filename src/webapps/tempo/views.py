@@ -27,8 +27,16 @@ def home(request):
 
 ###############################################################################
 def user_pre_profile(request):
-    context = {'user': request.user, 'details': request.user.username}
-    return render(request, 'user_pre_profile.html', context)
+    context = {}
+    if(ArtistInBand.objects.filter(member = request.user)):
+        redirect(reverse('user_home'))
+    else:
+        errors = []
+        context['errors'] = errors
+        context['all_bands'] = Band.objects.all()
+        return render(request, 'user_pre_profile.html', context)
+
+
 
 
 #################################################################################
@@ -147,11 +155,11 @@ def profile(request, username):
 
 #######################################################################################################
 @login_required
-def user_home(request, username):
+def user_home(request):
     context = {}
     try:
         login_user = request.user
-        artistobj = User.objects.get(username=username)
+        artistobj = User.objects.get(username=request.user.username)
         profile = artistobj.artist
         context = {'details': username, 'profile': profile, 'user': artistobj}
         return render(request, 'user_home.html', context)
@@ -387,34 +395,14 @@ def create(request):
 
 @login_required()
 def join_band(request, band_id):
-    context = {}
-
-    if 'join_band' in request.POST:
+    if Band.objects.filter(id=band_id):
         band_to_join = Band.objects.get(id=band_id)
-        print("band name is: " + str(band_to_join))
         current_artist = request.user
-        print("band creator is: " + str(band_to_join.creator))
-        # join the actual band
-        # current_artist.artist.member.add(band_to_join)
-        creator = User.objects.get(username=band_to_join.creator)
-
-        # email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
-        # http://%s%s""" % (request.get_host(),
-        #                   reverse('activate', args=(creator.username, token)))
-        # #
-        # send_mail(subject="Verify your account/email address",
-        #           message=email_body,
-        #           from_email="hello@tempo.com",
-        #           recipient_list=[creator.email])
-        # context['email'] = creator.email
-        # context['fname'] = creator.first_name
-        # return render(request, "acc_active_email.html", context)
-
-        # context['current_artist'] = current_artist
-        # context['band'] = band_to_join
-        # context['message'] = 'joined'
-        # return render(request, 'band_success.html', context)
+        ArtistInBand.objects.create(band = band_to_join, member = current_artist)
+        print ("joined band")
+        return redirect(reverse('user_pre_profile'))
     else:
+        print ("error join band")
         return redirect(reverse('user_pre_profile'))
 
 @login_required()
@@ -650,17 +638,3 @@ def event_lists1(request):
     json.dumps(j)
     return HttpResponse(j, content_type="application/json")
 
-
-
-        # # fundtion to get list of available bands
-    # def band_list(request):
-    #     context = {}
-    #     errors = []
-    #     context['errors'] = errors
-    #
-    #     # get list of bands he belongs to
-    #     bands = Band.objects.all()
-    #     print("successfully " + str(bands))
-    #     context['bands'] = bands
-    #     context['errors'] = errors
-    #     return render(request, 'band_list.html', context)
