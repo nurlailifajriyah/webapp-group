@@ -1,5 +1,5 @@
-function getEvents() {
-    $.get("/event_lists1").done(function(data){
+/*function getEvents() {
+    $.get("/get_events/6").done(function(data){
         var j = data;
     });
 }
@@ -126,4 +126,22 @@ $(document).ready(function() {
 //         });
 //     });
 //     });
-// });
+// });*/
+
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			defaultDate: '2017-11-12',
+			navLinks: true, // can click day/week names to navigate views
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: '/get_events/6'
+    }
+		);
+
+	});

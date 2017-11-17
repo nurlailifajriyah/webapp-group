@@ -623,14 +623,14 @@ def event_lists(request):
 
 @login_required()
 def event_lists1(request):
-    print("successfully entered event_list")
+    #print("successfully entered event_list")
 
     events = []
     context = {}
     errors = []
     context['errors'] = errors
     current_artist = Artist.objects.get(artist=request.user.id)
-    print("Current Artist" + str(current_artist.artist.username))
+    #print("Current Artist" + str(current_artist.artist.username))
     # get list of bands he belongs to
     bands = Band.objects.filter(creator=current_artist.id)
     for band in bands:
@@ -649,7 +649,6 @@ def event_lists1(request):
     j = render_to_string('events.json', context)
     json.dumps(j)
     return HttpResponse(j, content_type="application/json")
-
 
 
         # # fundtion to get list of available bands

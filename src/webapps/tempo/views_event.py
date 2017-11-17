@@ -43,3 +43,10 @@ def add_event(request):
         context['event'] = Event.objects.all()
 
     return render(request, 'events/eventmainpage.html', context)
+
+@login_required()
+def get_events(request, band_id):
+    band = Band.objects.get(id=band_id)
+    events = Event.objects.filter(band_name=band)
+    context = {"events": events}
+    return render(request, 'events.json', context, content_type='application/json')
