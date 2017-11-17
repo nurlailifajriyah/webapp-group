@@ -1,13 +1,15 @@
-{%extends "header_base.html"%}
+{%extends "login_register_base.html"%}
 {% block title %}Recorder{% endblock%}
 {%block content%}
 {% load static %}
 
 
 {% load static %}
-
+    <div class="col-md-offset-2 col-md-8 col-md-offset-2 ">
     <div class="main-login main-center">
         <!-- django's authentication module-->
+        <h1>Create new band for Tempo</h1>
+
         <form method="post" action="{% url 'create_band' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {%if form.errors%}
@@ -28,6 +30,6 @@
             {%csrf_token%}
         </form>
     </div>
-
+    </div>
 
 {% endblock%}

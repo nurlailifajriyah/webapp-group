@@ -23,7 +23,6 @@ class Band(models.Model):
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     created_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/image', blank=True)
-    # this field allows this artist to be a member of certain groups
 
     def __str__(self):
         return self.band_name
@@ -51,6 +50,10 @@ class Artist(models.Model):
     # def save_artist_profile(sender, instance, **kwargs):
     #     instance.artist.save()
 
+
+class ArtistInBand(models.Model):
+    band = models.ForeignKey(Band, verbose_name='band', related_name='band')
+    member = models.ForeignKey(User, verbose_name='band_member', default="", related_name='band_member')
 
 
 class SongList(models.Model):

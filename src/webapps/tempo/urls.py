@@ -8,13 +8,16 @@ import tempo.views_event
 import tempo.views_audiorecording
 
 urlpatterns = [
+
     url(r'^$', tempo.views.home, name="welcome"),
     url(r'^register$', tempo.views.register, name='register'),
     url(r'^login$', login, {'template_name': 'login.html', 'redirect_authenticated_user': True}, name='login'),
     url(r'^logout$', logout_then_login),
-    url(r'^personal_home', tempo.views.home, name='personal'),
+    #url(r'^personal_home', tempo.views.home, name='personal'),
     url(r'^user_pre_profile', tempo.views.user_pre_profile, name='user_pre_profile'),
+
     url(r'^user_home/(?P<username>\w+)$', tempo.views.user_home, name='user_home'),
+
     url(r'^calendar', tempo.views.calendar, name = 'calendar'),
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
@@ -44,6 +47,7 @@ urlpatterns = [
     url(r'^add_event$', tempo.views_event.add_event, name='add_event'),
     url(r'^get_events/(?P<band_id>\d+)$', tempo.views_event.get_events, name='getbandevents'),
 
+    #band
     url(r'^band_page', tempo.views.band_page, name='band'),
     url(r'^join_band/(?P<band_id>\d+)$', tempo.views.join_band, name='join_band'),
     url(r'^create_band$', tempo.views.create_band, name='create_band'),
@@ -51,7 +55,7 @@ urlpatterns = [
     url(r'^band_list$', tempo.views.band_list, name='band_list'),
     url(r'^band_events/(?P<band_id>\d+)$', tempo.views.band_events, name='band_events'),
 
-    url(r'^join$', tempo.views.join, name='join'),
+    #url(r'^join$', tempo.views.join, name='join'),
     url(r'^create$', tempo.views.create, name='create'),
 
 

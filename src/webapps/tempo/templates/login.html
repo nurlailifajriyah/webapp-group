@@ -2,13 +2,13 @@
 
 {% block title %}Home{% endblock%}
 {%block content%}
-<div>
+<div class="text-center">
     <h2 class="logo-message">TEMPO</h2>
-    <h3 class="pitch">Sync your music</h3>
+    <i class="pitch ">Sync your music</i>
 
 </div>
 
-    <div class="main-login main-center">
+    <div class="col-md-offset-2 col-md-8 panel main-login main-center">
         <!-- django's authentication module-->
         <form method="post" action="{% url 'login' %}">
             {%if form.errors%}

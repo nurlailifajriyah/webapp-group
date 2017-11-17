@@ -1,3 +1,14 @@
+.panel-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 7px 7px 7px;
+}
+
+.panel-default {
+
+    background-color: #fff;
+    border-color: #ddd;
+    padding: 20px 15px;
+}
+
 body {
   display: table;
   position: absolute;
@@ -78,12 +89,10 @@ ul.navbar-toggle{
 }
 
 .logo-message{
-    margin-left: 45%;
     color: #280e4f;
 }
 
 .pitch{
-    margin-left: 42%;
     color: #280e4f;
 }
 .bandimg{
