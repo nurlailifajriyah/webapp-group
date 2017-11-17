@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^event_lists1$', tempo.views.event_lists1, name='event_lists1'),
 
     url(r'^events$', tempo.views_event.event, name='events'),
+    url(r'^events/(?P<band_id>\d+)$', tempo.views_event.event, name='bandevents'),
     url(r'^add_event$', tempo.views_event.add_event, name='add_event'),
 
     url(r'^band_page', tempo.views.band_page, name='band'),

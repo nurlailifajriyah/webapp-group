@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from . models import *
-from . forms import *
+from .models import *
+from .forms import *
+
 
 @login_required
 def event(request):
@@ -10,6 +11,16 @@ def event(request):
     if request.method == 'GET':
         context['form'] = EventForm()
         context['events'] = Event.objects.all()
+        return render(request, 'events/eventmainpage.html', context)
+
+#######################################################################################################
+
+def event(request, band_id):
+    context = {}
+    context['band'] = Band.objects.get(id=band_id)
+    if request.method == 'GET':
+        context['form'] = EventForm()
+        context['events'] = Event.objects.filter(band_name=band_id)
         return render(request, 'events/eventmainpage.html', context)
 
 
