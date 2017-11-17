@@ -491,6 +491,12 @@ def band_list(request):
 def calendar(request):
     return render(request, 'user_calendar.html', {})
 
+@login_required()
+def band_calendar(request, band_id):
+    context = {}
+    context['band'] = band_id
+    return render(request, 'user_calendar.html', context)
+
 
 #################################################################################################
 @login_required()
