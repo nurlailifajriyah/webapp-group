@@ -356,7 +356,7 @@ def get_band_photo(request, band_id):
 
 
 ######################################################################################################
-
+@login_required()
 def band_page(request):
     context = {}
     context['user'] = request.user.username
@@ -364,7 +364,7 @@ def band_page(request):
 
 
 ##########################################fuctions to join and create#############################################
-
+@login_required()
 def join(request):
     context = {}
     errors = []
@@ -375,7 +375,7 @@ def join(request):
     context['form'] = form
     return render(request, 'band_join.html', context)
 
-
+@login_required()
 def create(request):
     context = {}
     errors = []
@@ -385,7 +385,7 @@ def create(request):
     context['form'] = form
     return render(request, 'band_create.html', context)
 
-
+@login_required()
 def join_band(request, band_id):
     context = {}
 
@@ -417,7 +417,7 @@ def join_band(request, band_id):
     else:
         return redirect(reverse('user_pre_profile'))
 
-
+@login_required()
 def create_band(request):
     context = {}
     errors = []
@@ -456,6 +456,7 @@ def create_band(request):
 
 
 # fundtion to get list of available bands
+@login_required()
 def user_band_list(request):
     context = {}
     errors = []
@@ -471,6 +472,7 @@ def user_band_list(request):
 
 
 # fundtion to get list of available bands
+@login_required()
 def band_list(request):
     context = {}
     errors = []
@@ -485,12 +487,13 @@ def band_list(request):
 
 
 ##################################################################################################
+@login_required()
 def calendar(request):
     return render(request, 'user_calendar.html', {})
 
 
 #################################################################################################
-
+@login_required()
 def event(request):
     all_events = Event.objects.all()
     get_event_types = Event.objects.only('event_type')
@@ -522,7 +525,24 @@ def event(request):
 
 
 ###################################################################################################
+#band page with it events associated with band
+@login_required()
+def band_events(request, band_id):
+    if not band_id:
+        redirect(reverse('user_home', args=request.user.username))
+    try:
+        band = Band.objects.get(id = band_id)
+        events = Event.objects.filter(band_name = band.id)
+        context = {}
+        context['events'] = events
+        context['band_id'] = band_id
+        print("the size of event list is ", len(events))
+        return render(request, 'bandpage.html', context)
+    except ObjectDoesNotExist:
+        return redirect(reverse('band_list'))
 
+
+@login_required()
 def create_event(request):
     print("successfully received get")
 
@@ -570,6 +590,7 @@ def create_event(request):
 
 
 # fundtion to get list of available bands
+@login_required()
 def event_lists(request):
     print("successfully entered event_list")
 
@@ -579,11 +600,14 @@ def event_lists(request):
     context['errors'] = errors
 
     current_artist = Artist.objects.get(artist=request.user.id)
-    print("Current Artist" + str(current_artist.artist.username))
     # get list of bands he belongs to
     bands = Band.objects.filter(creator=current_artist.id)
+    print("Current Artist" + str(current_artist.artist.username), len(bands))
+
     for band in bands:
-        event_band = Event.objects.filter(band_name = band)
+        event_band = Event.objects.filter(band_name = band.id)
+        print("Current Artist" ,len(event_band))
+
         event_band_list = []
         for each in event_band:
             event_band_list.append(each)
@@ -597,6 +621,7 @@ def event_lists(request):
     context['bands'] = bands
     return render(request, 'events_home.html', context)
 
+@login_required()
 def event_lists1(request):
     print("successfully entered event_list")
 
