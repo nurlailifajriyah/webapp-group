@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 import datetime
-
+from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20)
@@ -81,10 +81,9 @@ class ProfileEditForm(forms.Form):
 
 
 class EventForm(forms.Form):
-    band_name = forms.CharField(max_length=20)
     event_name = forms.CharField(max_length=20, label='Event_name')
-    start_date = forms.DateField(initial=datetime.date.today)
-    end_date = forms.DateField(initial=datetime.date.today)
+    start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     event_type = forms.CharField(max_length=10)
 
 
