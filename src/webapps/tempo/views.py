@@ -26,15 +26,17 @@ def home(request):
 
 
 ###############################################################################
+@login_required
 def user_pre_profile(request):
     context = {}
-    if(ArtistInBand.objects.filter(member = request.user)):
-        redirect(reverse('user_home'))
-    else:
-        errors = []
-        context['errors'] = errors
-        context['all_bands'] = Band.objects.all()
-        return render(request, 'user_pre_profile.html', context)
+    if(ArtistInBand.objects.filter(member_id = request.user.id)):
+        return redirect(reverse('user_home', args={request.user.username}))
+
+    errors = []
+    context['errors'] = errors
+    context['all_bands'] = Band.objects.all()
+    return render(request, 'user_pre_profile.html', context)
+
 
 
 
@@ -155,11 +157,11 @@ def profile(request, username):
 
 #######################################################################################################
 @login_required
-def user_home(request):
+def user_home(request,username):
     context = {}
     try:
         login_user = request.user
-        artistobj = User.objects.get(username=request.user.username)
+        artistobj = User.objects.get(username=username)
         profile = artistobj.artist
         context = {'details': username, 'profile': profile, 'user': artistobj}
         return render(request, 'user_home.html', context)
@@ -180,6 +182,7 @@ def song_list(request):
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.all()
         return render(request, 'songlist.html', context)
+
 
 
 #######################################################################################################
