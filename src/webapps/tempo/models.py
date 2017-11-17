@@ -25,6 +25,9 @@ class Band(models.Model):
     image = models.ImageField(upload_to='tempo/image', blank=True)
     # this field allows this artist to be a member of certain groups
 
+    def __str__(self):
+        return self.band_name
+
 
 class Artist(models.Model):
     artist = models.OneToOneField(User, on_delete=models.CASCADE, related_name='artist')

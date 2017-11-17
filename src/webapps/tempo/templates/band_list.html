@@ -12,7 +12,7 @@
     {% for band in bands %}
     <div class="band_list">
 
-        <h2 class="band_name">{{ band.band_name }}</h2>
+        <a href="/band_events/{{band.id}}"> <h2 class="band_name">{{ band.band_name }}</h2></a>
         <p class="band_event"><b>Upcoming Event: </b> Music concert in Amsterdam</p>
         <div style="width: 2000px; height: 90px;">
 
