@@ -35,11 +35,12 @@ urlpatterns = [
 
     # Events
     url(r'^event$', tempo.views.event, name='event'),
-    url(r'^create_event$', tempo.views.create_event, name='create_event'),
+    #url(r'^create_event$', tempo.views.create_event, name='create_event'),
     url(r'^event_lists$', tempo.views.event_lists, name='event_lists'),
     url(r'^event_lists1$', tempo.views.event_lists1, name='event_lists1'),
 
     url(r'^events$', tempo.views_event.event, name='events'),
+    url(r'^add_event$', tempo.views_event.add_event, name='add_event'),
 
     url(r'^band_page', tempo.views.band_page, name='band'),
     url(r'^join_band/(?P<band_id>\d+)$', tempo.views.join_band, name='join_band'),

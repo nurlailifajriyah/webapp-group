@@ -4,28 +4,37 @@
 {% load static %}
 {{ form.media }}
 
-<div class="col-md-2 col-sm-2 col-xs-2">
 
-
-    <div class="container">
         <h2>Event List</h2>
         <p>These are your events with {{band.name}}:</p>
         <table class="table">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Create Time</th>
+                <th>Event Name</th>
+                <th>Event Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Creator</th>
             </tr>
             </thead>
             <tbody>
-            {% if song_list %}
-            {% for list in song_list %}
+            {% if events %}
+            {% for event in events %}
             <tr>
                 <td>
-                    {{list.name}}
+                    {{event.event_name}}
                 </td>
                 <td>
-                    {{list.creation_time}}
+                    {{event.event_type}}
+                </td>
+                <td>
+                    {{event.start_date}}
+                </td>
+                <td>
+                    {{event.end_date}}
+                </td>
+                <td>
+                    {{event.creator}}
                 </td>
             </tr>
             {%endfor%}
@@ -33,7 +42,6 @@
 
             </tbody>
         </table>
-    </div>
 
 
     <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
@@ -52,7 +60,7 @@
                     <h4 class="Add Event" id="myModalLabel">Create Event</h4>
                 </div>
                 <div class="modal-body">
-                <form method="post" action="{% url 'create_event' %}" enctype="multipart/form-data">
+                <form method="post" action="{% url 'add_event' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {%if form.errors%}
                     <p class="error_msg bold_styling1">{{errors}}</p>
@@ -80,7 +88,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 {% endblock%}

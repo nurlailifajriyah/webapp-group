@@ -9,7 +9,7 @@ def event(request):
     context = {}
     if request.method == 'GET':
         context['form'] = EventForm()
-        context['event'] = Event.objects.all()
+        context['events'] = Event.objects.all()
         return render(request, 'events/eventmainpage.html', context)
 
 
@@ -23,13 +23,12 @@ def add_event(request):
     context['errors'] = errors
 
     if not form.is_valid():
-        errors.append('Please provide list name')
-        return render(request, 'songlist.html', context)
+        return render(request, 'events/eventmainpage.html', context)
 
     else:
-        new_item = Event(name=form.cleaned_data['name'])
-        new_item.save()
-        context['form'] = SongListForm()
-        context['song_list'] = SongList.objects.all()
+        new_event = Event(name=form.cleaned_data['name'], creator=request.user)
+        new_event.save()
+        context['form'] = EventForm()
+        context['event'] = Event.objects.all()
 
-    return render(request, 'songlist.html', context)
+    return render(request, 'events/eventmainpage.html', context)
