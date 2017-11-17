@@ -26,8 +26,13 @@ def home(request):
 
 
 ###############################################################################
+@login_required
 def user_pre_profile(request):
-    context = {'user': request.user, 'details': request.user.username}
+    context = {}
+    if (ArtistInBand.objects.filter(member_id=request.user.id)):
+        return redirect(reverse('user_home', args={request.user.username}))
+
+    context['all_bands'] = Band.objects.all()
     return render(request, 'user_pre_profile.html', context)
 
 
@@ -388,34 +393,14 @@ def create(request):
 @login_required()
 def join_band(request, band_id):
     context = {}
-
-    if 'join_band' in request.POST:
+    if Band.objects.filter(id=band_id):
         band_to_join = Band.objects.get(id=band_id)
-        print("band name is: " + str(band_to_join))
         current_artist = request.user
-        print("band creator is: " + str(band_to_join.creator))
-        # join the actual band
-        # current_artist.artist.member.add(band_to_join)
-        creator = User.objects.get(username=band_to_join.creator)
-
-        # email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
-        # http://%s%s""" % (request.get_host(),
-        #                   reverse('activate', args=(creator.username, token)))
-        # #
-        # send_mail(subject="Verify your account/email address",
-        #           message=email_body,
-        #           from_email="hello@tempo.com",
-        #           recipient_list=[creator.email])
-        # context['email'] = creator.email
-        # context['fname'] = creator.first_name
-        # return render(request, "acc_active_email.html", context)
-
-        # context['current_artist'] = current_artist
-        # context['band'] = band_to_join
-        # context['message'] = 'joined'
-        # return render(request, 'band_success.html', context)
+        ArtistInBand.objects.create(band = band_to_join, member = current_artist)
+        return redirect(reverse('user_pre_profile'))
     else:
         return redirect(reverse('user_pre_profile'))
+
 
 @login_required()
 def create_band(request):
