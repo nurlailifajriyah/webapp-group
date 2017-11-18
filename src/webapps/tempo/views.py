@@ -176,16 +176,19 @@ def band_page(request):
 def song_list(request):
     context = {}
     if request.method == 'GET':
+        band_id = request.session['band']
+        band = Band.objects.filter(id=band_id)
         context['form'] = SongListForm()
-        context['song_list'] = SongList.objects.all()
+        context['song_list'] = SongList.objects.filter(band=band)
         return render(request, 'songlist.html', context)
 
 
-#######################################################################################################
 @login_required
 def add_song_list(request):
     context = {}
     form = SongListForm(request.POST)
+    band_id = request.session['band']
+    band = Band.objects.get(id=band_id)
     context['form'] = form
     errors = []
     context['errors'] = errors
@@ -195,12 +198,22 @@ def add_song_list(request):
         return render(request, 'songlist.html', context)
 
     else:
-        new_item = SongList(name=form.cleaned_data['name'])
+        new_item = SongList(name=form.cleaned_data['name'], band=band)
         new_item.save()
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.all()
 
     return render(request, 'songlist.html', context)
+
+@login_required
+def song(request):
+    context = {}
+    if request.method == 'GET':
+        band_id = request.session['band']
+        band = Band.objects.filter(id=band_id)
+        context['form'] = SongForm()
+        context['song_list'] = Song.objects.filter(band=band)
+        return render(request, 'song.html', context)
 
 
 ###############################################################################
@@ -479,8 +492,9 @@ def band_calendar(request,band_id):
 #         return redirect(reverse('band_list'))
 
 
-def team_member(request,band_id):
+def team_member(request):
     context = {}
+    band_id = request.session['band']
     artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
     context['team_member'] = User.objects.filter(id=artist_band_pair.values_list('member_id', flat=True))
     context['band_name'] = Band.objects.get(id = band_id).band_name

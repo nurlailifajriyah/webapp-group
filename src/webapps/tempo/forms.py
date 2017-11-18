@@ -43,6 +43,9 @@ class RegistrationForm(forms.Form):
 class SongListForm(forms.Form):
     name = forms.CharField(max_length=140)
 
+class SongForm(forms.Form):
+    name = forms.CharField(max_length=140)
+
 
 class BandForm(forms.Form):
     bandname = forms.CharField(max_length=20)

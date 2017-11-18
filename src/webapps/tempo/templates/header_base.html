@@ -88,33 +88,38 @@
                         <li>
                             <a href="{% url 'user_home' username=user %}">
                                 <i class="glyphicon glyphicon-home"></i>
-                                My Band </a>o
+                                My Band </a>
 
                         </li>
                         <li>
                             <a href="{% url 'calendar' %}">
                                 <i class="glyphicon glyphicon-calendar"></i>
-                                <i>Calendar</i></a>
+                                Calendar</a>
                         </li>
                         <li>
                             <a href = "{% url 'events' %}">
                                 <i class="glyphicon glyphicon-globe"></i>
-                                <i>Live Session</i></a>
+                                Live Session</a>
                         </li>
                         <li>
                             <a href="{% url 'song_list' %}">
-                                <i class="glyphicon glyphicon-music"></i>
-                                Song List </a>
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                                Album </a>
                         </li>
-                        <li>
-                            <a href="">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <i>Team Member</i></a>
+                         <li>
+                            <a href="{% url 'song' %}">
+                                <i class="glyphicon glyphicon-music"></i>
+                                Song</a>
                         </li>
                          <li>
                             <a href="{% url 'audio_recorder' %}">
-                                <i class="glyphicon glyphicon-music"></i>
+                                <i class="glyphicon glyphicon-cd"></i>
                                 Audio Recorder </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'team_members' %}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Band Member</a>
                         </li>
                     </ul>
                 </div>

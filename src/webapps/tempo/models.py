@@ -59,12 +59,17 @@ class ArtistInBand(models.Model):
 class SongList(models.Model):
     name = models.TextField(max_length=140, blank=True)
     creation_time = models.DateTimeField(auto_now=True)
-
+    band = models.ForeignKey(Band, related_name='band_song_list', default ='')
 
 class Song(models.Model):
     name = models.TextField(max_length=140, blank=True)
     songlist = models.ManyToManyField(SongList)
     creation_time = models.DateTimeField(auto_now=True)
+    band = models.ForeignKey(Band, related_name='band_song', default='')
+
+class SongInList(models.Model):
+    list = models.ForeignKey(SongList, related_name='list')
+    song = models.ForeignKey(Song, related_name='song_in_list')
 
 
 class Track(models.Model):
@@ -73,6 +78,7 @@ class Track(models.Model):
     audio_file = models.FileField(upload_to='tempo/audio', blank=True)
     version_number = models.IntegerField(default=1, blank=True, null=True)
     creation_time = models.DateTimeField(auto_now=True)
+    song = models.ForeignKey(Song, related_name='song',  default ='')
 
     #TODO foreignkey to song
 

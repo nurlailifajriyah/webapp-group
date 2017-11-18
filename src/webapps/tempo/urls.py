@@ -30,6 +30,7 @@ urlpatterns = [
     # Songlist
     url(r'^add_song_list$', tempo.views.add_song_list, name="add_song_list"),
     url(r'^song_list$', tempo.views.song_list, name="song_list"),
+    url(r'^song$', tempo.views.song, name="song"),
 
     # Tracks
     url(r'^audio_recorder$', tempo.views_audiorecording.audio_recorder, name="audio_recorder"),
@@ -51,7 +52,7 @@ urlpatterns = [
     url(r'^user_band_list$', tempo.views.user_band_list, name='user_band_list'),
     url(r'^band_list$', tempo.views.band_list, name='band_list'),
     #url(r'^band_events/(?P<band_id>\d+)$', tempo.views.band_events, name='band_events'),
-    url(r'^team_members/(?P<band_id>\d+)$', tempo.views.team_member, name='team_member'),
+    url(r'^team_members$', tempo.views.team_member, name='team_members'),
 
     #url(r'^join$', tempo.views.join, name='join'),
     url(r'^create$', tempo.views.create, name='create'),
