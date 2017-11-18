@@ -7,8 +7,8 @@
 
 
     <div class="container">
-        <h2>Song List</h2>
-        <p>Song List helps you manage the song for each live session or you can treat it as an album:</p>
+        <h2>Album</h2>
+        <p>Album helps you manage the song for each live session:</p>
         <table class="table">
             <thead>
             <tr>
@@ -21,7 +21,7 @@
             {% for list in song_list %}
             <tr>
                 <td>
-                    {{list.name}}
+                    <a target="_blank" href="/album">{{list.name}}</a>
                 </td>
                 <td>
                     {{list.creation_time}}
@@ -37,7 +37,7 @@
 
     <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
             data-target="#myModal-{{item.id}}">
-        Add New Song List
+        Add New Album
     </button>
     <!-- Modal -->
     <!-- http://getbootstrap.com/docs/3.3/javascript/#modals -->

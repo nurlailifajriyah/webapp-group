@@ -23,7 +23,9 @@ class Band(models.Model):
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     created_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/image', blank=True)
-    # this field allows this artist to be a member of certain groups
+
+    def __str__(self):
+        return self.band_name
 
 
 class Artist(models.Model):
@@ -49,24 +51,39 @@ class Artist(models.Model):
     #     instance.artist.save()
 
 
+class ArtistInBand(models.Model):
+    band = models.ForeignKey(Band, verbose_name='band', related_name='band')
+    member = models.ForeignKey(User, verbose_name='band_member', default="", related_name='band_member')
+
 
 class SongList(models.Model):
-    name = models.TextField(max_length=140, blank=True)
+    name = models.CharField(max_length=140, blank=True)
     creation_time = models.DateTimeField(auto_now=True)
-
+    band = models.ForeignKey(Band, related_name='band_song_list', default ='')
+    image = models.ImageField(upload_to='tempo/images/song_list', blank=True)
+    def __unicode__(self):
+        return u'{0}'.format(self.name)
+    def __str__(self):
+        return u'{0}'.format(self.name)
 
 class Song(models.Model):
-    name = models.TextField(max_length=140, blank=True)
-    songlist = models.ManyToManyField(SongList)
+    name = models.CharField(max_length=140, blank=True)
     creation_time = models.DateTimeField(auto_now=True)
+    band = models.ForeignKey(Band, related_name='band_song', default='')
+    image = models.ImageField(upload_to='tempo/images/song', blank=True)
+
+class SongInList(models.Model):
+    list = models.ForeignKey(SongList, related_name='list')
+    song = models.ForeignKey(Song, related_name='song_in_list')
 
 
 class Track(models.Model):
     name = models.TextField(max_length=140, blank=True)
     type = models.TextField(max_length=140, blank=True)
-    audio_file = models.FileField(upload_to='tempo/audio', blank=True)
+    audio_file = models.FileField(upload_to='tempo/audio/track', blank=True)
     version_number = models.IntegerField(default=1, blank=True, null=True)
     creation_time = models.DateTimeField(auto_now=True)
+    song = models.ForeignKey(Song, related_name='song',  default ='')
 
     #TODO foreignkey to song
 

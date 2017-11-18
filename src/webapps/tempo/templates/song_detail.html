@@ -1,0 +1,23 @@
+{%extends "header_base.html"%}
+{% block title %}Home{% endblock%}
+{%block content%}
+{% load static %}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <div class="row">
+        <h2>{{song_name}}</h2>
+        <p>List of all song in your band :</p>
+        <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                data-target="#myModal-{{item.id}}">
+            Add New Song
+        </button>
+    </div>
+    <div class="row">
+
+    </div>
+
+
+</div>
+
+{% endblock%}

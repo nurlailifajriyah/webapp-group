@@ -133,9 +133,8 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 }
 
 .main-center{
- 	margin: auto;
+
     margin-top: 30px;
- 	max-width: 430px;
     padding: 40px 40px;
     background-color: #e5e3e8;
 
@@ -194,9 +193,10 @@ span.input-group-addon i {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.para_styling1{
+.para_styling{
     color: #280e4f;
     font-weight: bold;
+    width: 70%;
 }
 
 .login-register{
@@ -288,6 +288,7 @@ span.input-group-addon i {
 .pre_styling_bio {
     margin-top: 30px;
     color: darkolivegreen;
+    width: 70%;
 }
 .heading1_styling{
     margin-left: 34%;
@@ -311,7 +312,8 @@ span.input-group-addon i {
 }
 
 .band_list{
-    background-color: white;
+    background-color: #280e4f;
+    color: white;
     height: 150px;
     width: 600px;
 }

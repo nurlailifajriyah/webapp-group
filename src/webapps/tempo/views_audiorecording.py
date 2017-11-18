@@ -13,6 +13,7 @@ def audio_recorder(request):
 @login_required
 def add_track(request):
     # TODO validation if file is not an audio file
+    errors = []
     if not 'track_name' in request.POST or not request.POST['track_name']:
         errors.append('Trackname is required.')
     else:

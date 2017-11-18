@@ -1,0 +1,93 @@
+{%extends "header_base.html"%}
+{% block title %}Home{% endblock%}
+{%block content%}
+{% load static %}
+{{ form.media }}
+
+
+        <h2>Event List</h2>
+        <p>These are your events with {{band.id}}:</p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Creator</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if events %}
+            {% for event in events %}
+            <tr>
+                <td>
+                    {{event.event_name}}
+                </td>
+                <td>
+                    {{event.event_type}}
+                </td>
+                <td>
+                    {{event.start_date}}
+                </td>
+                <td>
+                    {{event.end_date}}
+                </td>
+                <td>
+                    {{event.creator}}
+                </td>
+            </tr>
+            {%endfor%}
+            {%endif%}
+
+            </tbody>
+        </table>
+
+
+    <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+            data-target="#myModal-{{event.id}}">
+        Add New Event
+    </button>
+    <!-- Modal -->
+    <!-- http://getbootstrap.com/docs/3.3/javascript/#modals -->
+    <div class="modal fade" id="myModal-{{event.id}}" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="Add Event" id="myModalLabel">Create Event</h4>
+                </div>
+                <div class="modal-body">
+                <form method="post" action="/add_event/{{band.id}}">
+                    {% csrf_token %}
+                    {%if form.errors%}
+                    <p class="error_msg bold_styling1">{{errors}}</p>
+                    {%endif%}
+
+                    <!--create create band form using forms-->
+                    <table>
+                        {{form.as_table}}
+                    </table>
+
+                    <!-- end of form -->
+                    <br>
+                    <div class="modal-footer">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary submit-btn" id="{{event.id}}">Submit
+                        </button>
+                    </div>
+
+
+                    <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
+                    {%csrf_token%}
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock%}
