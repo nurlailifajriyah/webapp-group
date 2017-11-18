@@ -237,6 +237,11 @@ def add_song(request):
 
         return render(request, 'song.html', context)
 
+@login_required
+def album(request):
+
+    return render(request, 'album.html', {})
+
 ###############################################################################
 
 #################################################################################################
