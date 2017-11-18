@@ -215,6 +215,27 @@ def song(request):
         context['song_list'] = Song.objects.filter(band=band)
         return render(request, 'song.html', context)
 
+@login_required
+def add_song(request):
+        context = {}
+        form = SongForm(request.POST)
+        band_id = request.session['band']
+        band = Band.objects.get(id=band_id)
+        context['form'] = form
+        errors = []
+        context['errors'] = errors
+
+        if not form.is_valid():
+            errors.append('Please provide list name')
+            return render(request, 'song.html', context)
+
+        else:
+            new_item = Song.objects.create(name=form.cleaned_data['name'], band=band)
+            new_item.save()
+            context['form'] = SongForm()
+            context['song_list'] = Song.objects.all()
+
+        return render(request, 'song.html', context)
 
 ###############################################################################
 

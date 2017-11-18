@@ -2,6 +2,7 @@ from django import forms
 from .models import *
 import datetime
 from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
+from django.forms import ModelChoiceField
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20)
@@ -43,9 +44,15 @@ class RegistrationForm(forms.Form):
 class SongListForm(forms.Form):
     name = forms.CharField(max_length=140)
 
-class SongForm(forms.Form):
-    name = forms.CharField(max_length=140)
+class UserModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+         return obj.name
 
+
+class SongForm(forms.ModelForm):
+    class Meta:
+        model = Song
+        fields = ('name',)
 
 class BandForm(forms.Form):
     bandname = forms.CharField(max_length=20)

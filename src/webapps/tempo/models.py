@@ -57,13 +57,16 @@ class ArtistInBand(models.Model):
 
 
 class SongList(models.Model):
-    name = models.TextField(max_length=140, blank=True)
+    name = models.CharField(max_length=140, blank=True)
     creation_time = models.DateTimeField(auto_now=True)
     band = models.ForeignKey(Band, related_name='band_song_list', default ='')
+    def __unicode__(self):
+        return u'{0}'.format(self.name)
+    def __str__(self):
+        return u'{0}'.format(self.name)
 
 class Song(models.Model):
-    name = models.TextField(max_length=140, blank=True)
-    songlist = models.ManyToManyField(SongList)
+    name = models.CharField(max_length=140, blank=True)
     creation_time = models.DateTimeField(auto_now=True)
     band = models.ForeignKey(Band, related_name='band_song', default='')
 
