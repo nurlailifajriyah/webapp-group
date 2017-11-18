@@ -7,10 +7,7 @@ from .forms import *
 
 @login_required()
 def calendar(request):
-    return render(request, 'user_calendar.html', {})
-
-@login_required()
-def band_calendar(request,band_id):
     context = {}
-    context['bandid'] = band_id
+    band = request.session['band']
+    context['bandid'] = band
     return render(request, 'user_calendar.html', context)

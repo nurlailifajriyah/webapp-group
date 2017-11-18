@@ -26,7 +26,6 @@ urlpatterns = [
 
     #Calendar
     url(r'^calendar$', tempo.views_calendar.calendar, name = 'calendar'),
-    url(r'^calendar/(?P<band_id>\d+)$', tempo.views_calendar.band_calendar, name = 'band_calendar'),
 
     #Auth
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
