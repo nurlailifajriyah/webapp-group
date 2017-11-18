@@ -1,14 +1,98 @@
-{%extends "login_register_base.html"%}
-{% block title %}Home{% endblock%}
-{%block content%}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'tempo/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-<div>
-    <a href="/login"><h2 class="logo-message">Tempo</h2>
-    <div class = "home-logo">
-        <img src="{% static 'tempo/images/mainpage.png' %}" alt="">
+    <!-- Customized CSS -->
+    <link href="{% static 'tempo/css/bootstrap-tempo.css' %}" rel="stylesheet">
+    <link href="{% static 'tempo/css/sidebar-tempo.css' %}" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'tempo/images/favicon.ico' %}">
+
+    <!-- Bootstrap Javascript -->
+    <script src="{% static 'tempo/js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'tempo/js/bootstrap.min.js' %}"></script>
+    <title>Tempo</title>
+    <style>
+        .parallax {
+            /* The image used */
+            background-image: url("{% static 'tempo/images/banner.png' %}");
+
+            /* Set a specific height */
+            min-height: 500px;
+
+            width: 100%;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div class="parallax"></div>
+
+<div style="height:100%;background-color:rgba(135,74,0,0)">
+    <div class="text-center">
+        <br>
+        <br>
+        <h2 class="logo-message">Log In to TEMPO</h2>
     </div>
-    </a>
-    <h3 class="pitch">Sync your music</h3>
+
+    <div class="col-md-offset-2 col-md-8 panel main-login main-center">
+        <!-- django's authentication module-->
+        <form method="post" action="{% url 'login' %}">
+            {%if form.errors%}
+            <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot
+                password option.</p>
+            {%endif%}
+            <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
+            <div class="form-group">
+                <div class="cols-sm-1">
+                </div>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="username" id="username"
+                               placeholder="Enter Username"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Enter Password"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <!--<a href="Global%20Stream.html"><button type="button" class="btn btn-primary btn-lg btn-block login">Log in</button></a>-->
+                <input type="submit" class="btn btn-default btn-lg btn-block" value="Log in">
+            </div>
+            <div class="login-password">
+                <a href="/password_reset">Forgot Password?</a>
+            </div>
+
+            <div class="login-register">
+                New User? <a href="{%url 'register' %}">Sign Up</a>
+            </div>
+
+            {%csrf_token%}
+        </form>
+    </div>
+
 </div>
-{% endblock%}
+
+
+</body>
+</html>

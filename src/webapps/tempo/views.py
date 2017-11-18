@@ -158,6 +158,7 @@ def user_home(request, username):
         login_user = request.user
         artistobj = User.objects.get(username=username)
         profile = artistobj.artist
+        context['all_bands'] = Band.objects.all()
         context = {'details': username, 'profile': profile, 'user': artistobj}
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
@@ -645,15 +646,9 @@ def event_lists1(request):
     return HttpResponse(j, content_type="application/json")
 
 
-        # # fundtion to get list of available bands
-    # def band_list(request):
-    #     context = {}
-    #     errors = []
-    #     context['errors'] = errors
-    #
-    #     # get list of bands he belongs to
-    #     bands = Band.objects.all()
-    #     print("successfully " + str(bands))
-    #     context['bands'] = bands
-    #     context['errors'] = errors
-    #     return render(request, 'band_list.html', context)
+def team_member(request,band_id):
+    context = {}
+    artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
+    context['team_member'] = User.objects.filter(id=artist_band_pair.values_list('member_id', flat=True))
+    context['band_name'] = Band.objects.get(id = band_id).band_name
+    return render(request, 'team_member.html', context)
