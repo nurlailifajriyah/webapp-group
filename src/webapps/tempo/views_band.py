@@ -1,0 +1,127 @@
+from __future__ import unicode_literals
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from .models import *
+from .forms import *
+
+######################################################################################################
+@login_required()
+def band_page(request):
+    context = {}
+    context['user'] = request.user.username
+    return render(request, 'bandpage.html', context)
+
+######################################################################################################
+def band_page(request):
+    return render(request, 'bandpage.html', {})
+
+
+##########################################fuctions to join and create#############################################
+# @login_required()
+# def join(request):
+#     context = {}
+#     errors = []
+#
+#     form = BandForm(request.POST or None)
+#
+#     context['errors'] = errors
+#     context['form'] = form
+#     return render(request, 'band_join.html', context)
+
+@login_required()
+def create(request):
+    context = {}
+    errors = []
+
+    form = BandForm(request.POST or None)
+    context['errors'] = errors
+    context['form'] = form
+    return render(request, 'band_create.html', context)
+
+@login_required()
+def join_band(request, band_id):
+    context = {}
+    if Band.objects.filter(id=band_id):
+        band_to_join = Band.objects.get(id=band_id)
+        current_artist = request.user
+        ArtistInBand.objects.create(band = band_to_join, member = current_artist)
+        return redirect(reverse('user_pre_profile'))
+    else:
+        return redirect(reverse('user_pre_profile'))
+
+
+@login_required()
+def create_band(request):
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    # form = BandForm(request.POST or None)
+    form = BandForm(request.POST, request.FILES)
+
+    if not form.is_valid():
+        errors = 'Something went wrong, try again.'
+        context['errors'] = errors
+        return render(request, 'band_create.html', context)
+
+    band_name = form.cleaned_data['bandname']
+    # new_band = Band(band_name = band_name)
+    # new_band.save()
+
+    band_info = form.cleaned_data['band_info']
+    city = form.cleaned_data['city']
+    creator = request.user
+
+    new_band = Band(band_name=band_name, band_info=band_info, city=city, creator=creator)
+    if 'image' in request.FILES:
+        new_band.image = request.FILES['image']
+
+    new_band.save()
+
+    creator.artist.member.add(new_band)
+    print("successfully joined band")
+
+    context['current_artist'] = creator
+    context['band'] = new_band
+    context['message'] = 'created'
+
+    return redirect(reverse('user_band_list'))
+
+
+# fundtion to get list of available bands
+@login_required()
+def user_band_list(request):
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    current_artist = Artist.objects.get(artist=request.user.id)
+    print("Current Artist" + str(current_artist.artist.username))
+    # get list of bands he belongs to
+    bands = Band.objects.filter(creator=current_artist.id)
+    print("successfully " + str(bands))
+    context['bands'] = bands
+    return render(request, 'user_home.html', context)
+
+
+# fundtion to get list of available bands
+@login_required()
+def band_list(request):
+    context = {}
+    errors = []
+    context['errors'] = errors
+
+    # get list of bands he belongs to
+    bands = Band.objects.all()
+    print("successfully " + str(bands))
+    context['bands'] = bands
+    context['errors'] = errors
+    return render(request, 'band_list.html', context)
+
+def team_member(request):
+    context = {}
+    band_id = request.session['band']
+    artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
+    context['team_member'] = User.objects.filter(id=artist_band_pair.values_list('member_id', flat=True))
+    context['band_name'] = Band.objects.get(id = band_id).band_name
+    return render(request, 'team_member.html', context)
