@@ -74,7 +74,7 @@
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
-                    <img src="{% url 'photo' id=user.artist.id %}" class="img-responsive" alt="{{user.username}}">
+                    <img src="{% static user.artist.image %}" class="img-responsive" alt="{{user.username}}">
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
