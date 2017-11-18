@@ -223,10 +223,11 @@ def add_song(request):
         band = Band.objects.get(id=band_id)
         context['form'] = form
         errors = []
-        context['errors'] = errors
+
 
         if not form.is_valid():
             errors.append('Please provide song information')
+            context['errors'] = errors
             return render(request, 'song.html', context)
 
         else:
@@ -242,7 +243,8 @@ def add_song(request):
             context['song_list'] = Song.objects.filter(band=band)
         context['form'] = SongForm()
         context['song_list'] = Song.objects.filter(band=band)
-        return render(request, 'song.html', context)
+        context['errors'] = errors
+        return redirect(reverse('song'))
 
 @login_required
 def album(request):

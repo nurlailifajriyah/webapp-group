@@ -71,7 +71,6 @@ class Song(models.Model):
     creation_time = models.DateTimeField(auto_now=True)
     band = models.ForeignKey(Band, related_name='band_song', default='')
     image = models.ImageField(upload_to='tempo/images/song', blank=True)
-    audio_file = models.FileField(upload_to='tempo/audio/song', blank=True)
 
 class SongInList(models.Model):
     list = models.ForeignKey(SongList, related_name='list')

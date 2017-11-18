@@ -3,35 +3,40 @@
 {%block content%}
 {% load static %}
 
-<div class="col-md-2 col-sm-2 col-xs-2">
+<div class="col-md-12 col-sm-12 col-xs-12">
 
-
-    <div class="container">
+    <div class="row">
         <h2>Song</h2>
-        <p>List of all song from {{band_name}}:</p>
-
+        <p>List of all song in your band :</p>
+        <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                data-target="#myModal-{{item.id}}">
+            Add New Song
+        </button>
+    </div>
+    <div class="row">
         {% if song_list %}
         {% for list in song_list %}
 
 
         <div class="gallery">
-            <a href="banner.png">
-                <img src="{% url 'song_photo' list.id %}" alt="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200">
+            <a href="">
+                {% if list.image %}
+                <img src="{% url 'song_photo' list.id %}" width="300" height="200">
+                {% else %}
+                <img src="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200" height="70"/>
+                {% endif %}
             </a>
             <div class="desc">Name: {{list.name}} <br> {{list.creation_time}}</div>
+
         </div>
 
         {%endfor%}
         {%endif%}
-
+        {{errors}}
 
     </div>
 
 
-    <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
-            data-target="#myModal-{{item.id}}">
-        Add New Song List
-    </button>
     <!-- Modal -->
     <!-- http://getbootstrap.com/docs/3.3/javascript/#modals -->
     <div class="modal fade" id="myModal-{{item.id}}" tabindex="-1" role="dialog"
@@ -43,7 +48,7 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="Add Comment" id="myModalLabel">New Song</h4>
                 </div>
-                <form action="/add_song" method="post">
+                <form action="/add_song" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         {{form}}
                     </div>
@@ -58,6 +63,5 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+
 {% endblock%}
