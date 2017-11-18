@@ -129,6 +129,7 @@ $(document).ready(function() {
 // });*/
 
 	$(document).ready(function() {
+	    var band_id = $('.tab-pane.active').attr('id');
 
 		$('#calendar').fullCalendar({
 			header: {
@@ -140,7 +141,7 @@ $(document).ready(function() {
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: '/get_events/6'
+			events: '/get_events/' + band_id
     }
 		);
 

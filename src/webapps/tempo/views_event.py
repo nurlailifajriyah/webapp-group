@@ -26,7 +26,7 @@ def event(request, band_id):
 
 #######################################################################################################
 @login_required
-def add_event(request):
+def add_event(request, band_id):
     context = {}
     form = EventForm(request.POST)
     context['form'] = form
@@ -37,10 +37,11 @@ def add_event(request):
         return render(request, 'events/eventmainpage.html', context)
 
     else:
-        new_event = Event(name=form.cleaned_data['name'], creator=request.user)
+        band = Band.objects.get(id=band_id)
+        new_event = Event(event_name=form.clean_event_name(), start_date=form.clean_start_date(),
+                          end_date=form.clean_end_date(), event_type=form.clean_event_type(),
+                          creator=request.user, band_name=band)
         new_event.save()
-        context['form'] = EventForm()
-        context['event'] = Event.objects.all()
 
     return render(request, 'events/eventmainpage.html', context)
 

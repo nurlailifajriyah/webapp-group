@@ -95,12 +95,13 @@ class EventForm(forms.Form):
             raise forms.ValidationError("Invalid date entered")
         return cleaned_data
 
-    # valdiation for username
-    def clean_band_name(self):
-        band_name = self.cleaned_data.get('band_name')
-        if len(Band.objects.filter(band_name__exact=band_name)) == 0:
-            raise forms.ValidationError("Band name already taken")
-        return band_name
+    def clean_event_name(self):
+        event_name = self.cleaned_data.get('event_name')
+        return event_name
+
+    def clean_event_type(self):
+        event_name = self.cleaned_data.get('event_type')
+        return event_name
 
     def clean_start_date(self):
         start_date = self.cleaned_data.get('start_date')
