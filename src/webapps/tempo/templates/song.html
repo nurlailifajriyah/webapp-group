@@ -29,7 +29,7 @@
 
             <div class="desc">{{list.name}} <br>
                 <h6>{{list.creation_time}}</h6>
-                <a href="/album">See Song's Track</a>
+                <a href="{% url 'audio_recorder' song_id=list.id %}">See Song's Track</a>
             </div>
 
         </div>
