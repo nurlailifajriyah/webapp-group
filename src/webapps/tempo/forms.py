@@ -91,8 +91,9 @@ class EventForm(forms.Form):
         cleaned_data = super(EventForm, self).clean()
         start_date = self.cleaned_data.get('start_date')
         end_date = self.cleaned_data.get('end_date')
-        if end_date < start_date:
-            raise forms.ValidationError("Invalid date entered")
+        if start_date != None and end_date != None:
+            if end_date < start_date:
+                raise forms.ValidationError("Invalid date entered")
         return cleaned_data
 
     def clean_event_name(self):
