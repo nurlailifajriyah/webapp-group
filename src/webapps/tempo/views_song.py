@@ -15,6 +15,19 @@ def song_list(request):
         context['song_list'] = SongList.objects.filter(band=band)
         return render(request, 'songlist.html', context)
 
+@login_required
+def song_detail(request,song_id):
+
+    context = {}
+    valid_song = get_object_or_404(Song, id=song_id)
+    if request.method == 'GET':
+        band_id = request.session['band']
+        band = Band.objects.filter(id=band_id)
+        context['band'] = band
+        context['song'] = valid_song
+        request.session['song_id'] = valid_song.id
+        return render(request, 'song_detail.html', context)
+
 
 @login_required
 def add_song_list(request):

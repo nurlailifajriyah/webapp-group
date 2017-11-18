@@ -1,23 +1,75 @@
 {%extends "header_base.html"%}
-{% block title %}Home{% endblock%}
+{% block title %}Song Detail{% endblock%}
 {%block content%}
 {% load static %}
 
-<div class="col-md-12 col-sm-12 col-xs-12">
 
+{% load static %}
+<script src="static/tempo/js/audiodisplay.js" type="text/javascript"></script>
+<script src="static/tempo/js/recorder.js" type="text/javascript"></script>
+<script src="static/tempo/js/main.js" type="text/javascript"></script>
+<script src="static/tempo/js/recorderWorker.js" type="text/javascript"></script>
+<script src="static/tempo/js/audiorecord.js" type="text/javascript"></script>
+<!-- Customized CSS -->
+<link href="{% static 'tempo/css/audio_record.css' %}" rel="stylesheet">
+
+<div id="viz" class="container">
     <div class="row">
-        <h2>{{song_name}}</h2>
-        <p>List of all song in your band :</p>
-        <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
-                data-target="#myModal-{{item.id}}">
-            Add New Song
-        </button>
+        <h1>{{song.name}}</h1>
+        <p>Click record icon to start recording, add new track to this song! </p>
+        <table class="list-group-item col-xs-12 ">
+            <tr>
+                <td>
+                        <a id="record" onclick="toggleRecording(this);"><span
+                                class="glyphicon glyphicon-record" id="record_glyphicon"></span>
+                        </a>
+                </td>
+                <td>
+                    <canvas id="analyser" width="1024" height="500"></canvas>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div class="row">
 
+    <hr>
+    <div class=" no-padding row col-xs-12" style="padding: 0">
+        <h1>Track List</h1>
+        <ul class="list-group" id="track-list">
+        </ul>
     </div>
-
-
 </div>
+
+<div class="modal fade" id="recorded-model" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4>Save your track</h4>
+            </div>
+            <div class="modal-body">
+                <p id="finish-record"></p>
+                <form>
+                    Track name: <input type="text" id="track_name" name="track_name" required><br><br>
+                    <table>
+                        <tr id="save_row">
+                            <td>
+                                <a id="save">
+                                    <span class="glyphicon glyphicon-save save-model-gly"></span></a>
+                                {% csrf_token %}
+                            </td>
+                            <td>
+                                <canvas id="wavedisplay" width="1024" height="100"></canvas>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 {% endblock%}
