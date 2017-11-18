@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^user_home/(?P<username>\w+)$', tempo.views.user_home, name='user_home'),
 
     url(r'^calendar$', tempo.views.calendar, name = 'calendar'),
-    url(r'^calendar/(?P<band_id>\d+)$', tempo.views.band_calendar, name = 'band_calendar'),
+    url(r'^calendar/(?P<band_id>\d+)$', tempo.views.band_calendar, name = 'calendar'),
 
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
@@ -39,11 +39,6 @@ urlpatterns = [
     url(r'^get_track/(?P<time>.+)$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
 
     # Events
-    url(r'^event$', tempo.views.event, name='event'),
-    url(r'^create_event$', tempo.views.create_event, name='create_event'),
-    url(r'^event_lists$', tempo.views.event_lists, name='event_lists'),
-    url(r'^event_lists1$', tempo.views.event_lists1, name='event_lists1'),
-
     url(r'^events$', tempo.views_event.event, name='events'),
     url(r'^events/(?P<band_id>\d+)$', tempo.views_event.event, name='bandevents'),
     url(r'^add_event/(?P<band_id>\d+)$', tempo.views_event.add_event, name='add_event'),
@@ -55,7 +50,7 @@ urlpatterns = [
     url(r'^create_band$', tempo.views.create_band, name='create_band'),
     url(r'^user_band_list$', tempo.views.user_band_list, name='user_band_list'),
     url(r'^band_list$', tempo.views.band_list, name='band_list'),
-    url(r'^band_events/(?P<band_id>\d+)$', tempo.views.band_events, name='band_events'),
+    #url(r'^band_events/(?P<band_id>\d+)$', tempo.views.band_events, name='band_events'),
     url(r'^team_members/(?P<band_id>\d+)$', tempo.views.team_member, name='team_member'),
 
     #url(r'^join$', tempo.views.join, name='join'),

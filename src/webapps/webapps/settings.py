@@ -54,6 +54,9 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_HTTPONLY = True
+
 ROOT_URLCONF = 'webapps.urls'
 
 TEMPLATES = [

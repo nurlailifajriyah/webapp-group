@@ -30,6 +30,8 @@ def home(request):
 def user_pre_profile(request):
     context = {}
     if (ArtistInBand.objects.filter(member_id=request.user.id)):
+        artist_band = ArtistInBand.objects.get(member_id=request.user.id)
+        request.session['band'] = '1'
         return redirect(reverse('user_home', args={request.user.username}))
 
     context['all_bands'] = Band.objects.all()
@@ -153,13 +155,12 @@ def profile(request, username):
 #######################################################################################################
 @login_required
 def user_home(request, username):
-    context = {}
+
+    band = request.session['band']
     try:
-        login_user = request.user
-        artistobj = User.objects.get(username=username)
-        profile = artistobj.artist
-        context['all_bands'] = Band.objects.all()
-        context = {'details': username, 'profile': profile, 'user': artistobj}
+        context = {}
+        context['abc'] = band
+        context['bands'] = Band.objects.get(id=band)
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
@@ -311,29 +312,6 @@ def profile(request, username):
         # if the user doesn't exist in the database, it redirects to the global stream page
         return redirect(reverse('global'))
 
-
-#######################################################################################################
-@login_required
-def user_home(request, username):
-    context = {}
-    try:
-        artist_info = User.objects.get(username=username)
-        current_artist = Artist.objects.get(artist=artist_info)
-        # get list of bands he belongs to
-        bands = Band.objects.filter(creator=current_artist.id)
-
-        login_user = request.user
-        # artistobj = User.objects.get(username=username)
-        profile = artist_info.artist
-        context['details'] = username
-        context['profile'] = profile
-        context['user'] = artist_info
-        context['bands'] = bands
-        return render(request, 'user_home.html', context)
-    except ObjectDoesNotExist as e:
-        return render(request, 'welcome.html', {})
-
-
 ######################################################################################################
 @login_required
 def get_photo(request, id):
@@ -483,164 +461,22 @@ def band_calendar(request,band_id):
     context['bandid'] = band_id
     return render(request, 'user_calendar.html', context)
 
-
-#################################################################################################
-@login_required()
-def event(request):
-    all_events = Event.objects.all()
-    get_event_types = Event.objects.only('event_type')
-
-    # if filters applied then get parameter and filter based on condition else return object
-    if request.GET:
-        event_arr = []
-        if request.GET.get('event_type') == "all":
-            all_events = Event.objects.all()
-        else:
-            all_events = Event.objects.filter(event_type__icontains=request.GET.get('event_type'))
-
-        for i in all_events:
-            event_sub_arr = {}
-            event_sub_arr['title'] = i.event_name
-            start_date = datetime.datetime.strptime(str(i.start_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
-            end_date = datetime.datetime.strptime(str(i.end_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
-            event_sub_arr['start'] = start_date
-            event_sub_arr['end'] = end_date
-            event_arr.append(event_sub_arr)
-        return HttpResponse(json.dumps(event_arr))
-
-    context = {
-        "events": all_events,
-        "get_event_types": get_event_types,
-
-    }
-    return render(request, 'user_calendar.html', context)
-
-
 ###################################################################################################
 #band page with it events associated with band
-@login_required()
-def band_events(request, band_id):
-    if not band_id:
-        redirect(reverse('user_home', args=request.user.username))
-    try:
-        band = Band.objects.get(id = band_id)
-        events = Event.objects.filter(band_name = band.id)
-        context = {}
-        context['events'] = events
-        context['band_id'] = band_id
-        print("the size of event list is ", len(events))
-        return render(request, 'bandpage.html', context)
-    except ObjectDoesNotExist:
-        return redirect(reverse('band_list'))
-
-
-@login_required()
-def create_event(request):
-    print("successfully received get")
-
-    if request.method == 'GET':
-        print("event if")
-        context = {'form': EventForm()}
-        return render(request, 'event_create.html', context)
-
-    form = EventForm(request.POST)
-
-    context = {}
-    errors = []
-    context['errors'] = errors
-    context['form'] = form
-    current_artist = Artist.objects.get(artist=request.user.id)
-    user_bands = Band.objects.filter(creator = current_artist.id)
-    print('the size of list is ', len(user_bands))
-    if not form.is_valid():
-        print("form not valid")
-        errors = 'Something went wrong, try again.'
-        context['errors'] = errors
-        return render(request, 'event_create.html', context)
-
-    band_name = form.cleaned_data['band_name']
-    band_name_instance = Band.objects.get(band_name = band_name)
-    # new_band.save()
-    print('type is ', type(band_name))
-    event_name = form.cleaned_data['event_name']
-    start_date = form.cleaned_data['start_date']
-    end_date = form.cleaned_data['end_date']
-    event_type = form.cleaned_data['event_type']
-    creator = request.user
-
-    new_event = Event(band_name= band_name_instance, event_name=event_name, start_date=start_date,
-                      end_date=end_date, event_type=event_type, creator=creator)
-
-    new_event.save()
-    print("successfully created event")
-
-    context['current_artist'] = creator
-    context['new_event'] = new_event
-    context['message'] = 'created'
-
-    return redirect(reverse('event_lists'))
-
-
-# fundtion to get list of available bands
-@login_required()
-def event_lists(request):
-    print("successfully entered event_list")
-
-    events = []
-    context = {}
-    errors = []
-    context['errors'] = errors
-
-    current_artist = Artist.objects.get(artist=request.user.id)
-    # get list of bands he belongs to
-    bands = Band.objects.filter(creator=current_artist.id)
-    print("Current Artist" + str(current_artist.artist.username), len(bands))
-
-    for band in bands:
-        event_band = Event.objects.filter(band_name = band.id)
-        print("Current Artist" ,len(event_band))
-
-        event_band_list = []
-        for each in event_band:
-            event_band_list.append(each)
-        print("length ", len(event_band_list))
-        events.append(event_band_list)
-        # events[band.id] = event_band_list
-
-    context['events'] = events
-    #a = json.dumps(events)
-    print("the the the ", type(events))
-    context['bands'] = bands
-    return render(request, 'events_home.html', context)
-
-@login_required()
-def event_lists1(request):
-    #print("successfully entered event_list")
-
-    events = []
-    context = {}
-    errors = []
-    context['errors'] = errors
-    current_artist = Artist.objects.get(artist=request.user.id)
-    #print("Current Artist" + str(current_artist.artist.username))
-    # get list of bands he belongs to
-    bands = Band.objects.filter(creator=current_artist.id)
-    for band in bands:
-        event_band = Event.objects.filter(band_name=band)
-        event_band_list = []
-        for each in event_band:
-            event_band_list.append(each)
-        print("length ", len(event_band_list))
-        events.append(event_band_list)
-        # events[band.id] = event_band_list
-
-    context['events'] = events
-    # a = json.dumps(events)
-    print("the the the ", type(events))
-    context['bands'] = bands
-    j = render_to_string('events.json', context)
-    json.dumps(j)
-    return HttpResponse(j, content_type="application/json")
+# @login_required()
+# def band_events(request, band_id):
+#     if not band_id:
+#         redirect(reverse('user_home', args=request.user.username))
+#     try:
+#         band = Band.objects.get(id = band_id)
+#         events = Event.objects.filter(band_name = band.id)
+#         context = {}
+#         context['events'] = events
+#         context['band_id'] = band_id
+#         print("the size of event list is ", len(events))
+#         return render(request, 'bandpage.html', context)
+#     except ObjectDoesNotExist:
+#         return redirect(reverse('band_list'))
 
 
 def team_member(request,band_id):

@@ -3,5 +3,19 @@
 {%block content%}
 {% load static %}
 
-    <h1>Band - homepage - to be insert by calendar or band info</h1>
-{% endblock%}
+    <img class="img-responsive" src="{{bands.image}}" alt="band photo"/>
+    Band name: {{bands.band_name}} </br>
+    Band info: {{bands.band_info}}
+
+    <!--{% for event in events %}-->
+    <!--<div class="para_styling band_list">-->
+
+        <!--<h2 class="band_name">{{ event.event_name }}</h2></a>-->
+        <!--<p class="band_event"><b>Event Type: </b> {{event.event_type}}</p>-->
+        <!--<div style="width: 2000px; height: 90px;">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--{% endfor %}-->
+
+
+{% endblock %}
