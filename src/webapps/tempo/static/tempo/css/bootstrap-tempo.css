@@ -112,7 +112,8 @@ div.gallery:hover {
 
 div.gallery img {
     width: 100%;
-    height: auto;
+    height: 180px;
+    overflow: hidden;
 }
 
 div.desc {
@@ -121,4 +122,10 @@ div.desc {
 }
 .album-container{
     overflow: auto;
+}
+
+
+h6 {
+    font-size: 12px;
+    color: #57534b !important;
 }

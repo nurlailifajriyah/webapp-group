@@ -18,15 +18,15 @@
         {% for list in song_list %}
 
 
-        <div class="gallery">
+        <div class="gallery ">
             <a href="">
                 {% if list.image %}
-                <img src="{% url 'song_photo' list.id %}" width="300" height="200">
+                <img class="img-responsive" src="{% url 'song_photo' list.id %}">
                 {% else %}
                 <img src="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200" height="70"/>
                 {% endif %}
             </a>
-            <div class="desc">Name: {{list.name}} <br> {{list.creation_time}}</div>
+            <div class="desc">{{list.name}} <br> <h6>{{list.creation_time}}</h6></div>
 
         </div>
 
