@@ -64,6 +64,7 @@ urlpatterns = [
 
     url(r'^photo/(?P<id>\d+)$', tempo.views.get_photo, name='photo'),
     url(r'^band_photo/(?P<band_id>\d+)$', tempo.views.get_band_photo, name='band_photo'),
+    url(r'^song_photo/(?P<song_id>\d+)$', tempo.views.get_song_photo, name='song_photo'),
     url(r'^edit_profile/(?P<username>\w+)$', tempo.views.edit_profile, name='edit_profile'),
 
 ]

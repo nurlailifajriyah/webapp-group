@@ -9,29 +9,22 @@
     <div class="container">
         <h2>Song</h2>
         <p>List of all song from {{band_name}}:</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Create Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% if song_list %}
-            {% for list in song_list %}
-            <tr>
-                <td>
-                    {{list.name}}
-                </td>
-                <td>
-                    {{list.creation_time}}
-                </td>
-            </tr>
-            {%endfor%}
-            {%endif%}
 
-            </tbody>
-        </table>
+        {% if song_list %}
+        {% for list in song_list %}
+
+
+        <div class="gallery">
+            <a href="banner.png">
+                <img src="{% url 'song_photo' list.id %}" alt="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200">
+            </a>
+            <div class="desc">Name: {{list.name}} <br> {{list.creation_time}}</div>
+        </div>
+
+        {%endfor%}
+        {%endif%}
+
+
     </div>
 
 
@@ -61,10 +54,10 @@
                         </button>
                     </div>
                 </form>
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 {% endblock%}

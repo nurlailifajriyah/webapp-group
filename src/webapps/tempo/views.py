@@ -226,15 +226,22 @@ def add_song(request):
         context['errors'] = errors
 
         if not form.is_valid():
-            errors.append('Please provide list name')
+            errors.append('Please provide song information')
             return render(request, 'song.html', context)
 
         else:
             new_item = Song.objects.create(name=form.cleaned_data['name'], band=band)
+            if 'image' in request.FILES:
+                new_item.image = request.FILES['image']
+                new_item.save()
+            if 'audio_file' in request.FILES:
+                new_item.audio_file = request.FILES['audio_file']
+                new_item.save()
             new_item.save()
             context['form'] = SongForm()
-            context['song_list'] = Song.objects.all()
-
+            context['song_list'] = Song.objects.filter(band=band)
+        context['form'] = SongForm()
+        context['song_list'] = Song.objects.filter(band=band)
         return render(request, 'song.html', context)
 
 @login_required
@@ -376,6 +383,18 @@ def get_band_photo(request, band_id):
     content_type = guess_type(band_prof.image.name)
     # manually set content type of photo
     return HttpResponse(band_prof.image, content_type=content_type)
+
+
+@login_required
+def get_song_photo(request, song_id):
+    song_prof = get_object_or_404(Song, id=song_id)
+    # if user hasn't uploaded image, manually return 404 error
+    if not song_prof.image:
+        raise Http404
+    # manually set the content type of photo
+    content_type = guess_type(song_prof.image.name)
+    # manually set content type of photo
+    return HttpResponse(song_prof.image, content_type=content_type)
 
 
 ######################################################################################################
