@@ -40,7 +40,7 @@ urlpatterns = [
 
     # Events
     url(r'^event$', tempo.views.event, name='event'),
-    #url(r'^create_event$', tempo.views.create_event, name='create_event'),
+    url(r'^create_event$', tempo.views.create_event, name='create_event'),
     url(r'^event_lists$', tempo.views.event_lists, name='event_lists'),
     url(r'^event_lists1$', tempo.views.event_lists1, name='event_lists1'),
 
