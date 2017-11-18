@@ -31,7 +31,7 @@ def user_pre_profile(request):
     context = {}
     if (ArtistInBand.objects.filter(member_id=request.user.id)):
         artist_band = ArtistInBand.objects.get(member_id=request.user.id)
-        request.session['band'] = '1'
+        request.session['band'] = artist_band.band.id
         return redirect(reverse('user_home', args={request.user.username}))
 
     context['all_bands'] = Band.objects.all()
