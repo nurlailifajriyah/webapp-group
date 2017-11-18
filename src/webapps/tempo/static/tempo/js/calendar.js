@@ -129,7 +129,7 @@ $(document).ready(function() {
 // });*/
 
 	$(document).ready(function() {
-	    var band_id = $('.tab-pane.active').attr('id');
+	    var band_id = $('.band_id').attr('id');
 
 		$('#calendar').fullCalendar({
 			header: {

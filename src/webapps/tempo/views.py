@@ -480,10 +480,7 @@ def calendar(request):
 @login_required()
 def band_calendar(request,band_id):
     context = {}
-    print("band_calendar : " + band_id)
-    band = Band.objects.get(id=band_id)
     context['bandid'] = band_id
-    context['band'] = band
     return render(request, 'user_calendar.html', context)
 
 
