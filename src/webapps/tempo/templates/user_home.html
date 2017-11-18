@@ -3,7 +3,7 @@
 {%block content%}
 {% load static %}
 
-
+    <a href="{%url 'create_event' %}"><h3  class="create_event">Create Event</h3></a>
     <h1 class=""> Your Bands!</h1>
     {% if not bands %}
     <pre class="pre_styling_bio"><p class="para_styling"><strong>No Bands Exist</strong></p></pre>

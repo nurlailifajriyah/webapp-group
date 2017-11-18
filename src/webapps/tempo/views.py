@@ -494,26 +494,28 @@ def event(request):
 
     # if filters applied then get parameter and filter based on condition else return object
     if request.GET:
+
         event_arr = []
         if request.GET.get('event_type') == "all":
             all_events = Event.objects.all()
+            print("i can reach get")
         else:
             all_events = Event.objects.filter(event_type__icontains=request.GET.get('event_type'))
 
         for i in all_events:
             event_sub_arr = {}
             event_sub_arr['title'] = i.event_name
-            start_date = datetime.datetime.strptime(str(i.start_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
-            end_date = datetime.datetime.strptime(str(i.end_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
-            event_sub_arr['start'] = start_date
-            event_sub_arr['end'] = end_date
+            start = datetime.datetime.strptime(str(i.start_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
+            end = datetime.datetime.strptime(str(i.end_date.date()), "%Y-%m-%d").strftime("%Y-%m-%d")
+            event_sub_arr['start'] = start
+            event_sub_arr['end'] = end
             event_arr.append(event_sub_arr)
-        return HttpResponse(json.dumps(event_arr))
+            print("i can reach for"+str(event_arr))
+        return HttpResponse(json.dumps(event_arr), content_type='application/json')
 
     context = {
         "events": all_events,
         "get_event_types": get_event_types,
-
     }
     return render(request, 'user_calendar.html', context)
 

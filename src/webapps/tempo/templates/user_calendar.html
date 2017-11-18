@@ -1,9 +1,4 @@
-{%extends "header_base.html"%}
-{% block title %}Recorder{% endblock%}
-{%block content%}
 {% load static %}
-
-
 <link href='./static/tempo/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='./static/tempo/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='./static/tempo/js/moment.min.js'></script>
@@ -12,6 +7,10 @@
 <script src='./static/tempo/js/gcal.min.js'></script>
 <!--<link href="{% static 'tempo/css/calendar.css' %}" rel="stylesheet">-->
 <script src='./static/tempo/js/calendar.js'></script>
+
+
+
+{%block content%}
 
 
 	<div id='loading'>loading...</div>

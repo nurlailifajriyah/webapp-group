@@ -14,10 +14,10 @@ $(document).ready(function() {
         // THIS KEY WON'T WORK IN PRODUCTION!!!
         // To make your own Google API key, follow the directions here:
         // http://fullcalendar.io/docs/google_calendar/
-        googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+        // googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
 
         // US Holidays
-        events: 'en.usa#holiday@group.v.calendar.google.com',
+        events: '/event_lists1',
 
         eventClick: function(event) {
             // opens events in a popup window
