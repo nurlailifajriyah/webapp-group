@@ -12,11 +12,13 @@ def band_page(request):
     context = {}
     context['user'] = request.user.username
     context['band_session'] = request.session['band']
+    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
     return render(request, 'bandpage.html', context)
 
 ######################################################################################################
 def band_page(request):
     context['band_session'] = request.session['band']
+    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
     return render(request, 'bandpage.html', context)
 
 
@@ -32,15 +34,15 @@ def band_page(request):
 #     context['form'] = form
 #     return render(request, 'band_join.html', context)
 
-@login_required()
-def create(request):
-    context = {}
-    errors = []
-
-    form = BandForm(request.POST or None)
-    context['errors'] = errors
-    context['form'] = form
-    return render(request, 'band_create.html', context)
+# @login_required()
+# def create(request):
+#     context = {}
+#     errors = []
+#
+#     form = BandForm(request.POST or None)
+#     context['errors'] = errors
+#     context['form'] = form
+#     return render(request, 'band_create.html', context)
 
 @login_required()
 def join_band(request, band_id):
