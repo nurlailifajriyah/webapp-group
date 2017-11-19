@@ -117,16 +117,8 @@ def user_band_list(request):
 @login_required()
 def band_list(request):
     context = {}
-    errors = []
-    context['errors'] = errors
-
-    # get list of bands he belongs to
-    bands = Band.objects.all()
-    print("successfully " + str(bands))
-    context['bands'] = bands
-    context['errors'] = errors
-    context['band_session'] = request.session['band']
-    return render(request, 'band_list.html', context)
+    context['all_bands'] = Band.objects.all()
+    return render(request, 'user_pre_profile.html', context)
 
 def team_member(request):
     context = {}

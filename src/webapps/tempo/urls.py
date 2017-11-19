@@ -24,6 +24,8 @@ urlpatterns = [
 
     url(r'^user_home/(?P<username>\w+)$', tempo.views.user_home, name='user_home'),
 
+    url(r'^change_band_home/(?P<band_id>\w+)$', tempo.views.change_band_home, name='change_band_home'),
+
     #Calendar
     url(r'^calendar$', tempo.views_calendar.calendar, name = 'calendar'),
 

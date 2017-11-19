@@ -37,7 +37,6 @@ def user_pre_profile(request):
     context['all_bands'] = Band.objects.all()
     return render(request, 'user_pre_profile.html', context)
 
-
 #################################################################################
 def register(request):
     if request.method == 'GET':
@@ -106,13 +105,27 @@ def user_home(request, username):
 
     try:
         context = {}
-        context['user_bands'] = ArtistInBand.objects.get(member=request.user)
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         context['bands'] = Band.objects.get(id=band)
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
 
 ###################################################################################################
+
+@login_required
+def change_band_home(request, band_id):
+
+    request.session['band'] = band_id
+
+    try:
+        context = {}
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
+        context['bands'] = Band.objects.get(id=band_id)
+        return render(request, 'user_home.html', context)
+    except ObjectDoesNotExist as e:
+        return render(request, 'welcome.html', {})
+
 #band page with it events associated with band
 # @login_required()
 # def band_events(request, band_id):
