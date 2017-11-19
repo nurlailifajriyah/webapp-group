@@ -10,6 +10,7 @@ from .forms import *
 def event(request):
     context = {}
     band = request.session['band']
+    context['band_session'] = band
     context['band'] = Band.objects.get(id=band)
     if request.method == 'GET':
         context['form'] = EventForm()

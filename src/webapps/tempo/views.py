@@ -106,7 +106,7 @@ def user_home(request, username):
 
     try:
         context = {}
-        context['abc'] = band
+        context['user_bands'] = ArtistInBand.objects.get(member=request.user)
         context['bands'] = Band.objects.get(id=band)
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:

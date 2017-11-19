@@ -11,11 +11,13 @@ from .forms import *
 def band_page(request):
     context = {}
     context['user'] = request.user.username
+    context['band_session'] = request.session['band']
     return render(request, 'bandpage.html', context)
 
 ######################################################################################################
 def band_page(request):
-    return render(request, 'bandpage.html', {})
+    context['band_session'] = request.session['band']
+    return render(request, 'bandpage.html', context)
 
 
 ##########################################fuctions to join and create#############################################
@@ -107,6 +109,7 @@ def user_band_list(request):
     bands = Band.objects.filter(creator=current_artist.id)
     print("successfully " + str(bands))
     context['bands'] = bands
+    context['band_session'] = request.session['band']
     return render(request, 'user_home.html', context)
 
 
@@ -122,6 +125,7 @@ def band_list(request):
     print("successfully " + str(bands))
     context['bands'] = bands
     context['errors'] = errors
+    context['band_session'] = request.session['band']
     return render(request, 'band_list.html', context)
 
 def team_member(request):
@@ -130,4 +134,5 @@ def team_member(request):
     artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
     context['team_member'] = User.objects.filter(id=artist_band_pair.values_list('member_id', flat=True))
     context['band_name'] = Band.objects.get(id = band_id).band_name
+    context['band_session'] = request.session['band']
     return render(request, 'team_member.html', context)

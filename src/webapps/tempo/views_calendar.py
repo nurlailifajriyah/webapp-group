@@ -8,6 +8,5 @@ from .forms import *
 @login_required()
 def calendar(request):
     context = {}
-    band = request.session['band']
-    context['bandid'] = band
+    context['band_session'] = request.session['band']
     return render(request, 'user_calendar.html', context)

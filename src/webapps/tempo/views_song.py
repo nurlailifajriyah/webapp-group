@@ -13,6 +13,7 @@ def song_list(request):
         band = Band.objects.filter(id=band_id)
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.filter(band=band)
+        context['band_session'] = band_id
         return render(request, 'songlist.html', context)
 
 @login_required
@@ -26,6 +27,7 @@ def song_detail(request,song_id):
         context['band'] = band
         context['song'] = valid_song
         request.session['song_id'] = valid_song.id
+        context['band_session'] = band_id
         return render(request, 'song_detail.html', context)
 
 
@@ -38,6 +40,7 @@ def add_song_list(request):
     context['form'] = form
     errors = []
     context['errors'] = errors
+    context['band_session'] = band_id
 
     if not form.is_valid():
         errors.append('Please provide list name')
@@ -56,6 +59,7 @@ def song(request):
     context = {}
     if request.method == 'GET':
         band_id = request.session['band']
+        context['band_session'] = band_id
         band = Band.objects.filter(id=band_id)
         context['form'] = SongForm()
         context['song_list'] = Song.objects.filter(band=band)
@@ -66,6 +70,7 @@ def add_song(request):
         context = {}
         form = SongForm(request.POST)
         band_id = request.session['band']
+        context['band_session'] = band_id
         band = Band.objects.get(id=band_id)
         context['form'] = form
         errors = []
@@ -94,5 +99,6 @@ def add_song(request):
 
 @login_required
 def album(request):
-
-    return render(request, 'album.html', {})
+    context = {}
+    context['band_session'] = request.session['band']
+    return render(request, 'album.html', context)
