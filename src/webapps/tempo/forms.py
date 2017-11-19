@@ -2,6 +2,7 @@ from django import forms
 from .models import *
 import datetime
 from django.forms import ModelChoiceField
+from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20)
