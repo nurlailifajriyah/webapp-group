@@ -18,6 +18,7 @@ from mimetypes import guess_type
 from .token import account_activation_token
 from tempo.models import *
 import json
+from django.db.models import Min
 
 
 # Create your views here.
@@ -480,6 +481,15 @@ def band_list(request):
 
     # get list of bands he belongs to
     bands = Band.objects.all()
+    all_list = []
+    for each in bands:
+        event_for_band = Event.objects.filter(band_name = each.id).aggregate(Min('start_date'))
+        obj = {}
+        obj['band_name'] = each.band_name
+        obj['event'] = event_for_band
+        print("event for ", each.band_name, ' is ', event_for_band)
+        all_list.append(obj)
+
     print("successfully " + str(bands))
     context['bands'] = bands
     context['errors'] = errors

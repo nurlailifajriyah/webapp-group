@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         }
         console.log(trial);
-        var tt = JSON.parse(trial);
+        //var tt = JSON.parse(trial);
 
 
         var ee = [
@@ -61,7 +61,7 @@ $(document).ready(function() {
             //events: 'en.usa#holiday@group.v.calendar.google.com',
 
 
-            events: ee,
+            //events: ee,
 
 
             // events: [
@@ -72,7 +72,7 @@ $(document).ready(function() {
             //     },
             // }
             // ]
-            //events: '/event_lists1',
+            events: '/event_lists1',
 
 
 

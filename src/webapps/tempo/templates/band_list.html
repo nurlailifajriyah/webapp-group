@@ -17,7 +17,7 @@
         <div style="width: 2000px; height: 90px;">
 
             <img src="{% url 'band_photo' band.id %}" width="100" height="70"
-                 alt="{% static 'tempo/images/profpict2.png' %}"/>
+                 alt="{{band.band_name}}"/>
         </div>
     </div>
     {% endfor %}
