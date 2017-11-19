@@ -12,6 +12,7 @@ def audio_recorder(request, song_id):
     context ={}
     song = get_object_or_404(Song, id=song_id)
     band = request.session['band']
+    request.session['song_id'] = song_id
     context['band_session'] = band
     context['band'] = Band.objects.get(id=band)
     context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
