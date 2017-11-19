@@ -50,7 +50,7 @@ class UserModelChoiceField(ModelChoiceField):
 
 
 class SongForm(forms.Form):
-    name = forms.CharField(max_length=140)
+    name = forms.CharField(max_length=140,widget=forms.TextInput(attrs={'class': 'form-control'}))
     image = forms.ImageField(required=False, widget=forms.FileInput())
 
 
@@ -60,7 +60,7 @@ class BandForm(forms.Form):
     city = forms.CharField(max_length=20, label='City')
     image = forms.ImageField(required=False, widget=forms.FileInput())
 
-    # valdiation for username
+    # valdiation for b
     def clean_username(self):
         band_name = self.cleaned_data.get('bandname')
         if len(Band.objects.filter(username__exact=band_name)) >= 1:
@@ -69,16 +69,16 @@ class BandForm(forms.Form):
 
 
 class ProfileEditForm(forms.Form):
-    first_name = forms.CharField(max_length=20, label='First Name')
-    last_name = forms.CharField(max_length=20, label='Last Name')
-    email = forms.EmailField(max_length=200, label='Email')
-    password_new1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(), required=False)
-    password_new2 = forms.CharField(max_length=200, label='Confirm Password', widget=forms.PasswordInput(),
+    first_name = forms.CharField(max_length=20, label='First Name',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=20, label='Last Name',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(max_length=200, label='Email',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password_new1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}), required=False)
+    password_new2 = forms.CharField(max_length=200, label='Confirm Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}),
                                     required=False)
-    city = forms.CharField(max_length=100, required=False)
-    country = forms.CharField(max_length=100, required=False)
-    age = forms.IntegerField(required=False)
-    bio = forms.CharField(max_length=200, required=False)
+    city = forms.CharField(max_length=100, required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    country = forms.CharField(max_length=100, required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    age = forms.IntegerField(required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    bio = forms.CharField(max_length=200, required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
     image = forms.ImageField(required=False, widget=forms.FileInput())
 
     def clean(self):
@@ -91,10 +91,10 @@ class ProfileEditForm(forms.Form):
 
 
 class EventForm(forms.Form):
-    event_name = forms.CharField(max_length=20, label='Event_name')
+    event_name = forms.CharField(max_length=20, label='Event_name',widget=forms.TextInput(attrs={'class': 'form-control'}))
     start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
-    event_type = forms.CharField(max_length=10)
+    event_type = forms.CharField(max_length=10,widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 
     def clean(self):

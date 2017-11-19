@@ -27,18 +27,18 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <!--<ul class="navbar-toggle collapsed" style="background-color: transparent;">-->
-                            <!--<li class="dropdown">-->
-                                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
-                                   <!--aria-haspopup="true" aria-expanded="false">-->
-                                    <!--Menu-->
-                                <!--</a>-->
-                                <!--<ul class="dropdown-menu">-->
-                                    <!--<li><a href="{% url 'user_home' username=request.user.username %}">My Profile</a></li>-->
-                                    <!--<li role="separator" class="divider"></li>-->
-                                    <!--<li><a href="#">Find Users</a></li>-->
-                                    <!--<li><a href="/logout">Logout</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
+                        <!--<li class="dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
+                        <!--aria-haspopup="true" aria-expanded="false">-->
+                        <!--Menu-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="{% url 'user_home' username=request.user.username %}">My Profile</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="#">Find Users</a></li>-->
+                        <!--<li><a href="/logout">Logout</a></li>-->
+                        <!--</ul>-->
+                        <!--</li>-->
                         <!--</ul>-->
                         <a class="navbar-brand" href="{% url 'welcome' %}">TEMPO</a>
                     </div>
@@ -53,9 +53,9 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'user_home' username=user %}">My Profile</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{% url 'edit_profile' username=request.user.username %}">Edit</a> </li>
+                                    <li><a href="{% url 'edit_profile' username=request.user.username %}">Edit</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{% url 'create' %}">Create Band</a> </li>
+                                    <li><a href="{% url 'create' %}">Create Band</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
@@ -85,11 +85,20 @@
                 <!-- Sidebar Menu -->
                 <div class="profile-usermenu">
                     <ul class="nav">
-                        <li>
-                            <a href="{% url 'user_home' username=user %}">
-                                <i class="glyphicon glyphicon-home"></i>
-                                My Band </a>
-
+                        <!--https://bootsnipp.com/snippets/featured/side-menu-on-hover-->
+                        <li class="dropdown">
+                            <a href="{% url 'user_home' username=user %}" class="dropdown-toggle"
+                               data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-home"></i> {{band.band_name}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
+                                {% if user_bands %}
+                                {% for user_band in user_bands %}
+                                     <li><a href="{% url 'change_band_home' band_id=user_band.band.id %}">{{user_band.band.band_name}}</a></li>
+                                {%endfor%}
+                                {%endif%}
+                                <li class="divider"></li>
+                                <li><a href="{% url 'band_list' %}">Join Other Bands</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{% url 'calendar' %}">
@@ -97,7 +106,7 @@
                                 Calendar</a>
                         </li>
                         <li>
-                            <a href = "{% url 'events' %}">
+                            <a href="{% url 'events' %}">
                                 <i class="glyphicon glyphicon-globe"></i>
                                 Live Session</a>
                         </li>
@@ -106,15 +115,10 @@
                                 <i class="glyphicon glyphicon-folder-open"></i>
                                 Album </a>
                         </li>
-                         <li>
+                        <li>
                             <a href="{% url 'song' %}">
                                 <i class="glyphicon glyphicon-music"></i>
                                 Song</a>
-                        </li>
-                         <li>
-                            <a href="{% url 'audio_recorder' %}">
-                                <i class="glyphicon glyphicon-cd"></i>
-                                Audio Recorder </a>
                         </li>
                         <li>
                             <a href="{% url 'team_members' %}">

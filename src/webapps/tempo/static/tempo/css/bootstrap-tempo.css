@@ -13,9 +13,9 @@ body {
   display: table;
   position: absolute;
   height: 100%;
-  width: 95%;
+  width: 100%;
   min-width: 800px;
-  background: #e5e3e8;
+  background: #fcfaff;
 }
 .navbar-default .navbar-brand {
   color : white;
@@ -31,7 +31,7 @@ body {
 }
 .btn-default {
   color: white;
-  background-color: #280e4f;
+  background-color: #341d00;
 }
 .btn-post {
  margin-top: 7px;
@@ -89,11 +89,11 @@ ul.navbar-toggle{
 }
 
 .logo-message{
-    color: #280e4f;
+    color: #341D00;
 }
 
 .pitch{
-    color: #280e4f;
+    color: #341D00;
 }
 .bandimg{
     border-style: solid;
@@ -130,3 +130,14 @@ h6 {
     color: #57534b !important;
 }
 
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+    max-height: 400px;
+}
+.modal-body{
+    height: auto;
+    overflow-y: auto;
+    max-height: 400px;
+}

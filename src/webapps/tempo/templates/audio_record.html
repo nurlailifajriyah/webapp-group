@@ -3,20 +3,18 @@
 {%block content%}
 {% load static %}
 
-
-{% load static %}
-<script src="static/tempo/js/audiodisplay.js" type="text/javascript"></script>
-<script src="static/tempo/js/recorder.js" type="text/javascript"></script>
-<script src="static/tempo/js/main.js" type="text/javascript"></script>
-<script src="static/tempo/js/recorderWorker.js" type="text/javascript"></script>
-<script src="static/tempo/js/audiorecord.js" type="text/javascript"></script>
+<script src="{% static 'tempo/js/audiodisplay.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/recorder.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/main.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/recorderWorker.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/audiorecord.js' %}" type="text/javascript"></script>
 <!-- Customized CSS -->
 <link href="{% static 'tempo/css/audio_record.css' %}" rel="stylesheet">
 
 <div id="viz" class="container">
     <div class="row">
-        <h1>Audio Recorder</h1>
-        <p>Click record icon to start recording</p>
+        <h1>{{song.name}}</h1>
+        <p>Click record icon to start recording, add new track to this song!</p>
         <table class="list-group-item col-xs-12 ">
             <tr>
                 <td>

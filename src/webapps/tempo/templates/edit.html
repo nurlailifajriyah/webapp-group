@@ -3,31 +3,32 @@
 {% block title %}Home{% endblock%}
 {%block content%}
 <div>
-    <h2 class="logo-message">TEMPO</h2>
-    <h3 class="pitch">Sync your music</h3>
+    <h2 class="logo-message text-center">TEMPO</h2>
+    <h3 class="pitch text-center">Sync your music</h3>
 </div>
-<div class="container">
-    <div class="main-login main-center">
-        <!-- django's authentication module-->
-        <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{% url 'edit_profile' username=request.user.username %}">
-            {%if form.errors%}
-                <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password option.</p>
-            {%endif%}
 
-            <!--create registration form using forms-->
-            <table>
-                {{form.as_table}}
-            </table>
+<div class="col-md-offset-2 col-md-8 panel main-login main-center">
+    <!-- django's authentication module-->
+    <form enctype="multipart/form-data" class="form-horizontal" method="post"
+          action="{% url 'edit_profile' username=request.user.username %}">
+        {%if form.errors%}
+        <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password
+            option.</p>
+        {%endif%}
 
-            <!-- end of form -->
-            <br>
-            <div class="form-group-button">
-                <input type="submit" class="btn btn-primary btn-lg btn-lock login" value="Edit">
-            </div>
+        <!--create registration form using forms-->
+        <table>
+            {{form.as_table}}
+        </table>
 
-            <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
-            {%csrf_token%}
-        </form>
-    </div>
+        <!-- end of form -->
+        <br>
+
+            <input type="submit" class="btn btn-default btn-lg btn-block" value="Edit">
+
+
+        <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
+        {%csrf_token%}
+    </form>
 </div>
 {% endblock%}

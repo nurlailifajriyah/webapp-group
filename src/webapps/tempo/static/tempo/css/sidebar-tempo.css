@@ -15,7 +15,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 /* Profile sidebar */
 .profile-sidebar {
   padding: 20px 0 10px 0;
-  background: #280e4f;
+  background: #341D00;
 }
 
 .profile-userpic img {
@@ -34,7 +34,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 }
 
 .profile-usertitle-name {
-  color: #5a7391;
+  color: #b3ab99;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
@@ -42,7 +42,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 .profile-usertitle-job {
   text-transform: uppercase;
-  color: #5b9bd1;
+  color: #b3ab99;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -90,7 +90,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 .profile-usermenu ul li a:hover {
   background-color: #fafcfd;
-  color: #5b9bd1;
+  color: #341d00;
 }
 
 .profile-usermenu ul li.active {
@@ -98,9 +98,9 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 }
 
 .profile-usermenu ul li.active a {
-  color: #5b9bd1;
+  color: #341d00;
   background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
+  border-left: 2px solid #341d00;
   margin-left: -2px;
 }
 
@@ -122,7 +122,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 .main-login{
 
-    background-color: #fff;
+    background-color: #b3ab99;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -130,13 +130,16 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
 }
 
 .main-center{
 
     margin-top: 30px;
     padding: 40px 40px;
-    background-color: #e5e3e8;
+    background-color: #b3ab99;
+    align-content: center;
+
 
 }
 
@@ -154,7 +157,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 }
 
 span.input-group-addon i {
-    color: #009edf;
+    color: #341d00;
     font-size: 25px;
 }
 
@@ -169,8 +172,8 @@ span.input-group-addon i {
     text-align: center;
     width: 100%;
     color:#fff;
-    background-color:#280e4f;
-    border-color:#2e6da4;
+    background-color:#341D00;
+    border-color:#341d00;
     padding: 2px
 }
 
@@ -194,7 +197,7 @@ span.input-group-addon i {
 }
 
 .para_styling{
-    color: #280e4f;
+    color: #341D00;
     font-weight: bold;
     width: 70%;
 }
@@ -202,7 +205,7 @@ span.input-group-addon i {
 .login-register{
 	font-size: 18px;
 	text-align: center;
-    color: #280e4f;
+    color: #341D00;
 }
 /**register css ends*/
 
@@ -255,7 +258,7 @@ span.input-group-addon i {
 /*user profile page*/
 .panel-body{
     padding:15px;
-    background-color:#280e4f;
+    background-color:#341D00;
 }
 
 .panel-default{
@@ -292,12 +295,12 @@ span.input-group-addon i {
 }
 .heading1_styling{
     margin-left: 34%;
-    color: #5a7391;
+    color: #57534b;
 }
 
 .heading2_styling{
     margin-left: 30%;
-    color: #5a7391;
+    color: #57534b;
 }
 
 .position1{
@@ -308,11 +311,11 @@ span.input-group-addon i {
     float: right;
     height: 650px;
     width: 700px;
-    background-color: #280e4f;
+    background-color: #341D00;
 }
 
 .band_list{
-    background-color: #280e4f;
+    background-color: #341D00;
     color: white;
     height: 150px;
     width: 600px;
@@ -320,13 +323,14 @@ span.input-group-addon i {
 
 .band_name{
     font-weight: bold;
-    margin-left: 30px;
+    color: #341D00;
     padding-top: 13px;
 }
 
 .band_event{
     font-weight: bold;
-    margin-left: 30px;
+    color: #341D00;
+
 
 }
 /*end of user profile page*/
