@@ -1,5 +1,5 @@
 {%extends "header_base.html"%}
-{% block title %}Recorder{% endblock%}
+{% block title %}Calendar{% endblock%}
 {%block content%}
 {% load static %}
 
@@ -13,6 +13,12 @@
 <!--<link href="{% static 'tempo/js/calendar.js' %}" rel="stylesheet">-->
 <script src="{% static 'tempo/js/calendar.js' %}"></script>
 
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Calender" "tempo.views_calendar.calendar" user.username %}
+{% endblock %}
 
 	<div class="band_id" id="{{band_session}}"></div>
 	<div id='calendar'></div>

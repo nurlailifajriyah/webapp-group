@@ -17,6 +17,9 @@
     <title>Tempo</title>
 </head>
 <body>
+
+
+
 <div class="container">
     <!-- Header -->
     <div class="row">
@@ -64,11 +67,22 @@
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
+
                 </div><!-- /.container-fluid -->
             </nav>
         </div> <!-- /.col-md-12 -->
     </div>
     <!-- End of Header -->
+    <!--breadcrumbs-->
+        {% load django_bootstrap_breadcrumbs %}
+        {% block breadcrumbs %}
+            {% clear_breadcrumbs %}
+            {% breadcrumb "Home" "user_pre_profile" %}
+        {% endblock %}
+        {% block breadcrumbs_content %}
+            {% render_breadcrumbs %}
+        {% endblock %}
+    <!--end of breadcrumbs-->
     <!-- Main Row -->
     <!-- Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar-->
     <div class="row profile profile-content">
@@ -143,5 +157,8 @@
     </div>
     <!-- End of Main Row -->
 </div>
+
+
+
 </body>
 </html>

@@ -2,11 +2,18 @@
 {% block title %}Home{% endblock%}
 {%block content%}
 {% load static %}
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Events" "user_home" user.username %}
+{% endblock %}
+
 {{ form.media }}
 
 
         <h2>Event List</h2>
-        <p>These are your events with {{band.id}}:</p>
+        <p>These are your events with {{band.band_name}}:</p>
         <table class="table">
             <thead>
             <tr>

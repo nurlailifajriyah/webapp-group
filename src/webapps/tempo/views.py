@@ -107,6 +107,7 @@ def user_home(request, username):
         context = {}
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         context['band'] = Band.objects.get(id=band)
+        context['username'] = username
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})

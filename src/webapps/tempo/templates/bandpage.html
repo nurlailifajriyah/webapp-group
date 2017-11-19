@@ -6,6 +6,12 @@
 
 {% load static %}
 
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Band Page" "band_page"  %}
+{% endblock %}
+
 <div class="container">
     {% if not events %}
     <pre class="pre_styling_bio"><p class="para_styling"><strong>No Upcoming Events</strong></p></pre>

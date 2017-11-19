@@ -75,6 +75,18 @@
         </div> <!-- /.col-md-12 -->
     </div>
     <!-- End of Header -->
+
+     <!--breadcrumbs-->
+        {% load django_bootstrap_breadcrumbs %}
+        {% block breadcrumbs %}
+            {% clear_breadcrumbs %}
+            {% breadcrumb "Home" "user_home" user.username %}
+        {% endblock %}
+        {% block breadcrumbs_content %}
+            {% render_breadcrumbs %}
+        {% endblock %}
+    <!--end of breadcrumbs-->
+
     <!-- Main Row -->
     <!-- Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar-->
     <div class="row profile profile-content">

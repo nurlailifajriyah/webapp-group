@@ -1,11 +1,19 @@
-{%extends "header_base.html"%}
+{%extends "team_member.html"%}
+
 {% block title %}Recorder{% endblock%}
 {%block content%}
 {% load static %}
 
-    <img class="img-responsive" src="{{bands.image}}" alt="band photo"/>
-    Band name: {{bands.band_name}} </br>
-    Band info: {{bands.band_info}}
+{% load django_bootstrap_breadcrumbs %}
+{% clear_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb username "team_member" %}
+{% endblock %}
+
+    <img class="img-responsive" src="{{band.image.url}}" alt="band photo"/>
+    Band name: {{band.band_name}} </br>
+    Band info: {{band.band_info}}
 
     <!--{% for event in events %}-->
     <!--<div class="para_styling band_list">-->
