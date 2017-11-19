@@ -34,16 +34,16 @@ def song_detail(request,song_id):
 def album_detail(request,album_id):
 
     context = {}
-    valid_song_list = get_object_or_404(SongList, id=album_id)
+    album = get_object_or_404(SongList, id=album_id)
     if request.method == 'GET':
-        song_in_album = SongInList.objects.filter(list=valid_song_list)
-        context['song'] = song_in_album
+        song_in_album = SongInList.objects.filter(list=album)
+        context['song'] = Song.objects.filter(id__in=song_in_album.values_list('song', flat=True))
+        print (song_in_album.values_list('song', flat=True) )
         context['album_id'] = album_id
         band_id = request.session['band']
         band = Band.objects.filter(id=band_id)
         context['all_song_list'] = Song.objects.filter(band=band)
         return render(request, 'album_detail.html', context)
-
 
 @login_required
 def add_song_to_list(request,album_id):

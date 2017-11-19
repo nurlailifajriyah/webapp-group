@@ -10,9 +10,9 @@
         <h2>Album: {{songlist.name}}</h2>
     </div>
     <div class="row image-row-gallery">
-        {% if song_list %}
+        {% if song %}
 
-        {% for inx, list in song_list %}
+        {% for list in song %}
 
 
         <div class="gallery">
@@ -20,7 +20,7 @@
             {% if list.image %}
             <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
             {% else %}
-            <img src="http://placehold.it/150x150&text={{inx}}" width="300" height="200" height="70"/>
+            <img src="http://placehold.it/150x150&text=1" width="300" height="200" height="70"/>
             {% endif %}
 
             <div class="desc">{{list.name}} <br>
