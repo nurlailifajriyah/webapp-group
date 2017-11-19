@@ -70,7 +70,7 @@ urlpatterns = [
     url(r'^team_members$', tempo.views_band.team_member, name='team_members'),
 
     # url(r'^join$', tempo.views.join, name='join'),
-    # url(r'^create$', tempo.views_band.create, name='create'),
+    url(r'^create$', tempo.views_band.create, name='create'),
 
     # url(r'^confirm/', include('generic_confirmation.urls')),
     # Photo

@@ -34,15 +34,15 @@ def band_page(request):
 #     context['form'] = form
 #     return render(request, 'band_join.html', context)
 
-# @login_required()
-# def create(request):
-#     context = {}
-#     errors = []
-#
-#     form = BandForm(request.POST or None)
-#     context['errors'] = errors
-#     context['form'] = form
-#     return render(request, 'band_create.html', context)
+@login_required()
+def create(request):
+    context = {}
+    errors = []
+
+    form = BandForm(request.POST or None)
+    context['errors'] = errors
+    context['form'] = form
+    return render(request, 'band_create.html', context)
 
 @login_required()
 def join_band(request, band_id):
@@ -71,9 +71,6 @@ def create_band(request):
         return render(request, 'band_create.html', context)
 
     band_name = form.cleaned_data['bandname']
-    # new_band = Band(band_name = band_name)
-    # new_band.save()
-
     band_info = form.cleaned_data['band_info']
     city = form.cleaned_data['city']
     creator = request.user
@@ -85,11 +82,7 @@ def create_band(request):
     new_band.save()
 
     request.session['band'] = new_band.id
-
-    print(new_band.id)
-
     ArtistInBand.objects.create(band=new_band, member=request.user)
-    print("successfully joined band")
 
     context['current_artist'] = creator
     context['band'] = new_band
