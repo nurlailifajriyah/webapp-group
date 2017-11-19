@@ -1,4 +1,4 @@
-{% for e in event %}{%spaceless%}
-{"title":"{{e.event_name}}",
-"start":"{{e.start_date|date:'c'}}"}{%endspaceless%}{% if not forloop.last %},{% endif %}
-{% endfor %}
+{
+"title": "{{event.event_name}}",
+"start": "{{event.start_date|date:'c'}}"
+}

@@ -1,7 +1,8 @@
 from django import forms
 from .models import *
 import datetime
-
+from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
+from django.forms import ModelChoiceField
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20)
@@ -43,6 +44,15 @@ class RegistrationForm(forms.Form):
 class SongListForm(forms.Form):
     name = forms.CharField(max_length=140)
 
+class UserModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+         return obj.name
+
+
+class SongForm(forms.Form):
+    name = forms.CharField(max_length=140,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    image = forms.ImageField(required=False, widget=forms.FileInput())
+
 
 class BandForm(forms.Form):
     bandname = forms.CharField(max_length=20)
@@ -50,7 +60,7 @@ class BandForm(forms.Form):
     city = forms.CharField(max_length=20, label='City')
     image = forms.ImageField(required=False, widget=forms.FileInput())
 
-    # valdiation for username
+    # valdiation for b
     def clean_username(self):
         band_name = self.cleaned_data.get('bandname')
         if len(Band.objects.filter(username__exact=band_name)) >= 1:
@@ -59,16 +69,16 @@ class BandForm(forms.Form):
 
 
 class ProfileEditForm(forms.Form):
-    first_name = forms.CharField(max_length=20, label='First Name')
-    last_name = forms.CharField(max_length=20, label='Last Name')
-    email = forms.EmailField(max_length=200, label='Email')
-    password_new1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(), required=False)
-    password_new2 = forms.CharField(max_length=200, label='Confirm Password', widget=forms.PasswordInput(),
+    first_name = forms.CharField(max_length=20, label='First Name',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=20, label='Last Name',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(max_length=200, label='Email',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password_new1 = forms.CharField(max_length=200, label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}), required=False)
+    password_new2 = forms.CharField(max_length=200, label='Confirm Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}),
                                     required=False)
-    city = forms.CharField(max_length=100, required=False)
-    country = forms.CharField(max_length=100, required=False)
-    age = forms.IntegerField(required=False)
-    bio = forms.CharField(max_length=200, required=False)
+    city = forms.CharField(max_length=100, required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    country = forms.CharField(max_length=100, required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    age = forms.IntegerField(required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    bio = forms.CharField(max_length=200, required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
     image = forms.ImageField(required=False, widget=forms.FileInput())
 
     def clean(self):
@@ -81,27 +91,28 @@ class ProfileEditForm(forms.Form):
 
 
 class EventForm(forms.Form):
-    band_name = forms.CharField(max_length=20)
-    event_name = forms.CharField(max_length=20, label='Event_name')
-    start_date = forms.DateField(initial=datetime.date.today)
-    end_date = forms.DateField(initial=datetime.date.today)
-    event_type = forms.CharField(max_length=10)
+    event_name = forms.CharField(max_length=20, label='Event_name',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    event_type = forms.CharField(max_length=10,widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 
     def clean(self):
         cleaned_data = super(EventForm, self).clean()
         start_date = self.cleaned_data.get('start_date')
         end_date = self.cleaned_data.get('end_date')
-        if end_date < start_date:
-            raise forms.ValidationError("Invalid date entered")
+        if start_date != None and end_date != None:
+            if end_date < start_date:
+                raise forms.ValidationError("Invalid date entered")
         return cleaned_data
 
-    # valdiation for username
-    def clean_band_name(self):
-        band_name = self.cleaned_data.get('band_name')
-        if len(Band.objects.filter(band_name__exact=band_name)) == 0:
-            raise forms.ValidationError("Band name already taken")
-        return band_name
+    def clean_event_name(self):
+        event_name = self.cleaned_data.get('event_name')
+        return event_name
+
+    def clean_event_type(self):
+        event_name = self.cleaned_data.get('event_type')
+        return event_name
 
     def clean_start_date(self):
         start_date = self.cleaned_data.get('start_date')

@@ -1,0 +1,75 @@
+{%extends "header_base.html"%}
+{% block title %}Home{% endblock%}
+{%block content%}
+{% load static %}
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <div class="row">
+        <h2>Album: {{songlist.name}}</h2>
+    </div>
+    <div class="row image-row-gallery">
+        {% if song %}
+
+        {% for list in song %}
+
+
+        <div class="gallery">
+
+            {% if list.image %}
+            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+            {% else %}
+            <img src="http://placehold.it/150x150&text=1" width="300" height="200" height="70"/>
+            {% endif %}
+
+            <div class="desc">{{list.name}} <br>
+                <h6>{{list.creation_time}}</h6>
+                <a href="{% url 'audio_recorder' song_id=list.id %}">See Song's Track</a>
+            </div>
+
+        </div>
+        {%endfor%}
+        {%endif%}
+        {{errors}}
+
+    </div>
+    <div class="modal fade" id="myModal-{{item.id}}" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="Add Comment" id="myModalLabel">Add Song to Album</h4>
+                </div>
+                <form action="{% url 'add_song_to_list' album_id=album_id %}" method="post">
+                    <div class="modal-body">
+                        {% for song in all_song_list %}
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="checked_song" value="{{song.id}}">{{song.name}}</label>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="modal-footer">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary comment-btn" id="{{item.id}}">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                data-target="#myModal-{{item.id}}">
+            Add Song To Album
+        </button>
+
+
+</div>
+
+{% endblock%}

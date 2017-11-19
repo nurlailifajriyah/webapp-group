@@ -3,42 +3,43 @@
 {%block content%}
 {% load static %}
 
-<div class="col-md-2 col-sm-2 col-xs-2">
 
+<div class="col-md-12 col-sm-12 col-xs-12">
 
-    <div class="container">
-        <h2>Song List</h2>
-        <p>Song List helps you manage the song for each live session or you can treat it as an album:</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Create Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% if song_list %}
-            {% for list in song_list %}
-            <tr>
-                <td>
-                    {{list.name}}
-                </td>
-                <td>
-                    {{list.creation_time}}
-                </td>
-            </tr>
-            {%endfor%}
-            {%endif%}
+    <div class="row">
+        <h2>Album</h2>
+        <p>Album helps you manage the song for each live session:</p>
+        <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                data-target="#myModal-{{item.id}}">
+            Add New Album
+        </button>
+    </div>
+    <div class="row image-row-gallery">
+        {% if song_list %}
+        {% for list in song_list %}
 
-            </tbody>
-        </table>
+        <div class="gallery">
+
+                {% if list.image %}
+                <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+                {% else %}
+                <img src="{% static 'tempo/images/default-cover-album.png' %}" width="300" height="300" height="70"/>
+                {% endif %}
+
+            <div class="desc">{{list.name}} <br>
+                <h6>{{list.creation_time}}</h6>
+                <a href="{% url 'album_detail' album_id=list.id %}">See Song List</a>
+            </div>
+
+        </div>
+
+        {%endfor%}
+        {%endif%}
+        {{errors}}
+
     </div>
 
 
-    <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
-            data-target="#myModal-{{item.id}}">
-        Add New Song List
-    </button>
     <!-- Modal -->
     <!-- http://getbootstrap.com/docs/3.3/javascript/#modals -->
     <div class="modal fade" id="myModal-{{item.id}}" tabindex="-1" role="dialog"
@@ -71,6 +72,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 {% endblock%}

@@ -1,0 +1,81 @@
+{%extends "header_base.html"%}
+{% block title %}Home{% endblock%}
+{%block content%}
+{% load static %}
+<link href="{% static 'tempo/css/song_style.css' %}" rel="stylesheet">
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <div class="row">
+        <h2>Song</h2>
+        <p>List of all song in your band :</p>
+        <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                data-target="#myModal-{{item.id}}">
+            Add New Song
+        </button>
+    </div>
+    <div class="row image-row-gallery">
+        {% if song_list %}
+        {% for list in song_list %}
+
+
+        <div class="gallery">
+
+                {% if list.image %}
+                <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+                {% else %}
+                <img src="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200" height="70"/>
+                {% endif %}
+
+            <div class="desc">{{list.name}} <br>
+                <h6>{{list.creation_time}}</h6>
+                <a href="{% url 'audio_recorder' song_id=list.id %}">See Song's Track</a>
+            </div>
+
+        </div>
+
+        {%endfor%}
+        {%endif%}
+        {{errors}}
+
+    </div>
+
+
+    <!-- Modal -->
+    <!-- http://getbootstrap.com/docs/3.3/javascript/#modals -->
+    <div class="modal fade" id="myModal-{{item.id}}" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="Add Comment" id="myModalLabel">New Song</h4>
+                </div>
+                <form action="/add_song" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        {{form}}
+                    </div>
+                    <div class="modal-footer">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary comment-btn" id="{{item.id}}">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div id="imageModal" class="modal">
+  <span id = "closemodal" class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+<script src="/static/tempo/js/song_popup.js" type="text/javascript"></script>
+
+{% endblock%}

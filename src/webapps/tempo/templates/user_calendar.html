@@ -4,17 +4,16 @@
 {% load static %}
 
 
-<link href='./static/tempo/css/fullcalendar.min.css' rel='stylesheet' />
-<link href='./static/tempo/css/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src='./static/tempo/js/moment.min.js'></script>
-<script src='./static/tempo/js/jquery.min.js'></script>
-<script src='./static/tempo/js/fullcalendar.min.js'></script>
-<script src='./static/tempo/js/gcal.min.js'></script>
-<!--<link href="{% static 'tempo/css/calendar.css' %}" rel="stylesheet">-->
-<script src='./static/tempo/js/calendar.js'></script>
+<link href="{% static 'tempo/css/fullcalendar.min.css' %}" rel="stylesheet">
+<link href="{% static 'tempo/css/fullcalendar.print.css' %}" rel="stylesheet" media="print">
+<script src="{% static 'tempo/js/moment.min.js' %}"></script>
+<script src="{% static 'tempo/js/jquery.min.js' %}"></script>
+<script src="{% static 'tempo/js/fullcalendar.min.js' %}"></script>
+<script src="{% static 'tempo/js/gcal.min.js' %}"></script>
+<!--<link href="{% static 'tempo/js/calendar.js' %}" rel="stylesheet">-->
+<script src="{% static 'tempo/js/calendar.js' %}"></script>
 
 
-	<div id='loading'>loading...</div>
-
+	<div class="band_id" id="{{band_session}}"></div>
 	<div id='calendar'></div>
 {%endblock%}

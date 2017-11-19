@@ -3,28 +3,19 @@
 {%block content%}
 {% load static %}
 
-    <a href="{% url 'user_band_list'%}}">Search Bands</a>
+    <img class="img-responsive" src="{{bands.image}}" alt="band photo"/>
+    Band name: {{bands.band_name}} </br>
+    Band info: {{bands.band_info}}
 
-    <h1 class=""> Your Bands!</h1>
-    {% if not bands %}
-    <pre class="pre_styling_bio"><p class="para_styling"><strong>No Bands Exist</strong></p></pre>
-    {% endif %}
-    {% for band in bands %}
-    <div class="band_list list-group-item">
-        <div class="row">
-            <a href="/band_events/{{band.id}}">
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <img class="img-responsive" src="{% url 'band_photo' band.id %}" alt="{{band.band_name}}"/>
-            </div>
-            </a>
+    <!--{% for event in events %}-->
+    <!--<div class="para_styling band_list">-->
 
-            <div class="col-lg-9 col-md-9 col-sm-9">
-                <a href="/band_events/{{band.id}}">
-                    <h2 class="band_name">{{ band.band_name }}</h2>
-                </a>
-                <p class="band_event"><b>Upcoming Event: </b> Music concert in Amsterdam</p>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-{% endblock%}
+        <!--<h2 class="band_name">{{ event.event_name }}</h2></a>-->
+        <!--<p class="band_event"><b>Event Type: </b> {{event.event_type}}</p>-->
+        <!--<div style="width: 2000px; height: 90px;">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--{% endfor %}-->
+
+
+{% endblock %}
