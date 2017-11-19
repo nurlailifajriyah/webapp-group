@@ -80,6 +80,10 @@ def create_band(request):
 
     new_band.save()
 
+    request.session['band'] = new_band.id
+
+    print(new_band.id)
+
     creator.artist.member.add(new_band)
     print("successfully joined band")
 
@@ -87,7 +91,7 @@ def create_band(request):
     context['band'] = new_band
     context['message'] = 'created'
 
-    return redirect(reverse('user_band_list'))
+    return redirect(reverse('user_home', args={request.user.username}))
 
 
 # fundtion to get list of available bands

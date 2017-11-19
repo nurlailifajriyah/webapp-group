@@ -103,6 +103,7 @@ def activate(request, uidb64, token):
 def user_home(request, username):
 
     band = request.session['band']
+
     try:
         context = {}
         context['abc'] = band

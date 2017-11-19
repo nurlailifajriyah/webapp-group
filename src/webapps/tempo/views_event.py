@@ -9,6 +9,8 @@ from .forms import *
 @login_required
 def event(request):
     context = {}
+    band = request.session['band']
+    context['band'] = Band.objects.get(id=band)
     if request.method == 'GET':
         context['form'] = EventForm()
         context['events'] = Event.objects.all()
@@ -16,13 +18,13 @@ def event(request):
 
 #######################################################################################################
 
-def event(request, band_id):
-    context = {}
-    context['band'] = Band.objects.get(id=band_id)
-    if request.method == 'GET':
-        context['form'] = EventForm()
-        context['events'] = Event.objects.filter(band_name=band_id)
-        return render(request, 'events/eventmainpage.html', context)
+# def event(request, band_id):
+#     context = {}
+#     context['band'] = Band.objects.get(id=band_id)
+#     if request.method == 'GET':
+#         context['form'] = EventForm()
+#         context['events'] = Event.objects.filter(band_name=band_id)
+#         return render(request, 'events/eventmainpage.html', context)
 
 
 #######################################################################################################
@@ -44,7 +46,7 @@ def add_event(request, band_id):
                           creator=request.user, band_name=band)
         new_event.save()
 
-    return render(request, 'events/eventmainpage.html', context)
+        return redirect(reverse('events'))
 
 @login_required()
 def get_events(request, band_id):
