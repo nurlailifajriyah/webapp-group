@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^add_song$', tempo.views_song.add_song, name="add_song"),
     url(r'^album$', tempo.views_song.album, name="album"),
     url(r'^album_detail/(?P<album_id>\d+)$', tempo.views_song.album_detail, name="album_detail"),
-    url(r'^add_song_to_list$', tempo.views_song.add_song_to_list, name="add_song_to_list"),
+    url(r'^add_song_to_list/(?P<album_id>\d+)$', tempo.views_song.add_song_to_list, name="add_song_to_list"),
 
     # Tracks
     url(r'^audio_recorder/(?P<song_id>\d+)$', tempo.views_audiorecording.audio_recorder, name="audio_recorder"),
