@@ -7,28 +7,35 @@
 {% load static %}
 <div class="container">
 
-        <h1 class="text-center">You have no band. Join one Now!</h1>
-        {% if not all_bands%}
-            <p>There is no band in the system. <a href="{%url 'create' %}">Create one!</a></p>
-        {% else %}
-            {% for band in all_bands %}
-                 <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
-                     <a href="/band_events/{{band.id}}"><h2 class="band_name">{{ band.band_name }}</h2></a>
-                     <p class="band_event"><b>Upcoming Event: </b> Music concert in Amsterdam</p>
-                     <div style="width: 2000px; height: 90px;">
-                         {% if band.image %}
-                         <img src="{{band.image}}" width="100" height="70" alt="photo"/>
-                         {% else %}
-                         <img src="{% static 'tempo/images/profpict2.png' %}" width="100" height="70" alt="photo"/>
-                         {% endif %}
-                     </div>
-                      <a href="{% url 'join_band' band.id %}" class=" row btn  btn-theme text-centre">
-                          <span class="glyphicon glyphicon-plus"></span>
-                          Join Band
-                      </a>
-                 </div>
-            {% endfor %}
-        {% endif %}
+    <h1 class="text-center">You have no band. Join one Now!</h1>
+    {% if not all_bands%}
+    <p>There is no band in the system. <a href="{%url 'create' %}">Create one!</a></p>
+    {% else %}
+    {% for band in all_bands %}
+    <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
+
+        <div class="col-md-3" style="display: flex;">
+            <div class="main-center" style="width: 100px; height: 100px;">
+                {% if band.image %}
+                <img   class=" img-circle" src="{% static band.image %}" width="100" height="70" alt="photo"/>
+                {% else %}
+                <img src="{% static 'tempo/images/profpict2.png' %}" width="100" height="70" alt="photo"/>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="col-md-9">
+
+            <a href="{% url 'user_home' user.username %}"><h2 class="band_name">{{ band.band_name }}</h2></a>
+
+            <a href="{% url 'join_band' band.id %}" class="btn  btn-theme text-centre">
+                <span class="glyphicon glyphicon-plus"></span>
+                Join Band
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
 
 
 </div>

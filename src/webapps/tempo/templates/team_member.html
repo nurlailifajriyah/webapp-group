@@ -3,12 +3,12 @@
 {%block content%}
 {% load static %}
 
-<h1 class="text-center">Team member of {{band_name}}</h1>
+<h1>Team member of {{band_name}}</h1>
 {% for member in team_member %}
-<div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
+<div class="col-md-12 list-group-item ">
     <div class="col-md-3" style="display: flex;">
         <div class="pull-left image" id="post_image">
-            <img src="{% url 'photo' id=member.artist.id %}" class="img-responsive" alt="{{member.username}}"
+            <img src="{% static member.artist.image %}" class="img-responsive" alt="{{member.username}}"
                  class=" img-circle"
                  width="100px" high="100px">
         </div>
