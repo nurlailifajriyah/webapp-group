@@ -4,6 +4,13 @@
     <list default="true" id="697c7351-0e2b-47d8-b520-af422ad87da9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/db.sqlite3" afterPath="$PROJECT_DIR$/src/webapps/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/calendar.js" afterPath="$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/calendar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/event.json" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/event.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/events.json" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/events.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" afterPath="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/urls.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/webapps/tempo/views.py" afterPath="$PROJECT_DIR$/src/webapps/tempo/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,120 +24,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1802">
-              <caret line="119" column="38" lean-forward="false" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
-              <folding>
-                <marker date="1511110188964" expanded="true" signature="490:980" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="1633:2055" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="1641:2055" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="2091:2273" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="2305:2704" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="2601:2641" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="2664:2704" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="2731:2989" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="3022:3146" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="3175:4491" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="3623:3648" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="3672:3706" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="3811:3948" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="3983:4311" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="4354:4491" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="4521:5070" ph="..." />
-                <marker date="1511110188964" expanded="true" signature="5039:5070" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="73" lean-forward="false" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-                <marker date="1511110189636" expanded="true" signature="2061:2103" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="4826:5176" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="5042:5148" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="5209:5292" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="5325:5408" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="5441:5637" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="5668:6020" ph="..." />
-                <marker date="1511110189636" expanded="true" signature="5903:5996" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login_register_base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="50" column="80" lean-forward="false" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/webapps/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_calendar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_calendar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap-tempo.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/bootstrap-tempo.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-              <folding>
-                <marker date="1511110188975" expanded="true" signature="169:236" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="60" column="11" lean-forward="false" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calendar_base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/calendar_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="65" column="90" lean-forward="false" selection-start-line="65" selection-start-column="90" selection-end-line="65" selection-end-column="90" />
+            <state relative-caret-position="315">
+              <caret line="28" column="29" lean-forward="false" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -139,12 +34,91 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+            <state relative-caret-position="9870">
+              <caret line="489" column="66" lean-forward="false" selection-start-line="489" selection-start-column="66" selection-end-line="489" selection-end-column="66" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
-                <marker date="1511110189233" expanded="true" signature="5244:5857" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/event.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="events.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/events.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="band_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_calendar.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_calendar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header_base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1239">
+              <caret line="59" column="66" lean-forward="false" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/calendar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="63" column="14" lean-forward="false" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -192,7 +166,6 @@
       <find>band_list</find>
       <find>event_lists</find>
       <find>calendar</find>
-      <find>datetimewidget</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,11 +176,13 @@
       <list>
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/home.html" />
         <option value="$PROJECT_DIR$/src/webapps/webapps/urls.py" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/register.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/acc_active_email.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/login.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/token.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/registration/user_pre_profile.html" />
+        <option value="$PROJECT_DIR$/src/webapps/webapps/settings.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/user_band_page.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/user_pre_profile.html" />
@@ -217,23 +192,21 @@
         <option value="$PROJECT_DIR$/src/webapps/tempo/migrations/__init__.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/calendar.css" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/calendar_base.html" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/event_create.html" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/forms.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/events_home.html" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/events.json" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/event.json" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/models.py" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/urls.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/sidebar-tempo.css" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/bandpage.html" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/templates/user_calendar.html" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/urls.py" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/views.py" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/event.json" />
+        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/events.json" />
         <option value="$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/calendar.js" />
-        <option value="$PROJECT_DIR$/src/webapps/webapps/settings.py" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/forms.py" />
-        <option value="$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html" />
       </list>
     </option>
   </component>
@@ -295,14 +268,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="webapps" type="462c0819:PsiDirectoryNode" />
               <item name="tempo" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team333" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="webapps" type="462c0819:PsiDirectoryNode" />
-              <item name="tempo" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -313,26 +278,6 @@
               <item name="tempo" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="tempo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team333" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="webapps" type="462c0819:PsiDirectoryNode" />
-              <item name="tempo" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="tempo" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team333" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="webapps" type="462c0819:PsiDirectoryNode" />
-              <item name="tempo" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="tempo" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
@@ -351,13 +296,6 @@
               <item name="webapps" type="462c0819:PsiDirectoryNode" />
               <item name="tempo" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team333" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team333" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="webapps" type="462c0819:PsiDirectoryNode" />
-              <item name="webapps" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -557,42 +495,37 @@
       <option name="project" value="LOCAL" />
       <updated>1510542812464</updated>
     </task>
-    <task id="LOCAL-00019" summary="committing to pull latest information">
-      <created>1511045458679</created>
+    <task id="LOCAL-00019" summary="Calendar Page ready.&#10;Adding events created manually to the calendar using FullCalendar API.">
+      <created>1510890064084</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1511045458679</updated>
+      <updated>1510890064084</updated>
     </task>
-    <task id="LOCAL-00020" summary="committing to pull latest information">
-      <created>1511110176806</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1511110176806</updated>
-    </task>
-    <task id="LOCAL-00021" summary="commit to pull">
-      <created>1511113286689</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1511113286689</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="-7" width="1551" height="839" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3698941" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33878887" sideWeight="0.17776097" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3448276" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21767594" sideWeight="0.15506808" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.74583966" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.48865354" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494929" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33878887" sideWeight="0.82223904" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3396779" sideWeight="0.8449319" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -601,7 +534,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.49092284" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.49394855" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -616,32 +549,6 @@
         <option value="3" />
         <option value="1" />
       </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
     </option>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -663,16 +570,15 @@
     <MESSAGE value="Create band form modified." />
     <MESSAGE value="Nothing has been modified. I just want to get the latest push" />
     <MESSAGE value="Events model created&#10;Artist can create an event for a band and successfully see events of all the bands he is a part of." />
-    <MESSAGE value="committing to pull latest information" />
-    <MESSAGE value="commit to pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit to pull" />
+    <MESSAGE value="Calendar Page ready.&#10;Adding events created manually to the calendar using FullCalendar API." />
+    <option name="LAST_COMMIT_MESSAGE" value="Calendar Page ready.&#10;Adding events created manually to the calendar using FullCalendar API." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/webapps/tempo/templates/audio_record.html</url>
-          <line>20</line>
+          <line>22</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -681,6 +587,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/registration/password_reset_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/webapps/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -716,6 +629,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_band_page.html" />
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/edit.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -728,6 +648,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="50" column="80" lean-forward="false" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -759,8 +686,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views_audioplayer.py" />
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views_users.py" />
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views_audioplayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views_users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -787,6 +726,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1722">
           <caret line="82" column="10" lean-forward="false" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/bootstrap-tempo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/webapps/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2038">
+          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -840,11 +793,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/home.html" />
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/calendar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2478">
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -862,20 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/events.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/event.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/sidebar-tempo.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -890,42 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/fullcalendar.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2814">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1953">
-          <caret line="93" column="53" lean-forward="false" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/calendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="143" column="32" lean-forward="false" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="44" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/events_home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -933,128 +849,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views_event.py">
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/fullcalendar.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2814">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/calendar_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="90" lean-forward="false" selection-start-line="65" selection-start-column="90" selection-end-line="65" selection-end-column="90" />
+        <state relative-caret-position="210">
+          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_calendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/header_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1239">
+          <caret line="59" column="66" lean-forward="false" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="119" column="38" lean-forward="false" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
-          <folding>
-            <marker date="1511110188964" expanded="true" signature="490:980" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="1633:2055" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="1641:2055" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="2091:2273" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="2305:2704" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="2601:2641" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="2664:2704" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="2731:2989" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="3022:3146" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="3175:4491" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="3623:3648" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="3672:3706" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="3811:3948" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="3983:4311" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="4354:4491" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="4521:5070" ph="..." />
-            <marker date="1511110188964" expanded="true" signature="5039:5070" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/webapps/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="73" lean-forward="false" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <marker date="1511110189636" expanded="true" signature="2061:2103" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="4826:5176" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="5042:5148" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="5209:5292" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="5325:5408" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="5441:5637" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="5668:6020" ph="..." />
-            <marker date="1511110189636" expanded="true" signature="5903:5996" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/login_register_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="80" lean-forward="false" selection-start-line="50" selection-start-column="80" selection-end-line="50" selection-end-column="80" />
+        <state relative-caret-position="315">
+          <caret line="28" column="29" lean-forward="false" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+        <state relative-caret-position="9870">
+          <caret line="489" column="66" lean-forward="false" selection-start-line="489" selection-start-column="66" selection-end-line="489" selection-end-column="66" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
-            <marker date="1511110189233" expanded="true" signature="5244:5857" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/webapps/tempo/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="60" column="11" lean-forward="false" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
+        <state relative-caret-position="714">
+          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_calendar.html">
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/user_home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/css/bootstrap-tempo.css">
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/band_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding>
-            <marker date="1511110188975" expanded="true" signature="169:236" ph="{...}" />
-          </folding>
+        <state relative-caret-position="315">
+          <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/welcome.html">
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/event.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="21">
+          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/templates/events.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="78" lean-forward="false" selection-start-line="0" selection-start-column="78" selection-end-line="0" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webapps/tempo/static/tempo/js/calendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="63" column="14" lean-forward="false" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
