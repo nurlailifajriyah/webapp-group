@@ -86,9 +86,6 @@ def add_song(request):
             if 'image' in request.FILES:
                 new_item.image = request.FILES['image']
                 new_item.save()
-            if 'audio_file' in request.FILES:
-                new_item.audio_file = request.FILES['audio_file']
-                new_item.save()
             new_item.save()
             context['form'] = SongForm()
             context['song_list'] = Song.objects.filter(band=band)

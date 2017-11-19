@@ -86,7 +86,7 @@ def create_band(request):
 
     print(new_band.id)
 
-    creator.artist.member.add(new_band)
+    ArtistInBand.objects.create(band=new_band, member=request.user)
     print("successfully joined band")
 
     context['current_artist'] = creator
