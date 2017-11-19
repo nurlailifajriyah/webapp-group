@@ -12,6 +12,7 @@ def event(request):
     band = request.session['band']
     context['band_session'] = band
     context['band'] = Band.objects.get(id=band)
+    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
     if request.method == 'GET':
         context['form'] = EventForm()
         context['events'] = Event.objects.all()

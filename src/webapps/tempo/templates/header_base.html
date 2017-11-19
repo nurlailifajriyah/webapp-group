@@ -89,7 +89,7 @@
                         <li class="dropdown">
                             <a href="{% url 'user_home' username=user %}" class="dropdown-toggle"
                                data-toggle="dropdown">
-                                <i class="glyphicon glyphicon-home"></i> {{bands.band_name}} <span class="caret"></span></a>
+                                <i class="glyphicon glyphicon-home"></i> {{band.band_name}} <span class="caret"></span></a>
                             <ul class="dropdown-menu forAnimate" role="menu">
                                 {% if user_bands %}
                                 {% for user_band in user_bands %}

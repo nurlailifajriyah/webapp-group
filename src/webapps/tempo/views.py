@@ -106,7 +106,7 @@ def user_home(request, username):
     try:
         context = {}
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
-        context['bands'] = Band.objects.get(id=band)
+        context['band'] = Band.objects.get(id=band)
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
@@ -121,7 +121,7 @@ def change_band_home(request, band_id):
     try:
         context = {}
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
-        context['bands'] = Band.objects.get(id=band_id)
+        context['band'] = Band.objects.get(id=band_id)
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})

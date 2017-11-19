@@ -11,7 +11,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 def audio_recorder(request, song_id):
     context ={}
     song = get_object_or_404(Song, id=song_id)
-    context['band_session'] = request.session['band']
+    band = request.session['band']
+    context['band_session'] = band
+    context['band'] = Band.objects.get(id=band)
     context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
     context['song'] = song
     return render(request, 'audio_record.html', context)
