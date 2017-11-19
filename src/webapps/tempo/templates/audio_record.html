@@ -11,6 +11,12 @@
 <!-- Customized CSS -->
 <link href="{% static 'tempo/css/audio_record.css' %}" rel="stylesheet">
 
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Track" "audio_recorder" song.id  %}
+{% endblock %}
+
 <div id="viz" class="container">
     <div class="row">
         <h1>{{song.name}}</h1>

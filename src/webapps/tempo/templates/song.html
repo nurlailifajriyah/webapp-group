@@ -4,6 +4,13 @@
 {% load static %}
 <link href="{% static 'tempo/css/song_style.css' %}" rel="stylesheet">
 
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Song" song  %}
+{% endblock %}
+
+
 <div class="col-md-12 col-sm-12 col-xs-12">
 
     <div class="row">

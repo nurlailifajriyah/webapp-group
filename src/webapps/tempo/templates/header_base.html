@@ -77,7 +77,7 @@
         {% load django_bootstrap_breadcrumbs %}
         {% block breadcrumbs %}
             {% clear_breadcrumbs %}
-            {% breadcrumb "Home" "user_pre_profile" %}
+            {% breadcrumb "Home" "user_home" user.username %}
         {% endblock %}
         {% block breadcrumbs_content %}
             {% render_breadcrumbs %}

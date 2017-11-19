@@ -45,7 +45,7 @@ def album_detail(request,album_id):
         print (song_in_album.values_list('song', flat=True) )
         context['album_id'] = album_id
         band_id = request.session['band']
-        band = Band.objects.filter(id=band_id)
+        band = Band.objects.get(id=band_id)
         context['all_song_list'] = Song.objects.filter(band=band)
         context['band'] = band
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
