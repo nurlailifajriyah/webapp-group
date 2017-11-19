@@ -38,7 +38,23 @@ def album_detail(request,album_id):
     if request.method == 'GET':
         song_in_album = SongInList.objects.filter(list=valid_song_list)
         context['song'] = song_in_album
+        band_id = request.session['band']
+        band = Band.objects.filter(id=band_id)
+        context['all_song_list'] = Song.objects.filter(band=band)
         return render(request, 'album_detail.html', context)
+
+
+@login_required
+def add_song_to_list(request):
+
+
+    new_item = SongList(name=form.cleaned_data['name'], band=band)
+    new_item.save()
+    context['form'] = SongListForm()
+    context['song_list'] = SongList.objects.all()
+
+    return redirect(reverse('song_list'))
+
 
 
 @login_required

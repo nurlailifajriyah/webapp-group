@@ -130,3 +130,14 @@ h6 {
     color: #57534b !important;
 }
 
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+    max-height: 400px;
+}
+.modal-body{
+    height: auto;
+    overflow-y: auto;
+    max-height: 400px;
+}

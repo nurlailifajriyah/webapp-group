@@ -17,11 +17,11 @@
 
         <div class="gallery">
 
-                {% if list.image %}
-                <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
-                {% else %}
-                <img src="http://placehold.it/150x150&text={{inx}}" width="300" height="200" height="70"/>
-                {% endif %}
+            {% if list.image %}
+            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+            {% else %}
+            <img src="http://placehold.it/150x150&text={{inx}}" width="300" height="200" height="70"/>
+            {% endif %}
 
             <div class="desc">{{list.name}} <br>
                 <h6>{{list.creation_time}}</h6>
@@ -43,15 +43,14 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="Add Comment" id="myModalLabel">Add Song to Album</h4>
                 </div>
-                <form action="/add_song_list" method="post">
+                <form action="/add_song_to_list" method="post">
                     <div class="modal-body">
-                        {% for field in form.visible_fields %}
-                        <div>{{field}}</div>
-                        {{field.errors}}
+                        {% for song in all_song_list %}
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="{{song}}">{{song.name}}</label>
+                        </div>
                         {% endfor %}
-                        {% for field in form.hidden_fields %}
-                        {{field}}
-                        {% endfor %}
+
                     </div>
                     <div class="modal-footer">
                         {% csrf_token %}
@@ -60,10 +59,15 @@
                         </button>
                     </div>
                 </form>
-                </div>
             </div>
         </div>
     </div>
+</div>
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                data-target="#myModal-{{item.id}}">
+            Add Song To Album
+        </button>
 
 
 </div>
