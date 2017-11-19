@@ -8,7 +8,7 @@
 
     <h1 class="text-center">You have no band. Join one Now!</h1>
     {% if not all_bands%}
-    <p>There is no band in the system. <a href="{%url 'create_band' %}">Create one!</a></p>
+    <p>There is no band in the system. <a href="{%url 'create' %}">Create one!</a></p>
     {% else %}
     <div class="row">
     {% for band in all_bands %}
@@ -40,7 +40,7 @@
     </div>
 <div class="row">
     <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
-    <a href="{%url 'create_band' %}">Create a new band!</a>
+    <a href="{%url 'create' %}">Create a new band!</a>
     </div>
 </div>
     {% endif %}
