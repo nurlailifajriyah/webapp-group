@@ -22,7 +22,7 @@ class Band(models.Model):
     city = models.CharField(max_length=30, blank=True)
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     created_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='tempo/image', blank=True)
+    image = models.ImageField(upload_to='tempo/images/band', blank=True)
 
     def __str__(self):
         return self.band_name
@@ -36,8 +36,7 @@ class Artist(models.Model):
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     age = models.IntegerField(default=1, blank=True, null=True)
     # birth_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='tempo/images', blank=True)
-    member = models.ManyToManyField(Band, related_name='member_of', symmetrical=False)
+    image = models.ImageField(upload_to='tempo/images/artist', blank=True)
 
     # # creates an artist profile after registration
     # @receiver(post_save, sender=User)
