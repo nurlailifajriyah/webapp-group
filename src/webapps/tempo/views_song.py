@@ -14,6 +14,8 @@ def song_list(request):
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.filter(band=band)
         context['band_session'] = band_id
+        context['band'] = Band.objects.get(id=band_id)
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         return render(request, 'songlist.html', context)
 
 @login_required
@@ -28,6 +30,8 @@ def song_detail(request,song_id):
         context['song'] = valid_song
         request.session['song_id'] = valid_song.id
         context['band_session'] = band_id
+        context['band'] = Band.objects.get(id=band_id)
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         return render(request, 'song_detail.html', context)
 
 @login_required
@@ -43,6 +47,8 @@ def album_detail(request,album_id):
         band_id = request.session['band']
         band = Band.objects.filter(id=band_id)
         context['all_song_list'] = Song.objects.filter(band=band)
+        context['band'] = band
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         return render(request, 'album_detail.html', context)
 
 @login_required
@@ -69,6 +75,8 @@ def add_song_list(request):
     errors = []
     context['errors'] = errors
     context['band_session'] = band_id
+    context['band'] = Band.objects.get(id=band_id)
+    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
 
     if not form.is_valid():
         errors.append('Please provide list name')
@@ -91,6 +99,8 @@ def song(request):
         band = Band.objects.filter(id=band_id)
         context['form'] = SongForm()
         context['song_list'] = Song.objects.filter(band=band)
+        context['band'] = Band.objects.get(id=band_id)
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         return render(request, 'song.html', context)
 
 @login_required
@@ -101,6 +111,8 @@ def add_song(request):
         context['band_session'] = band_id
         band = Band.objects.get(id=band_id)
         context['form'] = form
+        context['band'] = band
+        context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         errors = []
 
 
@@ -125,5 +137,8 @@ def add_song(request):
 @login_required
 def album(request):
     context = {}
-    context['band_session'] = request.session['band']
+    band_id = request.session['band']
+    context['band_session'] = band_id
+    context['band'] = Band.objects.get(id=band_id)
+    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
     return render(request, 'album.html', context)
