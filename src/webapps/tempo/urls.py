@@ -43,6 +43,8 @@ urlpatterns = [
     url(r'^song$', tempo.views_song.song, name="song"),
     url(r'^add_song$', tempo.views_song.add_song, name="add_song"),
     url(r'^album$', tempo.views_song.album, name="album"),
+    url(r'^album_detail/(?P<album_id>\d+)$', tempo.views_song.album_detail, name="album_detail"),
+
 
     # Tracks
     url(r'^audio_recorder/(?P<song_id>\d+)$', tempo.views_audiorecording.audio_recorder, name="audio_recorder"),

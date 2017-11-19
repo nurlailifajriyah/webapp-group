@@ -30,6 +30,16 @@ def song_detail(request,song_id):
         context['band_session'] = band_id
         return render(request, 'song_detail.html', context)
 
+@login_required
+def album_detail(request,album_id):
+
+    context = {}
+    valid_song_list = get_object_or_404(SongList, id=album_id)
+    if request.method == 'GET':
+        song_in_album = SongInList.objects.filter(list=valid_song_list)
+        context['song'] = song_in_album
+        return render(request, 'album_detail.html', context)
+
 
 @login_required
 def add_song_list(request):
@@ -52,7 +62,7 @@ def add_song_list(request):
         context['form'] = SongListForm()
         context['song_list'] = SongList.objects.all()
 
-    return render(request, 'songlist.html', context)
+        return redirect(reverse('song_list'))
 
 @login_required
 def song(request):

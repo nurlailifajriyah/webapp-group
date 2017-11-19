@@ -3,13 +3,11 @@
 {%block content%}
 {% load static %}
 
-
-{% load static %}
-<script src="static/tempo/js/audiodisplay.js" type="text/javascript"></script>
-<script src="static/tempo/js/recorder.js" type="text/javascript"></script>
-<script src="static/tempo/js/main.js" type="text/javascript"></script>
-<script src="static/tempo/js/recorderWorker.js" type="text/javascript"></script>
-<script src="static/tempo/js/audiorecord.js" type="text/javascript"></script>
+<script src="{% static 'tempo/js/audiodisplay.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/recorder.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/main.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/recorderWorker.js' %}" type="text/javascript"></script>
+<script src="{% static 'tempo/js/audiorecord.js' %}" type="text/javascript"></script>
 <!-- Customized CSS -->
 <link href="{% static 'tempo/css/audio_record.css' %}" rel="stylesheet">
 
