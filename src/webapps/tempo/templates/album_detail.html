@@ -1,13 +1,22 @@
-{%extends "header_base.html"%}
+{%extends "songlist.html"%}
 {% block title %}Home{% endblock%}
 {%block content%}
 {% load static %}
 
 
+
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb album.name "album_detail"  album_id  %}
+{% endblock %}
+
+
+
 <div class="col-md-12 col-sm-12 col-xs-12">
 
     <div class="row">
-        <h2>Album: {{songlist.name}}</h2>
+        <h2>Album: {{album.name}}</h2>
     </div>
     <div class="row image-row-gallery">
         {% if song %}

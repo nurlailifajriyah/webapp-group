@@ -7,23 +7,65 @@
 {% load django_bootstrap_breadcrumbs %}
 {% clear_breadcrumbs %}
 {% block breadcrumbs %}
-    {{ block.super }}
-    {% breadcrumb username "team_member" %}
+{{ block.super }}
+{% breadcrumb username "team_member" %}
 {% endblock %}
 
-    <img class="img-responsive" src="{{band.image.url}}" alt="band photo"/>
-    Band name: {{band.band_name}} </br>
-    Band info: {{band.band_info}}
 
-    <!--{% for event in events %}-->
-    <!--<div class="para_styling band_list">-->
+<div class="col-md-12 col-sm-12 col-xs-12">
 
-        <!--<h2 class="band_name">{{ event.event_name }}</h2></a>-->
-        <!--<p class="band_event"><b>Event Type: </b> {{event.event_type}}</p>-->
-        <!--<div style="width: 2000px; height: 90px;">-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--{% endfor %}-->
+    <div class="row">
+        <h2>Home page for : band.name</h2>
+    </div>
+    <div class="row image-row-gallery list-group-item">
+        <h2>Album</h2>
+        {% if song_list %}
+        {% for list in song_list %}
 
+        <div class="gallery">
+
+            {% if list.image %}
+            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+            {% else %}
+            <img src="{% static 'tempo/images/default-cover-album.png' %}" width="300" height="300" height="70"/>
+            {% endif %}
+
+            <div class="desc">{{list.name}} <br>
+                <h6>{{list.creation_time}}</h6>
+                <a href="{% url 'album_detail' album_id=list.id %}">See Song List</a>
+            </div>
+
+        </div>
+
+        {%endfor%}
+        {%endif%}
+        {{errors}}
+
+    </div>
+    <div class="row list-group-item">
+        <h1>Team member of {{band_name}}</h1>
+        {% for member in team_member %}
+        <div class="col-md-12 list-group-item ">
+            <div class="col-md-3" style="display: flex;">
+                <div class="pull-left image" id="post_image">
+                    <img src="{% static member.artist.image %}" class="img-responsive" alt="{{member.member.username}}"
+                         class=" img-circle"
+                         width="100px" high="100px">
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="title text-left" id="post_image_owner">
+                    <a href="{% url 'user_home' member.member.username %}">
+                        <h5> @{{member.member.username}}</h5></a>
+                    <h5> {{member.member.first_name}}&ensp;{{member.member.last_name}}</h5>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

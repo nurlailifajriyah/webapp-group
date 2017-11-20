@@ -4,6 +4,13 @@
 {% load static %}
 
 
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "List of Album" "song_list"  %}
+{% endblock %}
+
+
 <div class="col-md-12 col-sm-12 col-xs-12">
 
     <div class="row">
