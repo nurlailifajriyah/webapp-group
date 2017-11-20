@@ -34,7 +34,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 }
 
 .profile-usertitle-name {
-  color: #b3ab99;
+  color: #F9DBAD;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
@@ -42,7 +42,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 .profile-usertitle-job {
   text-transform: uppercase;
-  color: #b3ab99;
+  color: #F9DBAD;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -112,17 +112,12 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
 }
 
-/*Outer-profile content*/
-.row{
-  margin-right:-5px;
-  margin-left:-5px
-}
 
 /*Login page css*/
 
 .main-login{
 
-    background-color: #b3ab99;
+    background-color: #F9DBAD;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -137,7 +132,7 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
 
     margin-top: 30px;
     padding: 40px 40px;
-    background-color: #b3ab99;
+    background-color: #F9DBAD;
     align-content: center;
 
 
@@ -149,12 +144,6 @@ Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar
     text-align: center;
 }
 
-
-.form-group{
-	margin-bottom: 15px;
-    font-size: 10px;
-	font-family: 'Passion One';
-}
 
 span.input-group-addon i {
     color: #341d00;

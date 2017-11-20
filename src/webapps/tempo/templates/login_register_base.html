@@ -20,62 +20,13 @@
 </head>
 <body>
 <div class="container">
-    <!-- Header -->
-    <div class="row">
-
-            <!--http://getbootstrap.com/docs/3.3/components/#navbar-->
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <ul class="navbar-toggle collapsed" style="background-color: transparent;">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Login
-                                </a>
-
-                            </li>
-                        </ul>
-                        <a class="navbar-brand" href="{% url 'user_home' username=user %}">TEMPO</a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="{% url 'welcome' %}" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Home
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'user_home' username=user%}" >My Profile</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-
-    </div>
-    <!-- End of Header -->
-    <!-- Main Row -->
-    <!-- Source: https://bootsnipp.com/snippets/featured/user-profile-sidebar-->
-    <!-- End of Main Row -->
-
-    <div class="row profile">
-        <!-- Sidebar -->
-        <!-- Main Content -->
-        <div class="col-lg-16 col-md-12">
-            <div class="profile-content">
-                <div>{% block content %}{% endblock %}</div>
-            </div>
-        </div>
+    <div class="row ">
+        <div class="col-md-offset-3 col-md-6 panel main-login main-center">
+                {% block content %}{% endblock %}
         <!-- End of  Main Content -->
     </div>
 
-
+    </div>
 
 </div>
 </body>

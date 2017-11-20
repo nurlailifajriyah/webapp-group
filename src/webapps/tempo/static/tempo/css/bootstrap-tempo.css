@@ -15,12 +15,12 @@ body {
   height: 100%;
   width: 100%;
   min-width: 800px;
-  background: #fcfaff;
+  background: #F6F6F6;
 }
 .navbar-default .navbar-brand {
   color : white;
 }
-.navbar-default .navbar-nav>li> {
+.navbar-default .navbar-nav>li>a {
   color: white;
 }
 .logo-margin {

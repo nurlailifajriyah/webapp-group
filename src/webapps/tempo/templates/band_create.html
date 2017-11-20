@@ -6,9 +6,8 @@
 
 {% load static %}
     <div class="col-md-offset-2 col-md-8 col-md-offset-2 ">
-    <div class="main-login main-center">
         <!-- django's authentication module-->
-        <h1>Create new band for Tempo</h1>
+        <h2>Create a new band</h2>
 
         <form method="post" action="{% url 'create_band' %}" enctype="multipart/form-data">
             {% csrf_token %}
@@ -29,7 +28,6 @@
             <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
             {%csrf_token%}
         </form>
-    </div>
     </div>
 
 {% endblock%}

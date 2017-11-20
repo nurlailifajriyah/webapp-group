@@ -3,34 +3,43 @@
 {% block title %}Home{% endblock%}
 {%block content%}
 <div>
-    <h2 class="logo-message">TEMPO</h2>
-    <h3 class="pitch">Sync your music</h3>
+    <center><h2 class="logo-message">TEMPO</h2></center>
+    <center><h3 class="pitch">Sync your music</h3></center>
+    <br>
 </div>
-    <div class="main-login main-center">
-        <!-- django's authentication module-->
-        <form method="post" action="{% url 'register' %}">
-            {%if form.errors%}
-                <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password option.</p>
-            {%endif%}
+<!-- django's authentication module-->
+<form method="post" action="{% url 'register' %}">
+    {%if form.errors%}
+    <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password
+        option.</p>
+    {%endif%}
 
-            <!--create registration form using forms-->
-            <table>
-                {{form.as_table}}
-            </table>
-
-            <!-- end of form -->
-            <br>
-                <input type="submit" class="btn btn-default btn-lg btn-block" value="Sign Up">
-
-            <div>
-                <p class="login para_styling1">By signing up, you agree to our <i>Terms & Privacy Policy</i></p>
-            </div>
-            <div class="login-register">
-                Have an account? <a href="/login">Log in</a>
-            </div>
-
-            <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
-            {%csrf_token%}
-        </form>
+    <!--create registration form using forms-->
+    {% for field in form.visible_fields %}
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-5">{{field.label_tag}}</div>
+            <div class="col-md-6">{{field}}</div>
+        </div>
+        {{field.errors}}
     </div>
+    {% endfor %}
+    {% for field in form.hidden_fields %}
+    {{field}}
+    {% endfor %}
+
+    <!-- end of form -->
+    <br>
+    <input type="submit" class="btn btn-default btn-lg btn-block" value="Sign Up">
+
+    <div>
+        <p class="login para_styling1">By signing up, you agree to our <i>Terms & Privacy Policy</i></p>
+    </div>
+    <div class="login-register">
+        Have an account? <a href="/#middle">Log in</a>
+    </div>
+
+    <!-- for each input have used glyhpicon to represnt what the input will be - using fa-input fa-->
+    {%csrf_token%}
+</form>
 {% endblock%}

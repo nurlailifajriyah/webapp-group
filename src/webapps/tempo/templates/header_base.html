@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-lg-16 col-md-12" role="main">
             <!--http://getbootstrap.com/docs/3.3/components/#navbar-->
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default ">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -90,7 +90,11 @@
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <div class="profile-userpic">
+                    {% if user.artist.image %}
                     <img src="{% static user.artist.image %}" class="img-responsive" alt="{{user.username}}">
+                    {% else %}
+                     <img src="{% static 'tempo/image/brouser_Logo.png' %}" class="img-responsive" alt="{{user.username}}">
+                    {% endif %}
                 </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
