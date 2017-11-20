@@ -55,7 +55,8 @@ def album_detail(request,album_id):
 @login_required
 def add_song_to_list(request,album_id):
     valid_song_list = get_object_or_404(SongList, id=album_id)
-    if request.POST['checked_song']:
+
+    if request.POST.getlist('checked_song',False):
         for i in request.POST.getlist('checked_song'):
             print (i)
             song = Song.objects.get(id=i)
