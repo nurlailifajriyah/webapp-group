@@ -36,11 +36,22 @@
     </div>
 
     <hr>
-    <div class=" no-padding row col-xs-12" style="padding: 0">
+    <div class=" no-padding row col-xs-12 " style="padding: 0">
         <h1>Track List</h1>
         <ul class="list-group" id="track-list">
         </ul>
     </div>
+     <div class=" no-padding row col-xs-12" style="padding: 0">
+         <br>
+        <h1>Song Chord</h1>
+         {%if song.image %}
+            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static song.image %}">
+         {% else %}
+            <p> this song has no image</p>
+         {% endif %}
+
+    </div>
+
 </div>
 
 <div class="modal fade" id="recorded-model" tabindex="-1" role="dialog"
