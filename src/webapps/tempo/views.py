@@ -114,6 +114,7 @@ def user_home(request, username):
         band_id = request.session['band']
         artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
         context['band'] = Band.objects.get(id=band_id)
+        context['band_name'] = Band.objects.get(id=band_id).band_name
         context['team_member'] = User.objects.filter(band_member__in=artist_band_pair.values_list('member', flat=True)).distinct()
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
