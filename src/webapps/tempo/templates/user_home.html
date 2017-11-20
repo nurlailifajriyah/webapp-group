@@ -38,7 +38,10 @@
         </div>
 
         {%endfor%}
+        {% else %}
+        <p> There's no album in this band.</p>
         {%endif%}
+
         {{errors}}
 
     </div>
@@ -48,7 +51,7 @@
         <div class="col-md-12 list-group-item ">
             <div class="col-md-3" style="display: flex;">
                 <div class="pull-left image" id="post_image">
-                    <img src="{% static member.artist.image %}" class="img-responsive" alt="{{member.member.username}}"
+                    <img src="{% static member.artist.image %}" class="img-responsive" alt="{{member.username}}"
                          class=" img-circle"
                          width="100px" high="100px">
                 </div>
@@ -56,16 +59,16 @@
             </div>
             <div class="col-md-9">
                 <div class="title text-left" id="post_image_owner">
-                    <a href="{% url 'user_home' member.member.username %}">
-                        <h5> @{{member.member.username}}</h5></a>
-                    <h5> {{member.member.first_name}}&ensp;{{member.member.last_name}}</h5>
+
+                    <h5> @{{member.username}}</h5>
+                    <h5> {{member.first_name}}&ensp;{{member.last_name}}</h5>
 
                 </div>
             </div>
         </div>
 
         {% endfor %}
-    </div>
-</div>
 
-{% endblock %}
+    </div>
+
+    {% endblock %}
