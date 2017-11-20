@@ -9,13 +9,14 @@ from .forms import *
 @login_required
 def event(request):
     context = {}
-    band = request.session['band']
-    context['band_session'] = band
-    context['band'] = Band.objects.get(id=band)
+    band_session = request.session['band']
+    context['band_session'] = band_session
+    band = Band.objects.get(id=band_session)
+    context['band'] = band
     context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
     if request.method == 'GET':
         context['form'] = EventForm()
-        context['events'] = Event.objects.all()
+        context['events'] = Event.objects.filter(band_name=band)
         return render(request, 'events/eventmainpage.html', context)
 
 #######################################################################################################
