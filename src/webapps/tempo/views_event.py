@@ -36,8 +36,6 @@ def add_event(request, band_id):
     context = {}
     form = EventForm(request.POST)
     context['form'] = form
-    errors = []
-    context['errors'] = errors
 
     if not form.is_valid():
         return render(request, 'events/eventmainpage.html', context)
@@ -48,7 +46,7 @@ def add_event(request, band_id):
                           end_date=form.clean_end_date(), event_type=form.clean_event_type(),
                           creator=request.user, band_name=band)
         new_event.save()
-
+        new_event.clean();
         return redirect(reverse('events'))
 
 @login_required()
