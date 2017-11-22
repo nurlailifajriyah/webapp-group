@@ -2,26 +2,28 @@ from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
+from django.db.models import Q
+
 
 from .models import *
 from .forms import *
 
-######################################################################################################
-@login_required()
-def band_page(request):
-    context = {}
-    context['user'] = request.user.username
-    band = request.session['band']
-    context['band_session'] = band
-    context['band'] = Band.objects.get(id=band)
-    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
-    return render(request, 'bandpage.html', context)
-
-######################################################################################################
-def band_page(request):
-    context['band_session'] = request.session['band']
-    context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
-    return render(request, 'bandpage.html', context)
+# ######################################################################################################
+# @login_required()
+# def band_page(request):
+#     context = {}
+#     context['user'] = request.user.username
+#     band = request.session['band']
+#     context['band_session'] = band
+#     context['band'] = Band.objects.get(id=band)
+#     context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
+#     return render(request, 'bandpage.html', context)
+#
+# ######################################################################################################
+# def band_page(request):
+#     context['band_session'] = request.session['band']
+#     context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
+#     return render(request, 'bandpage.html', context)
 
 
 ##########################################fuctions to join and create#############################################
@@ -115,8 +117,9 @@ def user_band_list(request):
 @login_required()
 def band_list(request):
     context = {}
-    context['all_bands'] = Band.objects.all()
-    return render(request, 'user_pre_profile.html', context)
+    user_bands = ArtistInBand.objects.filter(member=request.user)
+    context['all_bands'] = Band.objects.filter(~Q(id__in=user_bands.values_list('band', flat=True)))
+    return render(request, 'bandlist.html', context)
 
 def team_member(request):
     context = {}

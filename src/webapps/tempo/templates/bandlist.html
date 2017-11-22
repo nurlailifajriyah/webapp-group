@@ -6,9 +6,8 @@
 
 {% load static %}
 
-    <h1 class="text-center">You have no band. Join one Now!</h1>
     {% if not all_bands%}
-    <p>There is no band in the system. <a href="{%url 'create' %}">Create one!</a></p>
+    <h2>There is no other band in the system. <a href="{%url 'create' %}">Create one!</a></h2>
     {% else %}
     <div class="row">
     {% for band in all_bands %}
