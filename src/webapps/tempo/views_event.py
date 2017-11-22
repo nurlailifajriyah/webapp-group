@@ -45,8 +45,8 @@ def add_event(request, band_id):
         new_event = Event(event_name=form.clean_event_name(), start_date=form.clean_start_date(),
                           end_date=form.clean_end_date(), event_type=form.clean_event_type(),
                           creator=request.user, band_name=band)
+        form.clean()
         new_event.save()
-        new_event.clean();
         return redirect(reverse('events'))
 
 @login_required()
