@@ -20,7 +20,7 @@ from tempo.models import *
 import json
 
 
-# Create your views here.
+# Homepage
 def home(request):
     return render(request, 'welcome.html')
 
@@ -62,8 +62,6 @@ def register(request):
                     zipcode=form.cleaned_data['zipcode'])
     # artist.image = 'tempo/media/12522937_1257065594310510_6977590312724746127_n.jpg'
     artist.save()
-
-    # return render(request, 'register.html', context)
 
     # ### email part
     token = account_activation_token.make_token(new_user)

@@ -54,7 +54,7 @@ def join_band(request, band_id):
     if Band.objects.filter(id=band_id):
         band_to_join = Band.objects.get(id=band_id)
         current_artist = request.user
-        if  ArtistInBand.objects.filter(band=band_to_join,member=current_artist).count <= 0:
+        if ArtistInBand.objects.filter(band=band_to_join,member=current_artist).count() <= 0:
             ArtistInBand.objects.create(band = band_to_join, member = current_artist)
         return redirect(reverse('user_pre_profile'))
     else:

@@ -23,6 +23,11 @@ class Band(models.Model):
     zipcode = models.IntegerField(blank=True, null=True, validators=[MaxValueValidator(99999)])
     created_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='tempo/images/band', blank=True)
+    members = models.ManyToManyField(
+        User,
+        through='ArtistInBand',
+        through_fields=('band', 'member'),
+    )
 
     def __str__(self):
         return self.band_name
@@ -53,7 +58,6 @@ class Artist(models.Model):
 class ArtistInBand(models.Model):
     band = models.ForeignKey(Band, verbose_name='band', related_name='band')
     member = models.ForeignKey(User, verbose_name='band_member', default="", related_name='band_member')
-
 
 class SongList(models.Model):
     name = models.CharField(max_length=140, blank=True)
