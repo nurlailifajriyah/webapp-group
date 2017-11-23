@@ -6,45 +6,47 @@
 
 {% load static %}
 
+<div class="col-md-12 col-lg-12 col-xs-12">
+
     <h1 class="text-center">You have no band. Join one Now!</h1>
     {% if not all_bands%}
     <p>There is no band in the system. <a href="{%url 'create' %}">Create one!</a></p>
     {% else %}
     <div class="row">
-    {% for band in all_bands %}
-    <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
+        {% for band in all_bands %}
+        <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
 
-        <div class="col-md-3" style="display: flex;">
+            <div class="col-md-5" style="display: flex;">
 
                 {% if band.image %}
-                <img   class=" img-circle" src="{% static band.image %}" width="100px" height="100px" alt="photo"/>
+                <img class=" img-circle" src="{% static band.image %}" width="100px" height="100px" alt="photo"/>
                 {% else %}
                 <img src="{% static 'tempo/images/profpict2.png' %}" width="100px" height="100px" alt="photo"/>
                 {% endif %}
 
 
+            </div>
+            <div class="col-md-7">
+
+                <h2 class="band_name">{{ band.band_name }}</h2>
+
+                <a href="{% url 'join_band' band.id %}" class="btn  btn-theme text-centre">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Join Band
+                </a>
+            </div>
         </div>
-        <div class="col-md-9">
 
-            <h2 class="band_name">{{ band.band_name }}</h2>
 
-            <a href="{% url 'join_band' band.id %}" class="btn  btn-theme text-centre">
-                <span class="glyphicon glyphicon-plus"></span>
-                Join Band
-            </a>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
+            <a href="{%url 'create' %}">Create a new band!</a>
         </div>
     </div>
-
-
-    {% endfor %}
-    </div>
-<div class="row">
-    <div class="col-md-offset-2 col-md-8 panel panel-default panel-shadow ">
-    <a href="{%url 'create' %}">Create a new band!</a>
-    </div>
-</div>
     {% endif %}
-
+</div>
 
 
 {% endblock%}

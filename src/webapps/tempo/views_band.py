@@ -115,7 +115,7 @@ def user_band_list(request):
 @login_required()
 def band_list(request):
     context = {}
-    context['all_bands'] = Band.objects.all()
+    context['all_bands'] = Band.objects.all().distinct()
     return render(request, 'user_pre_profile.html', context)
 
 def team_member(request):

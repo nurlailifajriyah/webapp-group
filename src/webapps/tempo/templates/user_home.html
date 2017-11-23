@@ -1,4 +1,4 @@
-{%extends "team_member.html"%}
+{%extends "header_base.html"%}
 
 {% block title %}Recorder{% endblock%}
 {%block content%}
@@ -8,7 +8,7 @@
 {% clear_breadcrumbs %}
 {% block breadcrumbs %}
 {{ block.super }}
-{% breadcrumb username "team_member" %}
+
 {% endblock %}
 
 
