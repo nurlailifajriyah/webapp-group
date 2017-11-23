@@ -1,5 +1,5 @@
 {%extends "header_base.html"%}
-{% block title %}Home{% endblock%}
+{% block title %}Song{% endblock%}
 {%block content%}
 {% load static %}
 <link href="{% static 'tempo/css/song_style.css' %}" rel="stylesheet">
@@ -7,7 +7,7 @@
 {% load django_bootstrap_breadcrumbs %}
 {% block breadcrumbs %}
     {{ block.super }}
-    {% breadcrumb "Song" song  %}
+    {% breadcrumb "Song" "song"  %}
 {% endblock %}
 
 
