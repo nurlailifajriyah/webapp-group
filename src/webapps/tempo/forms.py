@@ -92,8 +92,8 @@ class ProfileEditForm(forms.Form):
 
 class EventForm(forms.Form):
     event_name = forms.CharField(max_length=20, label='Event_name',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
-    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'class': 'form-control'}), required=True)
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'class': 'form-control'}), required=True)
     event_type = forms.CharField(max_length=10,widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 
