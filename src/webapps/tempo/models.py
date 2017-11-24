@@ -88,8 +88,6 @@ class Track(models.Model):
     creation_time = models.DateTimeField(auto_now=True)
     song = models.ForeignKey(Song, related_name='song',  default ='')
 
-    #TODO foreignkey to song
-
     def __unicode__(self):
         return self.name
 
@@ -98,8 +96,12 @@ class Track(models.Model):
 
     # Returns all recent additions
     @staticmethod
-    def get_tracks(time="1970-01-01T00:00+00:00"):
-        return Track.objects.order_by('-creation_time').filter(creation_time__gt=time).distinct()
+    def get_tracks(song_id,time="1970-01-01T00:00+00:00"):
+        try:
+            song = Song.objects.get(id=song_id)
+        except:
+            return Track()
+        return Track.objects.order_by('-creation_time').filter(creation_time__gt=time, song=song).distinct()
         # Returns all recent additions
 
     @property

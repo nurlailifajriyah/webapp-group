@@ -1,7 +1,8 @@
 function populateList() {
-    $.get('/get_track')
+    var songid = $('.track-list').attr('id');
+    $.get('/get_track/' + songid)
       .done(function(data) {
-          var list = $('#track-list');
+          var list = $('.track-list');
           list.data('max-time', data['max-time']);
           list.html('');
           for (var i = 0; i < data.tracks.length; i++) {
@@ -14,9 +15,10 @@ function populateList() {
 }
 
 function getUpdates(){
-    var list = $('#track-list');
+    var songid = $('.track-list').attr('id');
+    var list = $('.track-list');
     var max_time = list.data("max-time")
-    $.get('/get_track/' + max_time)
+    $.get('/get_track/' + songid + "/" + max_time)
       .done(function(data) {
           list.data('max-time', data['max-time']);
           for (var i = 0; i < data.tracks.length; i++) {

@@ -21,7 +21,6 @@ def audio_recorder(request, song_id):
 
 @login_required
 def add_track(request):
-    # TODO validation if file is not an audio file
     errors = []
     if not 'track_name' in request.POST or not request.POST['track_name']:
         errors.append('Trackname is required.')
@@ -32,8 +31,8 @@ def add_track(request):
     return HttpResponse("")
 
 @login_required
-def get_tracks(request, time="1970-01-01T00:00+00:00"):
+def get_tracks(request, song_id, time="1970-01-01T00:00+00:00"):
     max_time = Track.get_max_time()
-    tracks = Track.get_tracks(time)
+    tracks = Track.get_tracks(song_id,time)
     context = {"max_time": max_time, "tracks": tracks}
     return render(request, 'tracks/tracks.json', context, content_type='application/json')
