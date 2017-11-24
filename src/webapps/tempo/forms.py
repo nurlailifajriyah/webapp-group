@@ -51,7 +51,7 @@ class UserModelChoiceField(ModelChoiceField):
 
 class SongForm(forms.Form):
     name = forms.CharField(max_length=140,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    image = forms.ImageField(required=False, widget=forms.FileInput())
+    image = forms.ImageField(required=False, widget=forms.FileInput(), label='Song\'s Chord')
 
 
 class BandForm(forms.Form):
