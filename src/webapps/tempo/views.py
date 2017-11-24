@@ -19,6 +19,7 @@ from .token import account_activation_token
 from tempo.models import *
 import json
 
+from django.utils import timezone
 
 # Homepage
 def home(request):
@@ -54,8 +55,9 @@ def register(request):
                                         last_name=form.cleaned_data['last_name'],
                                         email=form.cleaned_data['email'],
                                         password=form.cleaned_data['password1'],
-                                        is_active=False
+                                        last_login= timezone.now() 
                                         )
+    new_user.is_active = False
     new_user.save()
 
     # profile part
