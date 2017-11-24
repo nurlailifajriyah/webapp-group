@@ -21,12 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%9egcz(q_j$u!gt#)c5z1r06+uy#0a5ffai$ci^^wd1wdxie5w'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -131,15 +132,42 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 MEDIA_ROOT = BASE_DIR + '/tempo/static/'
 
 MEDIA_URL = '/tempo/static/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_URL = '/login'
 
 LOGIN_REDIRECT_URL = '/user_pre_profile'
 # LOGIN_REDIRECT_URL = reverse('user_home', args=request.user.username )
+
+
+##########email
+
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+
+# for real email
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
