@@ -29,13 +29,15 @@ def home(request):
 @login_required
 def user_pre_profile(request):
     context = {}
+    # If the user have bands, they will be redirected to one of their band homepage
     if (ArtistInBand.objects.filter(member_id=request.user.id)):
         artist_band = ArtistInBand.objects.filter(member_id=request.user.id).first()
         request.session['band'] = artist_band.band.id
         return redirect(reverse('user_home', args={request.user.username}))
-
+    # Else, they will go to user_pre_profile to join band first
     context['all_bands'] = Band.objects.all()
     return render(request, 'user_pre_profile.html', context)
+
 
 #################################################################################
 def register(request):
@@ -60,15 +62,14 @@ def register(request):
     artist = Artist(age=form.cleaned_data['age'], artist=new_user, city=form.cleaned_data['city'],
                     country=form.cleaned_data['country'], bio=form.cleaned_data['bio'],
                     zipcode=form.cleaned_data['zipcode'])
-    # artist.image = 'tempo/media/12522937_1257065594310510_6977590312724746127_n.jpg'
     artist.save()
 
-    # ### email part
+    # email part
     token = account_activation_token.make_token(new_user)
     email_body = """Welcome to Tempo. We are glad you became a member. Please verify your email address and explore the wonders:
     http://%s%s""" % (request.get_host(),
                       reverse('activate', args=(new_user.username, token)))
-    #
+
     send_mail(subject="Verify your account/email address",
               message=email_body,
               from_email="grumbltech@grumblr.com",
@@ -95,59 +96,40 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
+
 #######################################################################################################
 @login_required
 def user_home(request, username):
-
-    band = request.session['band']
-
     try:
         context = {}
+        # user_bands to show all bands the user joined in the header_base
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
-        context['band'] = Band.objects.get(id=band)
-        context['username'] = username
+        # get band id from session
         band_id = request.session['band']
         band = Band.objects.filter(id=band_id)
+        context['username'] = username
+        context['band'] = Band.objects.get(id=band)
         context['song_list'] = SongList.objects.filter(band=band)
-        band_id = request.session['band']
         artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
-        context['band'] = Band.objects.get(id=band_id)
-        context['band_name'] = Band.objects.get(id=band_id).band_name
         context['team_member'] = User.objects.filter(band_member__in=artist_band_pair.values_list('member', flat=True)).distinct()
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
         return render(request, 'welcome.html', {})
 
-###################################################################################################
 
+###################################################################################################
 @login_required
 def change_band_home(request, band_id):
-
-    request.session['band'] = band_id
-
     try:
         context = {}
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         context['band'] = Band.objects.get(id=band_id)
+        request.session['band'] = band_id
         return redirect(reverse('user_home', args={request.user.username}))
     except ObjectDoesNotExist as e:
-        return render(request, 'welcome.html', {})
+        return redirect(reverse('user_home', args={request.user.username}))
 
-#band page with it events associated with band
-# @login_required()
-# def band_events(request, band_id):
-#     if not band_id:
-#         redirect(reverse('user_home', args=request.user.username))
-#     try:
-#         band = Band.objects.get(id = band_id)
-#         events = Event.objects.filter(band_name = band.id)
-#         context = {}
-#         context['events'] = events
-#         context['band_id'] = band_id
-#         print("the size of event list is ", len(events))
-#         return render(request, 'bandpage.html', context)
-#     except ObjectDoesNotExist:
-#         return redirect(reverse('band_list'))
+
 
 
 
