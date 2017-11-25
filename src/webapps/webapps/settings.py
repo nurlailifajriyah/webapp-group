@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'datetimewidget',
     'django_bootstrap_breadcrumbs',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -142,7 +143,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 MEDIA_ROOT = BASE_DIR + '/tempo/static/'
@@ -171,3 +172,15 @@ EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+##AWS
+AWS_QUERYSTRING_AUTH = False
+AWS_STORAGE_BUCKET_NAME = 'tempo-app'
+AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
+
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['S3_ACCESS_KEY_ID'], os.environ['S3_SECRET_ACCESS_KEY'])
+
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
