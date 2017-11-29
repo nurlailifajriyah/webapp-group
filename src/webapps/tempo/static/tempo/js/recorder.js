@@ -19,7 +19,7 @@ DEALINGS IN THE SOFTWARE.
 
 (function(window){
 
-  var WORKER_PATH = '/static/tempo/js/recorderWorker.js';
+  var WORKER_PATH = 'https://s3.us-east-2.amazonaws.com/tempo-webapps/tempo/js/recorderWorker.js';
 
   var Recorder = function(source, cfg){
     var config = cfg || {};
@@ -31,7 +31,8 @@ DEALINGS IN THE SOFTWARE.
        this.node = this.context.createScriptProcessor(bufferLen, 2, 2);
     }
 
-    var worker = new Worker(config.workerPath || WORKER_PATH);
+    var worker = new Worker(URL.createObjectURL(new Blob(["("+worker_function.toString()+")()"], {type: 'text/javascript'})));
+    // var worker = new Worker(config.workerPath || WORKER_PATH);
     worker.postMessage({
       command: 'init',
       config: {
