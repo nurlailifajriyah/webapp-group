@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, JsonResponse
 from . models import *
+from dateutil import parser
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
@@ -32,6 +33,11 @@ def add_track(request):
 
 @login_required
 def get_tracks(request, song_id, time="1970-01-01T00:00+00:00"):
+    valid_band = get_object_or_404(Song, id=song_id)
+    try:
+        parser.parse(time)
+    except:
+        time = "1970-01-01T00:00+00:00"
     max_time = Track.get_max_time()
     tracks = Track.get_tracks(song_id,time)
     context = {"max_time": max_time, "tracks": tracks}

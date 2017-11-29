@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from .models import *
 from .forms import *
+from django.db.models import Q
+
 #######################################################################################################
 @login_required
 def song_list(request):
@@ -41,13 +43,16 @@ def album_detail(request,album_id):
     album = get_object_or_404(SongList, id=album_id)
     if request.method == 'GET':
         song_in_album = SongInList.objects.filter(list=album)
+
         context['song'] = Song.objects.filter(id__in=song_in_album.values_list('song', flat=True))
         print (song_in_album.values_list('song', flat=True) )
         context['album'] = SongList.objects.get(id=album_id)
         context['album_id'] = album_id
         band_id = request.session['band']
         band = Band.objects.get(id=band_id)
-        context['all_song_list'] = Song.objects.filter(band=band)
+
+        context['all_song_list'] = Song.objects.filter(Q(band=band) & ~Q(id__in=song_in_album.values_list('song', flat=True)))
+
         context['band'] = band
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         return render(request, 'album_detail.html', context)
@@ -108,7 +113,7 @@ def song(request):
 @login_required
 def add_song(request):
         context = {}
-        form = SongForm(request.POST)
+        form = SongForm(request.POST, request.FILES)
         band_id = request.session['band']
         context['band_session'] = band_id
         band = Band.objects.get(id=band_id)
@@ -117,10 +122,9 @@ def add_song(request):
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)
         errors = []
 
-
         if not form.is_valid():
-            errors.append('Please provide song information')
-            context['errors'] = errors
+            context['errors'] = form.errors
+            context['song_list'] = Song.objects.filter(band=band)
             return render(request, 'song.html', context)
 
         else:
@@ -129,8 +133,6 @@ def add_song(request):
                 new_item.image = request.FILES['image']
                 new_item.save()
             new_item.save()
-            context['form'] = SongForm()
-            context['song_list'] = Song.objects.filter(band=band)
         context['form'] = SongForm()
         context['song_list'] = Song.objects.filter(band=band)
         context['errors'] = errors

@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,8 +90,14 @@ WSGI_APPLICATION = 'webapps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': os.environ['DB_HOST'],
+        'PORT': '5432',  # Set to empty string for default.
+
     }
 }
 
@@ -144,7 +150,7 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MEDIA_ROOT = BASE_DIR + '/tempo/static/'
 
@@ -174,12 +180,27 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 ##AWS
-AWS_QUERYSTRING_AUTH = False
-AWS_STORAGE_BUCKET_NAME = 'tempo-app'
-AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
 
-from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['S3_ACCESS_KEY_ID'], os.environ['S3_SECRET_ACCESS_KEY'])
+STATICFILES_LOCATION = ''
+STATICFILES_STORAGE = 'customStorages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'customStorages.MediaStorage'
+
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = os.environ['S3_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = 'tempo-webapps'
+AWS_S3_REGION_NAME = 'us-east-2'
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+#AWS_LOCATION = 'static'
+
+
+# from boto.s3.connection import S3Connection
+# s3 = S3Connection(os.environ['S3_ACCESS_KEY_ID'], os.environ['S3_SECRET_ACCESS_KEY'])
 
 # Tell django-storages the domain to use to refer to static files.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME

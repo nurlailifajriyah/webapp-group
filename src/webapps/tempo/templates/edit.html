@@ -11,10 +11,6 @@
     <!-- django's authentication module-->
     <form enctype="multipart/form-data" class="form-horizontal" method="post"
           action="{% url 'edit_profile' username=request.user.username %}">
-        {%if form.errors%}
-        <p class="error_msg">Please re-enter your credentials. If you don't remember password try the forgot password
-            option.</p>
-        {%endif%}
 
         <!--create registration form using forms-->
         <table>

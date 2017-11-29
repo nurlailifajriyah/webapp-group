@@ -16,7 +16,7 @@
         <div class="col-md-3" style="display: flex;">
 
                 {% if band.image %}
-                <img   class=" img-circle" src="{% static band.image %}" width="100px" height="100px" alt="photo"/>
+                <img   class=" img-circle" src="{{ band.image.url }}" width="100px" height="100px" alt="photo"/>
                 {% else %}
                 <img src="{% static 'tempo/images/profpict2.png' %}" width="100px" height="100px" alt="photo"/>
                 {% endif %}

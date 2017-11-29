@@ -27,9 +27,9 @@
         <div class="gallery">
 
             {% if list.image %}
-            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{{list.image.url}}">
             {% else %}
-            <img src="http://placehold.it/150x150&text=1" width="300" height="200" height="70"/>
+            <img src="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200" height="70"/>
             {% endif %}
 
             <div class="desc">{{list.name}} <br>
@@ -54,11 +54,15 @@
                 </div>
                 <form action="{% url 'add_song_to_list' album_id=album_id %}" method="post">
                     <div class="modal-body">
+                        {% if all_song_list %}
                         {% for song in all_song_list %}
                         <div class="checkbox">
                             <label><input type="checkbox" name="checked_song" value="{{song.id}}">{{song.name}}</label>
                         </div>
                         {% endfor %}
+                        {% else %}
+                        <p>There is no more song to add in this band. <a href="{% url 'song' %}">Create song!</a></p>
+                        {% endif %}
 
                     </div>
                     <div class="modal-footer">

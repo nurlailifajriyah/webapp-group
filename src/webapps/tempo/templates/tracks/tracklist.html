@@ -2,7 +2,7 @@
 <li id='{{trackid}}' class="list-group-item">
 
                 <audio class="my_audio-{{track.id}}">
-                    <source src="{% static track.audio_file %}" type="audio/wav">
+                    <source src="{{ track.audio_file.url }}" type="audio/wav">
                 </audio>
                 <button class='play-btn' id="{{track.id}}"><span class="glyphicon glyphicon-play" style="font-size: 20px"></span></button>
                 <button class='stop-btn' id="{{track.id}}"><span class="glyphicon glyphicon-stop" style="font-size: 20px"></span></button>

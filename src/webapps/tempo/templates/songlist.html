@@ -28,7 +28,7 @@
         <div class="gallery">
 
                 {% if list.image %}
-                <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+                <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{{ list.image.url }}">
                 {% else %}
                 <img src="{% static 'tempo/images/default-cover-album.png' %}" width="300" height="300" height="70"/>
                 {% endif %}

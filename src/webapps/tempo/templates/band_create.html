@@ -11,9 +11,6 @@
 
         <form method="post" action="{% url 'create_band' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {%if form.errors%}
-                <p class="error_msg bold_styling1">{{errors}}</p>
-            {%endif%}
 
             <!--create create band form using forms-->
             <table>

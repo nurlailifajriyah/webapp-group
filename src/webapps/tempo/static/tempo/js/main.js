@@ -205,10 +205,11 @@ function upload() {
          alert("Track name is required.");
         return;
     }
-    //Source: https://stackoverflow.com/a/13333478/8717427
+    // Source: https://stackoverflow.com/a/13333478/8717427
     var fd = new FormData();
     fd.append('track_name', track_name);
-    fd.append('data', window.BlobData, "output.wav");
+    var timeStamp = Math.floor(Date.now() / 1000)
+    fd.append('data', window.BlobData, "output-"+timeStamp+".wav");
     fd.append('csrfmiddlewaretoken', getCookie("csrftoken"))
     $.ajax({
         type: 'POST',
@@ -217,10 +218,10 @@ function upload() {
         processData: false,
         contentType: false
     }).done(function (data) {
-        console.log(data);
         window.BlobData = null;
          $('#recorded-model').modal('hide');
-         $.getscript("audiorecord.js",function(){
+
+         $.getScript('https://s3.us-east-2.amazonaws.com/tempo-webapps/tempo/js/audiorecord.js', function() {
              getUpdates();
          });
     });

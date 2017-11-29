@@ -23,7 +23,10 @@ from django.utils import timezone
 
 # Homepage
 def home(request):
-    return render(request, 'welcome.html')
+    if request.user.is_authenticated():
+        return redirect(reverse('user_home', args={request.user.username}))
+    else:
+        return render(request, 'welcome.html')
 
 
 ###############################################################################
@@ -74,7 +77,7 @@ def register(request):
 
     send_mail(subject="Verify your account/email address",
               message=email_body,
-              from_email="grumbltech@grumblr.com",
+              from_email="tempo-tech@tempo.com",
               recipient_list=[new_user.email])
     context['email'] = form.cleaned_data['email']
     context['fname'] = form.cleaned_data['first_name']
@@ -113,15 +116,16 @@ def user_home(request, username):
         context['band'] = Band.objects.get(id=band)
         context['song_list'] = SongList.objects.filter(band=band)
         artist_band_pair = ArtistInBand.objects.filter(band_id=band_id)
-        context['team_member'] = User.objects.filter(band_member__in=artist_band_pair.values_list('member', flat=True)).distinct()
+        context['team_member'] = User.objects.filter(id__in=artist_band_pair.values_list('member', flat=True)).distinct()
         return render(request, 'user_home.html', context)
     except ObjectDoesNotExist as e:
-        return render(request, 'welcome.html', {})
+        return render(request, '404.html', {})
 
 
 ###################################################################################################
 @login_required
 def change_band_home(request, band_id):
+    valid_band = get_object_or_404(Band, id=band_id)
     try:
         context = {}
         context['user_bands'] = ArtistInBand.objects.filter(member=request.user)

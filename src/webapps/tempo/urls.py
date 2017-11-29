@@ -49,6 +49,7 @@ urlpatterns = [
     url(r'^audio_recorder/(?P<song_id>\d+)$', tempo.views_audiorecording.audio_recorder, name="audio_recorder"),
     url(r'^add_track$', tempo.views_audiorecording.add_track, name="add_track"),
     #url(r'^get_track$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
+    url(r'^get_track/(?P<song_id>\d+)/$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
     url(r'^get_track/(?P<song_id>\d+)$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
     url(r'^get_track/(?P<song_id>\d+)/(?P<time>.+)$', tempo.views_audiorecording.get_tracks, name="get_tracks"),
 

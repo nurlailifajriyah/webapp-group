@@ -58,6 +58,8 @@ class Artist(models.Model):
 class ArtistInBand(models.Model):
     band = models.ForeignKey(Band, verbose_name='band', related_name='band')
     member = models.ForeignKey(User, verbose_name='band_member', default="", related_name='band_member')
+    class Meta:
+        unique_together = ('band', 'member',)
 
 class SongList(models.Model):
     name = models.CharField(max_length=140, blank=True)
@@ -78,7 +80,6 @@ class Song(models.Model):
 class SongInList(models.Model):
     list = models.ForeignKey(SongList, related_name='list')
     song = models.ForeignKey(Song, related_name='song_in_list')
-
 
 class Track(models.Model):
     name = models.TextField(max_length=140, blank=True)
@@ -130,6 +131,7 @@ class Event(models.Model):
     start_date = models.DateTimeField(null=False,blank=False)
     end_date = models.DateTimeField(null=False,blank=False)
     event_type = models.CharField(max_length=10,null=True,blank=True)
+    list = models.ForeignKey(SongList, related_name='songlist_event', null=True, blank=True)
 
     def __str__(self):
         return self.event_name

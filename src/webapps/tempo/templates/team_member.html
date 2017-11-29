@@ -15,7 +15,7 @@
     <div class="col-md-3" style="display: flex;">
         <div class="pull-left image" id="post_image">
             {% if member.artist.image %}
-            <img src="{% static member.artist.image %}" class="img-responsive" alt="{{member.username}}"
+            <img src="{{member.artist.image.url }}" class="img-responsive" alt="{{member.username}}"
                  class=" img-circle"
                  width="100px" high="100px">
             {% else %}

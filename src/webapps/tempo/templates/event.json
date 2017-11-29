@@ -1,4 +1,7 @@
 {
-"title": "{{event.event_name}}",
-"start": "{{event.start_date|date:'c'}}"
+  "title": "{{event.event_name}}",
+  "start": "{{event.start_date|date:'c'}}",
+  "end": "{{event.end_date|date:'c'}}",
+  "album": "{{event.list}}",
+  "album_id": "{{event.list.id}}"
 }

@@ -11,6 +11,10 @@
 <!-- Customized CSS -->
 <link href="{% static 'tempo/css/audio_record.css' %}" rel="stylesheet">
 
+<script>
+    var audioRecordUrl = "{% static 'tempo/js/audiorecord.js' %}";
+</script>
+
 {% load django_bootstrap_breadcrumbs %}
 {% block breadcrumbs %}
     {{ block.super }}
@@ -45,7 +49,7 @@
          <br>
         <h1>Song Chord</h1>
          {%if song.image %}
-            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static song.image %}">
+            <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{{ song.image.url }}">
          {% else %}
             <p> this song has no image</p>
          {% endif %}

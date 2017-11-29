@@ -50,8 +50,8 @@ $(document).ready(function () {
 
  window.setInterval(getUpdates, 5000);
 
- $("#track-list").on('click', ".play-btn", play_audio);
- $("#track-list").on('click', ".stop-btn", stop_audio);
+ $(".track-list").on('click', ".play-btn", play_audio);
+ $(".track-list").on('click', ".stop-btn", stop_audio);
 
   // CSRF set-up copied from Django docs
   function getCookie(name) {

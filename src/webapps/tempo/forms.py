@@ -1,8 +1,11 @@
 from django import forms
 from .models import *
-import datetime
 from django.forms import ModelChoiceField
 from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
+from PIL import Image
+from django.utils.translation import ugettext as _
+import datetime
+import pytz
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20)
@@ -44,14 +47,33 @@ class RegistrationForm(forms.Form):
 class SongListForm(forms.Form):
     name = forms.CharField(max_length=140)
 
-class UserModelChoiceField(ModelChoiceField):
-    def label_from_instance(self, obj):
-         return obj.name
-
-
 class SongForm(forms.Form):
     name = forms.CharField(max_length=140,widget=forms.TextInput(attrs={'class': 'form-control'}))
     image = forms.ImageField(required=False, widget=forms.FileInput(), label='Song\'s Chord')
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image', False)
+
+        if image:
+            img = Image.open(image)
+            w, h = img.size
+
+            # validate dimensions
+            max_width = max_height = 1024
+            if w > max_width or h > max_height:
+                raise forms.ValidationError(
+                    _('Please use an image that is smaller or equal to '
+                      '%s x %s pixels.' % (max_width, max_height)))
+
+            # validate content type
+            main, sub = image.content_type.split('/')
+            if not (main == 'image' and sub.lower() in ['jpeg', 'pjpeg', 'png', 'jpg']):
+                raise forms.ValidationError(_('Please use a JPEG or PNG image.'))
+
+            # validate file size
+            if len(image) > (1 * 1024 * 1024):
+                raise forms.ValidationError(_('Image file too large ( maximum 1mb )'))
+            return image
 
 
 class BandForm(forms.Form):
@@ -60,12 +82,36 @@ class BandForm(forms.Form):
     city = forms.CharField(max_length=20, label='City')
     image = forms.ImageField(required=False, widget=forms.FileInput())
 
-    # valdiation for b
-    def clean_username(self):
+    # valdiation
+    def clean_bandname(self):
         band_name = self.cleaned_data.get('bandname')
-        if len(Band.objects.filter(username__exact=band_name)) >= 1:
+        if len(Band.objects.filter(band_name__exact=band_name)) >= 1:
             raise forms.ValidationError("Band name already taken")
         return band_name
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image', False)
+
+        if image:
+            img = Image.open(image)
+            w, h = img.size
+
+            # validate dimensions
+            max_width = max_height = 1024
+            if w > max_width or h > max_height:
+                raise forms.ValidationError(
+                    _('Please use an image that is smaller or equal to '
+                      '%s x %s pixels.' % (max_width, max_height)))
+
+            # validate content type
+            main, sub = image.content_type.split('/')
+            if not (main == 'image' and sub.lower() in ['jpeg', 'pjpeg', 'png', 'jpg']):
+                raise forms.ValidationError(_('Please use a JPEG or PNG image.'))
+
+            # validate file size
+            if len(image) > (1 * 1024 * 1024):
+                raise forms.ValidationError(_('Image file too large ( maximum 1mb )'))
+            return image
 
 
 class ProfileEditForm(forms.Form):
@@ -89,21 +135,54 @@ class ProfileEditForm(forms.Form):
             raise forms.ValidationError("Passwords don't match")
         return cleaned_data
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image', False)
+
+        if image:
+            img = Image.open(image)
+            w, h = img.size
+
+            # validate dimensions
+            max_width = max_height = 1024
+            if w > max_width or h > max_height:
+                raise forms.ValidationError(
+                    _('Please use an image that is smaller or equal to '
+                      '%s x %s pixels.' % (max_width, max_height)))
+
+            # validate content type
+            main, sub = image.content_type.split('/')
+            if not (main == 'image' and sub.lower() in ['jpeg', 'pjpeg', 'png', 'jpg']):
+                raise forms.ValidationError(_('Please use a JPEG or PNG image.'))
+
+            # validate file size
+            if len(image) > (1 * 1024 * 1024):
+                raise forms.ValidationError(_('Image file too large ( maximum 1mb )'))
+            return image
+
 
 class EventForm(forms.Form):
-    event_name = forms.CharField(max_length=20, label='Event_name',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'class': 'form-control'}), required=True)
-    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'class': 'form-control'}), required=True)
-    event_type = forms.CharField(max_length=10,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    def __init__(self, *args, **kwargs):
+        self.band_id = kwargs.pop('band_id')
+        super(EventForm, self).__init__(*args, **kwargs)
+        self.fields['song_list'] = ModelChoiceField(queryset=SongList.objects.filter(band_id=self.band_id),
+                                                    required=False)
 
+    event_name = forms.CharField(max_length=20, label='Event_name',
+                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
+    start_date = forms.DateTimeField(
+        widget=DateTimeWidget(usel10n=True, bootstrap_version=3, attrs={'class': 'form-control'}), required=True)
+    end_date = forms.DateTimeField(
+        widget=DateTimeWidget(usel10n=True, bootstrap_version=3, attrs={'class': 'form-control'}), required=True)
+    event_type = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def clean(self):
         cleaned_data = super(EventForm, self).clean()
         start_date = self.cleaned_data.get('start_date')
         end_date = self.cleaned_data.get('end_date')
+
         if start_date != None and end_date != None:
             if end_date < start_date:
-                raise forms.ValidationError("Invalid date entered")
+                raise forms.ValidationError("Invalid date entered: End date must be after start date")
         return cleaned_data
 
     def clean_event_name(self):
@@ -115,17 +194,18 @@ class EventForm(forms.Form):
         return event_name
 
     def clean_start_date(self):
+        utc = pytz.UTC
         start_date = self.cleaned_data.get('start_date')
-        if start_date < datetime.date.today():
-            raise forms.ValidationError("Enter a date in future")
+        # start_time_utc = start_date.replace(tzinfo=utc)
+        if start_date < datetime.datetime.now().replace(tzinfo=utc):
+            raise forms.ValidationError("Please enter a date in future")
         return start_date
 
     def clean_end_date(self):
-        start_date = self.cleaned_data.get('start_date')
+        utc = pytz.UTC
         end_date = self.cleaned_data.get('end_date')
-        if end_date < datetime.date.today():
-            raise forms.ValidationError("enter date in future please")
-        # if end_date < start_date:
-        #     raise forms.ValidationError("Invalid date entered")
+        # end_time_utc = end_date.replace(tzinfo=utc)
+        if end_date < datetime.datetime.now().replace(tzinfo=utc):
+            raise forms.ValidationError("Please enter date in future")
         return end_date
 

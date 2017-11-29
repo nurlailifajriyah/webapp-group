@@ -29,7 +29,7 @@
         <div class="gallery">
 
                 {% if list.image %}
-                <img id="myImg" class="myImg" alt="description" class="img-responsive" src="{% static list.image %}">
+                <img id="myImg" class="myImg" class="img-responsive" src="{{ list.image.url }}">
                 {% else %}
                 <img src="{% static 'tempo/images/default-cover-song.png' %}" width="300" height="200" height="70"/>
                 {% endif %}
@@ -83,6 +83,6 @@
   <div id="caption"></div>
 </div>
 
-<script src="/static/tempo/js/song_popup.js" type="text/javascript"></script>
+<script src="{% static 'tempo/js/song_popup.js' %}" type="text/javascript"></script>
 
 {% endblock%}

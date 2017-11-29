@@ -20,6 +20,31 @@
     {% breadcrumb "Calender" "tempo.views_calendar.calendar" user.username %}
 {% endblock %}
 
-	<div class="band_id" id="{{band_session}}"></div>
-	<div id='calendar'></div>
+  <div class="band_id" id="{{band_session}}"></div>
+  <div id='calendar'></div>
+
+
+<!— Modal —>
+<!— http://getbootstrap.com/docs/3.3/javascript/#modals —>
+<div class="modal fade" id="event_modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="Add Event" id="myModalLabel">Event detail</h4>
+            </div>
+            <div class="modal-body" id="event_modal_body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 {%endblock%}
